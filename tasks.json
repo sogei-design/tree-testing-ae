@@ -1,0 +1,352 @@
+{
+  "version": "1.2",
+  "config": {
+    "tasksPerSession": 10,
+    "randomize": true,
+    "fixedSeedTask": null,
+    "allowSkip": true,
+    "askConfidence": true,
+    "askComment": true,
+    "confidenceScale": 5,
+    "sampling": "stratified_random",
+    "minObservationsPerTask": 30,
+    "targetProfiles": [
+      "cittadino",
+      "impresa_piva",
+      "professionista"
+    ],
+    "targetParticipantsPerProfile": 30,
+    "totalTargetParticipants": 90,
+    "coverageGoal": "all_schede",
+    "fieldStartTarget": "2026-05-22",
+    "fieldDurationDays": 60,
+    "screeningEnabled": true
+  },
+  "tasks": [
+    {
+      "id": "T01",
+      "difficulty": "media",
+      "macroTested": "MA_008 — Ottenere bonus e agevolazioni",
+      "labelTested": "Agevolazioni famiglia e figli",
+      "scenario": "Stai cercando informazioni sul Canone TV per capire chi deve pagarlo, come si calcola e quali esenzioni sono previste.",
+      "correctPath": [
+        "root",
+        "ma_008",
+        "ma_008_agevolazioni_famiglia_e_figli",
+        "scheda_37"
+      ],
+      "correctNodeId": "scheda_37",
+      "alternateAcceptable": [
+        "scheda_318"
+      ],
+      "rationale": "Mail Federica 08/05/2026: l'area tematica 'Canone TV' viene ELIMINATA — esistono già 2 schede (in 'Ottenere bonus e agevolazioni > Agevolazioni famiglia e figli' e in 'Pagamenti e Rimborsi'). Il task resta utile per testare l'associazione utente: Canone → Bonus/Agevolazioni famiglia. Difficoltà media confermata. Decisione 07/05: rimosso seed forzato per dare a tutti i task pari probabilità di selezione."
+    },
+    {
+      "id": "T02",
+      "difficulty": "facile",
+      "macroTested": "MA_008 — Ottenere bonus e agevolazioni",
+      "labelTested": "Agevolazioni casa e ristrutturazioni",
+      "scenario": "Hai appena ristrutturato l'appartamento e vuoi acquistare nuovi mobili usufruendo del bonus mobili.",
+      "correctPath": [
+        "root",
+        "ma_008",
+        "ma_008_agevolazioni_casa_e_ristrutturazioni",
+        "scheda_32"
+      ],
+      "correctNodeId": "scheda_32",
+      "rationale": "Task baseline 'facile' con label molto trasparente ('Agevolazioni casa e ristrutturazioni'). Serve come benchmark di success rate elevato (atteso >85%) per validare la chiarezza del raggruppamento."
+    },
+    {
+      "id": "T03",
+      "difficulty": "media",
+      "macroTested": "MA_002 — Casa e terreni",
+      "labelTested": "Aggiornamento catasto",
+      "scenario": "Hai ereditato l'appartamento di tua zia e devi aggiornare l'intestazione catastale a tuo nome.",
+      "correctPath": [
+        "root",
+        "ma_002",
+        "ma_002_aggiornamento_catasto",
+        "scheda_188"
+      ],
+      "correctNodeId": "scheda_188",
+      "alternateAcceptable": [
+        "scheda_174"
+      ],
+      "rationale": "Test del trade-off tra macro 'Casa e terreni' e macro 'Gestire una successione o un'eredità'. La voltura catastale è un'azione legata al cambio di intestazione (catasto), ma il contesto utente è una successione. Risultato critico: misura quanti utenti vanno per primo nella macro 'successione' (sbagliato per voltura) vs 'casa e terreni' (corretto)."
+    },
+    {
+      "id": "T04",
+      "difficulty": "facile",
+      "macroTested": "MA_002 — Casa e terreni",
+      "labelTested": "Visure catastali",
+      "scenario": "Stai per vendere casa e il notaio ti ha chiesto una visura catastale aggiornata.",
+      "correctPath": [
+        "root",
+        "ma_002",
+        "ma_002_visure_catastali",
+        "scheda_219"
+      ],
+      "correctNodeId": "scheda_219",
+      "rationale": "Task baseline 'facile' con label molto specifica. Verifica che la sotto-categoria 'Visure catastali' sia immediatamente trovata. Atteso success rate >90% — se inferiore segnala un problema sull'etichetta della macro 'Casa e terreni'."
+    },
+    {
+      "id": "T05",
+      "difficulty": "difficile",
+      "macroTested": "MA_005 vs MA_007 — Compilare dichiarazioni vs Gestire successione",
+      "labelTested": "Successioni ed eredità (sotto MA_005)",
+      "scenario": "È deceduta tua nonna e devi presentare la dichiarazione di successione per i beni ricevuti.",
+      "correctPath": [
+        "root",
+        "ma_005",
+        "ma_005_successioni_ed_eredita_",
+        "scheda_174"
+      ],
+      "correctNodeId": "scheda_174",
+      "rationale": "Task chiave per validare la coesistenza tra macro 'Compilare ed inviare dichiarazioni' e macro 'Gestire una successione o un'eredità'. Oggi MA_007 ha 0 schede classificate (è uno scaffold). Se la maggioranza degli utenti va su MA_007 ma non trova nulla, la struttura è da rivedere. Misura la sovrapposizione tematica tra le due macro."
+    },
+    {
+      "id": "T06",
+      "difficulty": "facile",
+      "macroTested": "MA_004 — Codice Fiscale e Tessera Sanitaria",
+      "labelTested": "Identificativi fiscali e abilitazioni",
+      "scenario": "Tuo figlio è appena nato e devi richiedere il suo codice fiscale.",
+      "correctPath": [
+        "root",
+        "ma_004",
+        "ma_004_identificativi_fiscali_e_abilitazioni",
+        "scheda_499"
+      ],
+      "correctNodeId": "scheda_499",
+      "rationale": "Task baseline 'facile' con label esplicita nella macro. Atteso success rate >90%. Permette di verificare che gli utenti distinguano correttamente tra 'codice fiscale persona fisica' e 'codice fiscale soggetti diversi' (la tassonomia ha entrambe)."
+    },
+    {
+      "id": "T07",
+      "difficulty": "difficile",
+      "macroTested": "MA_010 — Fiscalità internazionale e residenti all'estero",
+      "labelTested": "Agevolazioni per residenti all'estero",
+      "scenario": "Sei un cittadino italiano che lavora all'estero da 5 anni e vorresti rientrare in Italia per accettare un'offerta di lavoro. Hai sentito parlare di un'agevolazione fiscale per chi rientra.",
+      "correctPath": [
+        "root",
+        "ma_010",
+        "ma_010_agevolazioni_per_residenti_all_estero",
+        "scheda_72"
+      ],
+      "correctNodeId": "scheda_72",
+      "alternateAcceptable": [
+        "scheda_67"
+      ],
+      "rationale": "Task strategico per validare la macro rinominata di recente ('Fiscalità internazionale e residenti all'estero'). Verifica anche se gli utenti capiscono che lo strumento per chi rientra in Italia (impatriati) sta in 'agevolazioni per residenti all'estero'. Il rischio è che vadano in 'Ottenere bonus e agevolazioni' (macro alternativa, parzialmente legittima)."
+    },
+    {
+      "id": "T08",
+      "difficulty": "media",
+      "macroTested": "MA_009 — Pagamenti e Rimborsi",
+      "labelTested": "Richieste di rimborso",
+      "scenario": "Hai pagato il Canone TV per errore (sei esente) e vuoi ottenere il rimborso.",
+      "correctPath": [
+        "root",
+        "ma_009",
+        "ma_009_richieste_di_rimborso",
+        "scheda_318"
+      ],
+      "correctNodeId": "scheda_318",
+      "alternateAcceptable": [
+        "scheda_37"
+      ],
+      "rationale": "Task complementare a T01: stesso oggetto (Canone TV) ma intento diverso (rimborso). Verifica la capacità degli utenti di distinguere tra 'informazioni' (T01, macro Bonus) e 'azione di rimborso' (T08, macro Pagamenti e Rimborsi). Misura il rischio di confusione tra le due macro per uno stesso argomento."
+    },
+    {
+      "id": "T09",
+      "difficulty": "media",
+      "macroTested": "MA_001 — Aprire e gestire un'attività o Partita IVA",
+      "labelTested": "Avviare un'attività",
+      "scenario": "Stai per iniziare a lavorare come libero professionista (consulente) e devi aprire la partita IVA.",
+      "correctPath": [
+        "root",
+        "ma_001",
+        "ma_001_avviare_un_attivita",
+        "scheda_228"
+      ],
+      "correctNodeId": "scheda_228",
+      "rationale": "Task verifica della macro più voluminosa (30 schede). Misura se l'etichetta è chiara per un utente non-professionista che apre la prima partita IVA. Atteso success rate elevato (>80%). Se non lo è, segnala un problema di linguaggio (es. 'Partita IVA' troppo associata a imprese e non a professionisti)."
+    },
+    {
+      "id": "T10",
+      "difficulty": "media",
+      "macroTested": "MA_008 — Ottenere bonus e agevolazioni",
+      "labelTested": "Enti del Terzo Settore",
+      "scenario": "Sei presidente di un'associazione no-profit e devi iscriverti per ricevere il 5 per mille.",
+      "correctPath": [
+        "root",
+        "ma_008",
+        "ma_008_enti_del_terzo_settore",
+        "scheda_472"
+      ],
+      "correctNodeId": "scheda_472",
+      "rationale": "Test della sotto-categoria 'Enti del Terzo Settore' sotto la macro 'Ottenere bonus e agevolazioni'. Sotto-categoria potrebbe essere cercata anche in 'Aprire e gestire un'attività' (sotto-cat 'Enti Terzo Settore'). Misura la sovrapposizione tra le due macro su un tema comune."
+    },
+    {
+      "id": "T11",
+      "difficulty": "difficile",
+      "macroTested": "MA_006 — Controlli fiscali e contenziosi",
+      "labelTested": "Ricorsi e reclami",
+      "scenario": "Hai ricevuto un avviso di accertamento dall'Agenzia delle Entrate che ritieni sbagliato. Vuoi sapere come fare ricorso.",
+      "correctPath": [
+        "root",
+        "ma_006",
+        "ma_006_ricorsi_e_reclami"
+      ],
+      "correctNodeId": "ma_006_ricorsi_e_reclami",
+      "rationale": "Task per la macro più voluminosa (115 schede). 'Ricorsi e reclami' è una sotto-categoria critica e specifica. Verifica se gli utenti distinguono tra controlli (ricevere) e contenziosi (impugnare). Possibile confusione con 'Richieste e comunicazioni all'Agenzia' (macro 11). Difficoltà alta perché il dominio è giuridico-tecnico."
+    },
+    {
+      "id": "T12",
+      "difficulty": "media",
+      "macroTested": "MA_009 — Pagamenti e Rimborsi",
+      "labelTested": "Strumenti e modalità di pagamento",
+      "scenario": "Devi pagare delle imposte con il modello F24 ma non sai come compilarlo correttamente.",
+      "correctPath": [
+        "root",
+        "ma_009",
+        "ma_009_strumenti_e_modalita_di_pagamento",
+        "scheda_286"
+      ],
+      "correctNodeId": "scheda_286",
+      "rationale": "Test sull'etichetta 'Strumenti e modalità di pagamento'. Verifica se questa sotto-categoria comunica chiaramente la presenza di guide pratiche su F24/F23. Possibile confusione con 'Istruzioni per il pagamento delle imposte' (sotto-categoria adiacente, simile ma più orientata al cosa-pagare che al come-pagare)."
+    },
+    {
+      "id": "T13",
+      "difficulty": "media",
+      "macroTested": "MA_001 — Aprire e gestire un'attività o Partita IVA",
+      "labelTested": "Fatturazione elettronica",
+      "scenario": "Hai una partita IVA e devi iniziare a emettere fatture elettroniche. Vuoi capire come funziona il processo, dove emettere le fatture e come conservarle.",
+      "correctPath": [
+        "root",
+        "ma_001",
+        "ma_001_fatturazione_elettronica",
+        "scheda_127"
+      ],
+      "correctNodeId": "scheda_127",
+      "alternateAcceptable": [
+        "ma_001_fatturazione_elettronica",
+        "scheda_126"
+      ],
+      "rationale": "Test scheda 'Fatturazione elettronica' (ID 127, rinominata) nella sotto-cat 'Fatturazione elettronica' (rinominata da 'Emettere fatture e corrispettivi') sotto ma_001. Aggiornato 21/05/2026 post mail Federica: sotto-cat splittata in 'Fatturazione elettronica' e 'Corrispettivi telematici'."
+    },
+    {
+      "id": "T14",
+      "difficulty": "facile",
+      "macroTested": "MA_001 — Aprire e gestire un'attività o Partita IVA",
+      "labelTested": "Corrispettivi telematici",
+      "scenario": "Sei un esercente al dettaglio (negoziante). Hai un nuovo registratore telematico da installare e devi capire come trasmettere i corrispettivi giornalieri all'Agenzia delle Entrate.",
+      "correctPath": [
+        "root",
+        "ma_001",
+        "ma_001_corrispettivi_telematici",
+        "scheda_259"
+      ],
+      "correctNodeId": "scheda_259",
+      "alternateAcceptable": [
+        "ma_001_corrispettivi_telematici",
+        "scheda_254",
+        "scheda_510"
+      ],
+      "rationale": "Test sotto-cat 'Corrispettivi telematici' (5 schede: Biglietterie, Misuratori/RT, POS-RT, Lotteria, Soluzioni software). Aggiornato 21/05/2026 post mail Federica."
+    },
+    {
+      "id": "T15",
+      "difficulty": "media",
+      "macroTested": "MA_002 — Casa e terreni",
+      "labelTested": "Quotazioni immobiliari OMI",
+      "scenario": "Devi vendere un appartamento e vuoi conoscere il valore di mercato medio per la tua zona prima di metterlo in vendita.",
+      "correctPath": [
+        "root",
+        "ma_002",
+        "ma_002_quotazioni_immobiliari_omi",
+        "scheda_194"
+      ],
+      "correctNodeId": "scheda_194",
+      "rationale": "Test della scheda OMI confermata in riunione 14/05/2026: scheda unica 'Consultare le quotazioni immobiliari OMI' con correlati a servizi banche dati, pubblicazioni e manuali. Verifica path Casa e terreni → Quotazioni immobiliari OMI. [21/05/2026] Fix bug path: era ma_003 → ora ma_002. OMI in pausa in attesa di feedback AE (mail Federica)."
+    },
+    {
+      "id": "T16",
+      "difficulty": "media",
+      "macroTested": "MA_001 — Aprire e gestire un'attività o Partita IVA",
+      "labelTested": "Corrispettivi telematici",
+      "scenario": "Hai un negozio e devi adeguarti al nuovo obbligo di collegare il POS al registratore telematico. Vuoi capire come funziona, quali sono le scadenze e dove trovi la guida operativa.",
+      "correctPath": [
+        "root",
+        "ma_001",
+        "ma_001_corrispettivi_telematici",
+        "scheda_510"
+      ],
+      "correctNodeId": "scheda_510",
+      "alternateAcceptable": [
+        "ma_001_corrispettivi_telematici",
+        "scheda_259"
+      ],
+      "rationale": "Test nuova scheda 'Collegamento POS-RT' (ID 510). Creata 21/05/2026 post mail Federica."
+    },
+    {
+      "id": "T17",
+      "difficulty": "facile",
+      "macroTested": "MA_001 — Aprire e gestire un'attività o Partita IVA",
+      "labelTested": "Corrispettivi telematici",
+      "scenario": "Gestisci un bar e vuoi configurare il registratore telematico per far partecipare i tuoi clienti alla lotteria degli scontrini. Vuoi capire come abilitare la trasmissione dei dati al sistema lotteria.",
+      "correctPath": [
+        "root",
+        "ma_001",
+        "ma_001_corrispettivi_telematici",
+        "scheda_511"
+      ],
+      "correctNodeId": "scheda_511",
+      "alternateAcceptable": [
+        "ma_001_corrispettivi_telematici"
+      ],
+      "rationale": "Test nuova scheda 'Lotteria degli scontrini (esercenti)' (ID 511). Creata 21/05/2026 post mail Federica."
+    },
+    {
+      "id": "T18",
+      "difficulty": "media",
+      "macroTested": "MA_001 — Aprire e gestire un'attività o Partita IVA",
+      "labelTested": "Corrispettivi telematici",
+      "scenario": "Sei un esercente e vuoi adottare una soluzione software autorizzata per la memorizzazione e trasmissione dei corrispettivi, in alternativa al registratore telematico tradizionale.",
+      "correctPath": [
+        "root",
+        "ma_001",
+        "ma_001_corrispettivi_telematici",
+        "scheda_512"
+      ],
+      "correctNodeId": "scheda_512",
+      "alternateAcceptable": [
+        "ma_001_corrispettivi_telematici",
+        "scheda_259"
+      ],
+      "rationale": "Test nuova scheda 'Soluzioni software' (ID 512). Creata 21/05/2026 post mail Federica."
+    }
+  ],
+  "updatedAt": "2026-05-21",
+  "changeNotes": [
+    "v1.1 (07/05/2026): tasksPerSession 5→10; rimosso fixedSeedTask T01.",
+    "v1.2 (08/05/2026): allineato a minuta riunione 8 maggio. 3 profili (cittadino/impresa PIVA/professionista) × 30 = 90 partecipanti. Coverage = tutte le ~230 schede. Field 22/05–22/07. Aggiunto screening profilo all'avvio. Federica: rimosso Canone TV come area tematica (le 2 schede esistono in agevolazioni e rimborsi).",
+    {
+      "date": "2026-05-14",
+      "author": "Gio (Sogei)",
+      "changes": [
+        "T13 (NEW): scheda FE madre consolidata",
+        "T14 (NEW): misuratori spostati in L2 FE",
+        "T15 (NEW): OMI scheda unica",
+        "Tree.json aggiornato: FE main rinominata, biglietterie+misuratori spostate in L2 FE"
+      ]
+    },
+    {
+      "date": "2026-05-14",
+      "author": "Gio (Sogei)",
+      "changes": [
+        "REV: biglietterie + misuratori restano in L2 originale (argomento distinto da FE)",
+        "T14 path aggiornato a ma_002_biglietterie_e_misuratori"
+      ]
+    },
+    "v1.3 (21/05/2026): mail Federica → split sotto-cat 'Emettere fatture e corrispettivi' in 'Fatturazione elettronica' + 'Corrispettivi telematici'; 3 nuove schede (POS-RT 510, Lotteria 511, Soluzioni software 512); 3 nuovi task T16-T18; fix bug path T13/T14/T15 (ma_001/ma_002 corretti); fix bug Fiscalità Internazionale duplicato (apostrofo)."
+  ]
+}

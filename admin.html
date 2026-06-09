@@ -1,0 +1,1258 @@
+<!DOCTYPE html>
+<html lang="it">
+<head>
+<meta charset="UTF-8">
+<meta name="viewport" content="width=device-width, initial-scale=1.0">
+<title>Tree Testing AE — Dashboard</title>
+<link rel="preconnect" href="https://fonts.googleapis.com">
+<link rel="preconnect" href="https://fonts.gstatic.com" crossorigin>
+<link href="https://fonts.googleapis.com/css2?family=Titillium+Web:wght@400;600;700&display=swap" rel="stylesheet">
+<style>
+  /* ===== Sogei AE Wireframe (real Figma tokens) ===== */
+  * { box-sizing: border-box; margin: 0; padding: 0; }
+  :root {
+    --brand-primary: #323232;
+    --brand-secondary: #fab600;
+    --bg: #ffffff;
+    --bg-soft: #f8f9fa;
+    --bg-alt: #d6d6d6;
+    --border: #ced4da;
+    --border-strong: #6c757d;
+    --text: #1a1a1a;
+    --text-secondary: #6c757d;
+    --text-muted: #adb5bd;
+    --text-on-dark: #ffffff;
+    --action-bg: #fab600;
+    --action-label: #323232;
+    --action-hover: #e0a300;
+    --link: #995c00;
+    --info: #0066cc;
+    --r: 4px;
+    /* Heatmap */
+    --hm-correct: #047857;
+    --hm-correct-bg: #D1FAE5;
+    --hm-indirect: #D97706;
+    --hm-indirect-bg: #FEF3C7;
+    --hm-wrong: #B91C1C;
+    --hm-wrong-bg: #FEE2E2;
+    --hm-untouched: #E5E5E5;
+  }
+  body {
+    font-family: "Titillium Web", -apple-system, BlinkMacSystemFont, "Segoe UI", Roboto, Helvetica, Arial, sans-serif;
+    color: var(--text);
+    background: var(--bg);
+    line-height: 1.5;
+    min-height: 100vh;
+    font-size: 14px;
+  }
+  .top-bar {
+    background: var(--brand-primary);
+    color: var(--text-on-dark);
+    font-size: 13px;
+    padding: 6px 24px;
+  }
+  header {
+    background: var(--bg);
+    color: var(--text);
+    padding: 14px 24px;
+    border-bottom: 1px solid var(--border);
+    display: flex;
+    align-items: center;
+    justify-content: space-between;
+    gap: 16px;
+    flex-wrap: wrap;
+  }
+  header .brand { display: flex; align-items: center; gap: 12px; }
+  header .brand-logo {
+    width: 36px; height: 36px;
+    background: var(--brand-primary);
+    color: var(--brand-secondary);
+    display: flex; align-items: center; justify-content: center;
+    border-radius: var(--r);
+    font-weight: 700; font-size: 16px;
+  }
+  header h1 { font-size: 18px; font-weight: 600; }
+  header .controls { display: flex; gap: 8px; align-items: center; }
+  header select {
+    background: var(--bg);
+    color: var(--text);
+    border: 1px solid var(--border-strong);
+    padding: 7px 12px;
+    border-radius: var(--r);
+    font-size: 13px;
+    font-family: inherit;
+    cursor: pointer;
+  }
+  header button {
+    background: var(--action-bg);
+    color: var(--action-label);
+    border: 1px solid var(--action-bg);
+    padding: 7px 14px;
+    border-radius: var(--r);
+    font-size: 13px;
+    font-weight: 600;
+    font-family: inherit;
+    cursor: pointer;
+  }
+  header button:hover { background: var(--action-hover); border-color: var(--action-hover); }
+  header button.btn-secondary {
+    background: var(--bg);
+    color: var(--brand-primary);
+    border-color: var(--brand-primary);
+  }
+  header button.btn-secondary:hover { background: var(--bg-soft); }
+
+  main { padding: 20px 20px; max-width: 1280px; margin: 0 auto; }
+
+  /* Auth */
+  .auth-screen {
+    max-width: 380px;
+    margin: 80px auto;
+    background: var(--bg);
+    padding: 28px;
+    border: 1px solid var(--border);
+    border-radius: 4px;
+    text-align: center;
+  }
+  .auth-screen h2 { margin-bottom: 16px; font-weight: 600; }
+  .auth-screen input {
+    width: 100%;
+    padding: 10px 12px;
+    border: 1px solid var(--border-strong);
+    border-radius: 4px;
+    font-size: 14px;
+    margin-bottom: 12px;
+    font-family: inherit;
+  }
+  .auth-screen button {
+    width: 100%;
+    background: var(--action-bg);
+    color: var(--action-label);
+    padding: 10px;
+    border: 0;
+    border-radius: var(--r);
+    cursor: pointer;
+    font-size: 15px;
+    font-weight: 600;
+  }
+  .auth-screen button:hover { background: var(--action-hover); }
+
+  /* Stats */
+  .stats-grid {
+    display: grid;
+    grid-template-columns: repeat(auto-fit, minmax(170px, 1fr));
+    gap: 12px;
+    margin-bottom: 24px;
+  }
+  .stat-card {
+    background: var(--bg);
+    border: 1px solid var(--border);
+    border-radius: 4px;
+    padding: 16px;
+  }
+  .stat-card .label {
+    font-size: 11px;
+    color: var(--text-secondary);
+    text-transform: uppercase;
+    letter-spacing: 0.05em;
+    margin-bottom: 4px;
+  }
+  .stat-card .value {
+    font-size: 24px;
+    font-weight: 700;
+    color: var(--text);
+    line-height: 1.1;
+  }
+  .stat-card .sub { font-size: 11px; color: var(--text-muted); margin-top: 4px; }
+
+  /* Panels */
+  .panel {
+    background: var(--bg);
+    border: 1px solid var(--border);
+    border-radius: 4px;
+    padding: 20px;
+    margin-bottom: 20px;
+  }
+  .panel h2 {
+    font-size: 16px;
+    font-weight: 600;
+    margin-bottom: 16px;
+    padding-bottom: 10px;
+    border-bottom: 1px solid var(--border);
+  }
+  .panel h3 { font-size: 14px; font-weight: 600; margin: 14px 0 8px; }
+
+  /* Tables */
+  table { width: 100%; border-collapse: collapse; font-size: 13px; }
+  table th {
+    background: var(--bg-soft);
+    color: var(--text);
+    padding: 10px 12px;
+    text-align: left;
+    font-weight: 600;
+    font-size: 12px;
+    text-transform: uppercase;
+    letter-spacing: 0.04em;
+    border-bottom: 2px solid var(--border-strong);
+  }
+  table td {
+    padding: 9px 12px;
+    border-bottom: 1px solid var(--border);
+  }
+  table tr:hover td { background: var(--bg-soft); }
+
+  /* Pills */
+  .pill {
+    display: inline-block;
+    padding: 2px 8px;
+    border-radius: 3px;
+    font-size: 11px;
+    font-weight: 600;
+    border: 1px solid;
+  }
+  .pill.success { background: var(--hm-correct-bg); color: var(--hm-correct); border-color: var(--hm-correct); }
+  .pill.warning { background: var(--hm-indirect-bg); color: var(--hm-indirect); border-color: var(--hm-indirect); }
+  .pill.error { background: var(--hm-wrong-bg); color: var(--hm-wrong); border-color: var(--hm-wrong); }
+  .pill.neutral { background: var(--bg-alt); color: var(--text-secondary); border-color: var(--border); }
+
+  .progress-bar {
+    height: 6px;
+    background: var(--bg-alt);
+    border-radius: 3px;
+    overflow: hidden;
+    margin: 4px 0;
+    width: 100%;
+    max-width: 200px;
+  }
+  .progress-fill { height: 100%; transition: width 0.3s; }
+  .progress-fill.green { background: var(--hm-correct); }
+  .progress-fill.yellow { background: var(--hm-indirect); }
+  .progress-fill.red { background: var(--hm-wrong); }
+
+  /* Task card */
+  .task-card {
+    background: var(--bg);
+    border: 1px solid var(--border);
+    border-radius: 4px;
+    padding: 18px;
+    margin-bottom: 16px;
+  }
+  .task-card .task-header {
+    display: flex;
+    justify-content: space-between;
+    align-items: baseline;
+    margin-bottom: 8px;
+    gap: 12px;
+    flex-wrap: wrap;
+  }
+  .task-card .task-id { font-weight: 700; font-size: 15px; }
+  .task-card .task-scenario {
+    font-size: 13px;
+    color: var(--text-secondary);
+    margin-bottom: 14px;
+    font-style: italic;
+  }
+  .task-metrics {
+    display: grid;
+    grid-template-columns: repeat(auto-fit, minmax(110px, 1fr));
+    gap: 8px;
+    font-size: 13px;
+    margin-bottom: 14px;
+  }
+  .task-metric {
+    background: var(--bg-soft);
+    padding: 8px 10px;
+    border: 1px solid var(--border);
+    border-radius: 4px;
+  }
+  .task-metric .lbl { color: var(--text-muted); font-size: 10px; text-transform: uppercase; letter-spacing: 0.05em; }
+  .task-metric .val { font-size: 18px; font-weight: 700; }
+
+  /* === Pie Tree (Treejack-style SVG) === */
+  .pie-tree-container {
+    margin-top: 16px;
+    border: 1px solid var(--border);
+    border-radius: var(--r);
+    background: var(--bg);
+    padding: 14px;
+    overflow-x: auto;
+  }
+  .pie-tree-container h4 {
+    font-size: 13px;
+    text-transform: uppercase;
+    letter-spacing: 0.05em;
+    color: var(--text-secondary);
+    margin-bottom: 10px;
+    font-weight: 600;
+  }
+  .pie-tree-legend {
+    display: flex;
+    gap: 16px;
+    font-size: 12px;
+    margin-bottom: 12px;
+    color: var(--text);
+    flex-wrap: wrap;
+    align-items: center;
+  }
+  .pie-tree-legend .legend-item { display: flex; align-items: center; gap: 6px; }
+  .pie-tree-legend .legend-swatch {
+    width: 14px; height: 14px;
+    border-radius: var(--r-full);
+    border: 1px solid #00000033;
+    display: inline-block;
+  }
+  .pie-tree-svg-wrap {
+    overflow-x: auto;
+    overflow-y: auto;
+    max-height: 700px;
+    border-top: 1px solid var(--border);
+    padding-top: 12px;
+  }
+  .pie-tree-svg {
+    display: block;
+    margin: 0 auto;
+    font-family: "Titillium Web", sans-serif;
+  }
+  .pt-link {
+    fill: none;
+    stroke: var(--border-strong);
+    stroke-width: 1.2;
+    opacity: 0.5;
+  }
+  .pt-link.on-correct-path {
+    stroke: var(--hm-correct);
+    stroke-width: 2;
+    opacity: 0.9;
+  }
+  .pt-node-label {
+    font-size: 11px;
+    fill: var(--text);
+    font-weight: 500;
+    pointer-events: none;
+  }
+  .pt-node-label.is-correct {
+    font-weight: 700;
+    fill: var(--hm-correct);
+  }
+  .pt-node-count {
+    font-size: 10px;
+    fill: var(--text-secondary);
+    font-weight: 600;
+    text-anchor: middle;
+    pointer-events: none;
+  }
+  .pt-node-empty {
+    fill: var(--bg);
+    stroke: var(--border-strong);
+    stroke-width: 1;
+    stroke-dasharray: 3 2;
+    opacity: 0.5;
+  }
+  .pt-arc-success { fill: var(--hm-correct); }
+  .pt-arc-transit { fill: var(--hm-indirect); }
+  .pt-arc-wrong-final { fill: var(--hm-wrong); }
+  .pt-arc-skipped-final { fill: var(--text-muted); }
+  .pt-node-target {
+    stroke: var(--hm-correct);
+    stroke-width: 2.5;
+    fill: none;
+  }
+
+  /* Top paths section */
+  .top-paths {
+    margin-top: 14px;
+    padding-top: 14px;
+    border-top: 1px dashed var(--border);
+  }
+  .top-paths h4 {
+    font-size: 11px;
+    color: var(--text-secondary);
+    text-transform: uppercase;
+    letter-spacing: 0.05em;
+    margin-bottom: 8px;
+    font-weight: 600;
+  }
+  .path-row {
+    display: flex;
+    align-items: center;
+    gap: 8px;
+    padding: 4px 0;
+    font-size: 12px;
+    flex-wrap: wrap;
+  }
+  .path-row .count {
+    background: var(--bg-soft);
+    padding: 2px 8px;
+    border-radius: 3px;
+    font-size: 11px;
+    font-weight: 600;
+    min-width: 32px;
+    text-align: center;
+    border: 1px solid var(--border);
+  }
+  .path-row.correct .count {
+    background: var(--hm-correct-bg);
+    color: var(--hm-correct);
+    border-color: var(--hm-correct);
+  }
+  .path-row .path {
+    flex: 1;
+    color: var(--text-secondary);
+    font-family: "SF Mono", ui-monospace, monospace;
+    font-size: 11px;
+  }
+
+  /* Empty state */
+  .empty-state {
+    text-align: center;
+    padding: 60px 20px;
+    color: var(--text-muted);
+  }
+  .empty-state .icon { font-size: 32px; margin-bottom: 8px; }
+
+  /* Comments */
+  .comments-list {
+    max-height: 360px;
+    overflow-y: auto;
+    border: 1px solid var(--border);
+    border-radius: 4px;
+    padding: 8px;
+    background: var(--bg-soft);
+  }
+  .comment-item {
+    background: var(--bg);
+    padding: 10px 12px;
+    margin-bottom: 6px;
+    border: 1px solid var(--border);
+    border-radius: 4px;
+  }
+  .comment-item:last-child { margin-bottom: 0; }
+  .comment-item .meta {
+    font-size: 10px;
+    color: var(--text-muted);
+    margin-bottom: 4px;
+    text-transform: uppercase;
+    letter-spacing: 0.04em;
+  }
+  .comment-item .text { font-size: 13px; color: var(--text); margin-bottom: 4px; }
+  .comment-item .text strong { color: var(--text); }
+  .comment-block { margin-top: 4px; padding: 4px 8px; background: var(--bg-soft); border-left: 2px solid var(--border-strong); border-radius: 0 3px 3px 0; }
+  .comment-block .lbl { font-size: 10px; color: var(--text-muted); text-transform: uppercase; letter-spacing: 0.04em; }
+
+  /* Tabs */
+  .tabs {
+    display: flex;
+    gap: 0;
+    margin-bottom: 20px;
+    border-bottom: 2px solid var(--border);
+    overflow-x: auto;
+  }
+  .tab {
+    padding: 10px 18px;
+    cursor: pointer;
+    border-bottom: 3px solid transparent;
+    margin-bottom: -2px;
+    font-size: 13px;
+    font-weight: 500;
+    color: var(--text-secondary);
+    white-space: nowrap;
+  }
+  .tab.active {
+    color: var(--text);
+    border-color: var(--brand-secondary);
+    font-weight: 600;
+  }
+  .tab-content { display: none; }
+  .tab-content.active { display: block; }
+
+  .loading-text { text-align: center; padding: 40px; color: var(--text-secondary); }
+</style>
+</head>
+<body>
+
+<div class="top-bar">Ministero dell'Economia e delle Finanze · Dashboard riservata</div>
+
+<header>
+  <div class="brand">
+    <div class="brand-logo">AE</div>
+    <h1>Tree Testing — Dashboard amministrativa</h1>
+  </div>
+  <div class="controls" id="controls" style="display: none;">
+    <select id="campaignFilter">
+      <option value="default">default</option>
+    </select>
+    <button class="btn-secondary" onclick="reload()">Aggiorna</button>
+    <button onclick="exportCSV()">Export CSV</button>
+  </div>
+</header>
+
+<main id="main">
+  <!-- AUTH -->
+  <div class="auth-screen" id="authScreen">
+    <h2>Accesso protetto</h2>
+    <p style="color: var(--text-secondary); margin-bottom: 16px; font-size: 13px;">
+      Inserisci la chiave amministratore.
+    </p>
+    <input type="password" id="adminKey" placeholder="Chiave..." onkeydown="if(event.key==='Enter') checkAuth()">
+    <button onclick="checkAuth()">Accedi</button>
+  </div>
+
+  <!-- DASHBOARD -->
+  <div id="dashboard" style="display: none;">
+    <div class="loading-text" id="loadingText">Caricamento dati...</div>
+    <div id="dashboardContent" style="display: none;">
+      <!-- Tabs -->
+      <div class="tabs">
+        <div class="tab active" data-tab="overview">Overview</div>
+        <div class="tab" data-tab="tasks">Per task (con pie tree)</div>
+        <div class="tab" data-tab="sessions">Sessioni</div>
+        <div class="tab" data-tab="comments">Commenti</div>
+      </div>
+
+      <!-- Overview -->
+      <div class="tab-content active" id="tab-overview">
+        <div class="stats-grid" id="overviewStats"></div>
+        <div class="panel">
+          <h2>Riepilogo task</h2>
+          <table id="taskSummaryTable">
+            <thead>
+              <tr>
+                <th>Task</th><th>Scenario</th><th>N</th><th>Success rate</th><th>Directness</th><th>Tempo medio</th><th>Confidence</th>
+              </tr>
+            </thead>
+            <tbody></tbody>
+          </table>
+        </div>
+        <div class="panel">
+          <h2>Feedback finale</h2>
+          <div class="stats-grid" id="finalFeedbackStats"></div>
+        </div>
+      </div>
+
+      <!-- Per Task with Pie Tree -->
+      <div class="tab-content" id="tab-tasks">
+        <div id="taskCardsContainer"></div>
+      </div>
+
+      <!-- Sessions -->
+      <div class="tab-content" id="tab-sessions">
+        <div class="panel">
+          <div style="display:flex; align-items:center; justify-content:space-between; gap:16px; flex-wrap:wrap; margin-bottom:16px;">
+            <h2 style="border:0; padding:0; margin:0;">Tutte le sessioni</h2>
+            <div style="display:flex; gap:8px;">
+              <button id="btnDeleteCampaign" onclick="deleteCurrentCampaign()" style="background: var(--hm-wrong); color:#fff; border:1px solid var(--hm-wrong); padding:7px 14px; border-radius:var(--r); font-size:13px; font-weight:600; cursor:pointer;">🗑️ Cancella tutta campagna selezionata</button>
+            </div>
+          </div>
+          <p style="font-size:12px; color:var(--text-secondary); margin-bottom:12px;">Suggerimento: per i test interni usa il link <code style="background:var(--bg-soft); padding:2px 6px; border-radius:3px;">?session=test</code> e poi cancella tutta la campagna "test" prima delle wave reali.</p>
+          <table id="sessionsTable">
+            <thead>
+              <tr>
+                <th>ID</th><th>Campagna</th><th>Inizio</th><th>Durata</th><th>Task</th><th>Success</th><th>Schermo</th><th>Azioni</th>
+              </tr>
+            </thead>
+            <tbody></tbody>
+          </table>
+        </div>
+      </div>
+
+      <!-- Comments -->
+      <div class="tab-content" id="tab-comments">
+        <div class="panel">
+          <h2>Risposte qualitative per task</h2>
+          <p style="font-size: 13px; color: var(--text-secondary); margin-bottom: 12px;">
+            Per ogni task, le parole chiave che hanno guidato gli utenti e i dubbi che hanno avuto.
+          </p>
+          <div id="commentsByTask"></div>
+        </div>
+        <div class="panel">
+          <h2>Commenti finali</h2>
+          <div class="comments-list" id="finalComments"></div>
+        </div>
+      </div>
+    </div>
+  </div>
+</main>
+
+<!-- Firebase -->
+<script src="https://www.gstatic.com/firebasejs/8.10.1/firebase-app.js"></script>
+<script src="https://www.gstatic.com/firebasejs/8.10.1/firebase-database.js"></script>
+<script>
+var firebaseConfig = {
+    apiKey: "AIzaSyCCwVul0FxeFDApxlGoX6s671FaVWt_BwY",
+    authDomain: "card-sorting-ae-c2283.firebaseapp.com",
+    databaseURL: "https://card-sorting-ae-c2283-default-rtdb.europe-west1.firebasedatabase.app",
+    projectId: "card-sorting-ae-c2283",
+    storageBucket: "card-sorting-ae-c2283.firebasestorage.app",
+    messagingSenderId: "9248431790",
+    appId: "1:9248431790:web:540bd4c9d7857a362b573f"
+};
+firebase.initializeApp(firebaseConfig);
+var db = firebase.database();
+
+var DATA = { sessions: [], tasks: [], tree: null, nodeLabels: {}, nodeParents: {} };
+
+function checkAuth() {
+  var key = document.getElementById('adminKey').value;
+  var validKey = new URL(window.location.href).searchParams.get('expected') || 'ae-admin';
+  if (key === validKey) {
+    document.getElementById('authScreen').style.display = 'none';
+    document.getElementById('dashboard').style.display = 'block';
+    document.getElementById('controls').style.display = 'flex';
+    loadData();
+  } else {
+    alert('Chiave errata');
+  }
+}
+(function() {
+  var k = new URL(window.location.href).searchParams.get('key');
+  if (k) {
+    document.getElementById('adminKey').value = k;
+    checkAuth();
+  }
+})();
+
+document.querySelectorAll('.tab').forEach(function(t) {
+  t.addEventListener('click', function() {
+    document.querySelectorAll('.tab').forEach(function(x) { x.classList.remove('active'); });
+    document.querySelectorAll('.tab-content').forEach(function(x) { x.classList.remove('active'); });
+    t.classList.add('active');
+    document.getElementById('tab-' + t.dataset.tab).classList.add('active');
+  });
+});
+
+async function loadData() {
+  document.getElementById('loadingText').style.display = 'block';
+  document.getElementById('dashboardContent').style.display = 'none';
+  try {
+    var [tasksRes, treeRes] = await Promise.all([
+      fetch('tasks.json?v=' + Date.now()).then(r => r.json()),
+      fetch('tree.json?v=' + Date.now()).then(r => r.json())
+    ]);
+    DATA.tasks = tasksRes.tasks;
+    DATA.tree = treeRes;
+
+    DATA.nodeLabels = {};
+    DATA.nodeParents = {};
+    (function walk(n, parent) {
+      DATA.nodeLabels[n.id] = n.label;
+      DATA.nodeParents[n.id] = parent;
+      if (n.children) n.children.forEach(function(c) { walk(c, n.id); });
+    })(DATA.tree, null);
+
+    var snap = await db.ref('tree-testing-ae/sessions').once('value');
+    var raw = snap.val() || {};
+    DATA.sessions = [];
+    DATA.campaigns = new Set();
+    Object.keys(raw).forEach(function(camp) {
+      DATA.campaigns.add(camp);
+      var camps = raw[camp] || {};
+      Object.keys(camps).forEach(function(sid) {
+        var s = camps[sid];
+        if (s && s.completedAt) DATA.sessions.push(s);
+      });
+    });
+    populateCampaignFilter();
+    document.getElementById('loadingText').style.display = 'none';
+    document.getElementById('dashboardContent').style.display = 'block';
+    render();
+  } catch (e) {
+    console.error(e);
+    document.getElementById('loadingText').textContent = 'Errore: ' + e.message;
+  }
+}
+
+function populateCampaignFilter() {
+  var select = document.getElementById('campaignFilter');
+  select.innerHTML = '<option value="__all__">Tutte le campagne</option>';
+  Array.from(DATA.campaigns).sort().forEach(function(c) {
+    var opt = document.createElement('option');
+    opt.value = c;
+    opt.textContent = c + ' (' + DATA.sessions.filter(function(s){return s.campaign===c;}).length + ')';
+    select.appendChild(opt);
+  });
+  select.value = '__all__';
+  select.onchange = render;
+}
+
+function getFilteredSessions() {
+  var camp = document.getElementById('campaignFilter').value;
+  if (camp === '__all__') return DATA.sessions;
+  return DATA.sessions.filter(function(s) { return s.campaign === camp; });
+}
+
+function reload() { loadData(); }
+
+function render() {
+  var sessions = getFilteredSessions();
+  if (sessions.length === 0) {
+    document.getElementById('overviewStats').innerHTML = '<div class="empty-state"><div class="icon">○</div>Nessuna sessione disponibile.</div>';
+    document.querySelector('#taskSummaryTable tbody').innerHTML = '';
+    document.getElementById('taskCardsContainer').innerHTML = '<div class="empty-state">Nessun dato</div>';
+    document.querySelector('#sessionsTable tbody').innerHTML = '';
+    document.getElementById('commentsByTask').innerHTML = '<div class="empty-state">Nessun commento</div>';
+    document.getElementById('finalComments').innerHTML = '<div class="empty-state">Nessun commento finale</div>';
+    return;
+  }
+  renderOverview(sessions);
+  renderTasksDetail(sessions);
+  renderSessions(sessions);
+  renderComments(sessions);
+}
+
+function pct(n, d) { return d > 0 ? Math.round(n * 100 / d) + '%' : '—'; }
+function fmtDur(ms) { var s = Math.round(ms / 1000); if (s < 60) return s + 's'; var m = Math.floor(s/60); return m + 'm ' + (s%60) + 's'; }
+function esc(s) { var d = document.createElement('div'); d.textContent = s == null ? '' : String(s); return d.innerHTML; }
+
+function statusPill(sr) {
+  if (sr >= 80) return '<span class="pill success">' + sr + '% success</span>';
+  if (sr >= 60) return '<span class="pill warning">' + sr + '% success</span>';
+  return '<span class="pill error">' + sr + '% success</span>';
+}
+function metricBox(lbl, val) { return '<div class="task-metric"><div class="lbl">' + lbl + '</div><div class="val">' + val + '</div></div>'; }
+function barCell(p, t) {
+  var color = p >= t[0] ? 'green' : p >= t[1] ? 'yellow' : 'red';
+  return '<div>' + p + '% <div class="progress-bar"><div class="progress-fill ' + color + '" style="width:' + p + '%"></div></div></div>';
+}
+
+// ====== Per-task computation ======
+function computePerTaskMetrics(sessions) {
+  var byTask = {};
+  DATA.tasks.forEach(function(t) {
+    byTask[t.id] = {
+      id: t.id, scenario: t.scenario, labelTested: t.labelTested,
+      correctNodeId: t.correctNodeId, correctPath: t.correctPath || [],
+      alternateAcceptable: t.alternateAcceptable || [],
+      attempted: 0, correct: 0, direct: 0, totalDur: 0,
+      confSum: 0, confCount: 0, paths: {}, finalNodes: {},
+      visitCounts: {},        // nodeId -> # times visited (in path)
+      finalCounts: {},        // nodeId -> # times selected as final
+      doubts: [],
+      skipped: 0
+    };
+  });
+  sessions.forEach(function(s) {
+    (s.tasks || []).forEach(function(t) {
+      var bt = byTask[t.taskId];
+      if (!bt) return;
+      if (t.skipped) {
+        bt.skipped++;
+      } else {
+        bt.attempted++;
+        if (t.isCorrect) bt.correct++;
+        if (t.isDirect) bt.direct++;
+        bt.totalDur += t.durationMs || 0;
+        if (t.confidence) { bt.confSum += t.confidence; bt.confCount++; }
+        var pathKey = (t.path || []).join(' > ');
+        bt.paths[pathKey] = (bt.paths[pathKey] || 0) + 1;
+        (t.path || []).forEach(function(nid) {
+          bt.visitCounts[nid] = (bt.visitCounts[nid] || 0) + 1;
+        });
+        if (t.finalNodeId) {
+          bt.finalCounts[t.finalNodeId] = (bt.finalCounts[t.finalNodeId] || 0) + 1;
+        }
+        if (t.doubts) bt.doubts.push({ comment: t.doubts, sessionId: s.sessionId, confidence: t.confidence, finalLabel: t.finalLabel || '', isCorrect: t.isCorrect });
+      }
+    });
+  });
+  return Object.values(byTask);
+}
+
+function renderOverview(sessions) {
+  var n = sessions.length;
+  var totalTasks = 0, correctTasks = 0, directTasks = 0, skipped = 0;
+  var totalDuration = 0, totalConfidence = 0, confCount = 0;
+  sessions.forEach(function(s) {
+    totalDuration += s.durationMs || 0;
+    (s.tasks || []).forEach(function(t) {
+      totalTasks++;
+      if (t.skipped) skipped++;
+      else {
+        if (t.isCorrect) correctTasks++;
+        if (t.isDirect) directTasks++;
+        if (t.confidence) { totalConfidence += t.confidence; confCount++; }
+      }
+    });
+  });
+  var stats = [
+    { label: 'Sessioni completate', value: n, sub: 'partecipanti unici' },
+    { label: 'Task totali', value: totalTasks, sub: skipped + ' skippati' },
+    { label: 'Success rate medio', value: pct(correctTasks, totalTasks - skipped), sub: 'sui task completati' },
+    { label: 'Directness medio', value: pct(directTasks, correctTasks), sub: 'sui task corretti' },
+    { label: 'Confidence media', value: confCount ? (totalConfidence / confCount).toFixed(1) : '—', sub: 'su 5' },
+    { label: 'Durata media', value: fmtDur(totalDuration / Math.max(1, n)), sub: 'sessione completa' }
+  ];
+  document.getElementById('overviewStats').innerHTML = stats.map(function(s) {
+    return '<div class="stat-card"><div class="label">' + s.label + '</div>'
+      + '<div class="value">' + s.value + '</div>'
+      + '<div class="sub">' + s.sub + '</div></div>';
+  }).join('');
+
+  var perTask = computePerTaskMetrics(sessions);
+  var tbody = document.querySelector('#taskSummaryTable tbody');
+  tbody.innerHTML = perTask.map(function(t) {
+    var sr = t.attempted ? Math.round(t.correct * 100 / t.attempted) : 0;
+    var dr = t.correct ? Math.round(t.direct * 100 / t.correct) : 0;
+    var avgT = t.attempted ? fmtDur(t.totalDur / t.attempted) : '—';
+    var avgC = t.confCount ? (t.confSum / t.confCount).toFixed(1) : '—';
+    return '<tr>'
+      + '<td><strong>' + t.id + '</strong></td>'
+      + '<td>' + esc(t.scenario.slice(0, 75)) + '...</td>'
+      + '<td>' + t.attempted + '</td>'
+      + '<td>' + barCell(sr, [80, 70]) + '</td>'
+      + '<td>' + barCell(dr, [70, 50]) + '</td>'
+      + '<td>' + avgT + '</td>'
+      + '<td>' + avgC + '/5</td>'
+      + '</tr>';
+  }).join('');
+
+  // Final feedback
+  var clarity = 0, ease = 0, fbN = 0;
+  sessions.forEach(function(s) {
+    if (s.finalFeedback) {
+      clarity += s.finalFeedback.clarity || 0;
+      ease += s.finalFeedback.easeOfUse || 0;
+      fbN++;
+    }
+  });
+  document.getElementById('finalFeedbackStats').innerHTML = fbN > 0
+    ? '<div class="stat-card"><div class="label">Chiarezza categorie/sotto-cat</div><div class="value">' + (clarity/fbN).toFixed(1) + '/5</div><div class="sub">media su ' + fbN + ' risposte</div></div>'
+      + '<div class="stat-card"><div class="label">Comprensibilità etichette (label)</div><div class="value">' + (ease/fbN).toFixed(1) + '/5</div><div class="sub">media su ' + fbN + ' risposte</div></div>'
+    : '<div class="empty-state">Nessun feedback finale</div>';
+}
+
+// ====== PIE TREE — Treejack-style SVG ======
+// Per ogni nodo visitato calcoliamo gli slice del donut:
+//   success  = utenti che sono passati per il nodo E hanno terminato sul nodo corretto
+//   transit  = utenti che sono passati per il nodo E hanno terminato altrove (path indiretto)
+//   wrong   = utenti che hanno selezionato QUESTO nodo come finale (sbagliato)
+//
+// Layout: tidy-tree verticale (root in alto, foglie in basso)
+// Visualizziamo solo nodi visitati + ancestor + correct path (per tenere chiaro)
+
+function isOnCorrectPath(nodeId, task) {
+  return (task.correctPath || []).indexOf(nodeId) !== -1 || nodeId === task.correctNodeId;
+}
+
+function subtreeHasTraffic(node, task) {
+  if (task.visitCounts[node.id] || task.finalCounts[node.id]) return true;
+  if (isOnCorrectPath(node.id, task)) return true;
+  if (node.children) {
+    for (var i = 0; i < node.children.length; i++) {
+      if (subtreeHasTraffic(node.children[i], task)) return true;
+    }
+  }
+  return false;
+}
+
+// Build a filtered tree containing only relevant nodes for this task
+function buildFilteredTree(node, task) {
+  var visited = !!task.visitCounts[node.id];
+  var hasFinal = !!task.finalCounts[node.id];
+  var onCorrect = isOnCorrectPath(node.id, task);
+  var children = [];
+  if (node.children) {
+    node.children.forEach(function(c) {
+      if (subtreeHasTraffic(c, task)) {
+        children.push(buildFilteredTree(c, task));
+      }
+    });
+  }
+  return {
+    id: node.id,
+    label: node.label,
+    visited: visited,
+    hasFinal: hasFinal,
+    onCorrect: onCorrect,
+    children: children,
+    visits: task.visitCounts[node.id] || 0,
+    finals: task.finalCounts[node.id] || 0
+  };
+}
+
+// Compute how many users from THROUGH this node ended in correct vs wrong-elsewhere
+// We need session-level data, so we re-iterate sessions per task
+function computeNodeBreakdown(task, sessions) {
+  // Returns {[nodeId]: {success, transit, wrongFinal, total}}
+  var breakdown = {};
+  function ensure(id) { if (!breakdown[id]) breakdown[id] = {success: 0, transit: 0, wrongFinal: 0}; return breakdown[id]; }
+  sessions.forEach(function(s) {
+    (s.tasks || []).forEach(function(t) {
+      if (t.taskId !== task.id || t.skipped) return;
+      var path = t.path || [];
+      var finalNode = t.finalNodeId;
+      var correct = t.isCorrect;
+      // For each node in path:
+      var seen = new Set();
+      path.forEach(function(nid) {
+        if (seen.has(nid)) return;
+        seen.add(nid);
+        var b = ensure(nid);
+        if (nid === finalNode) {
+          if (correct) b.success++;
+          else b.wrongFinal++;
+        } else {
+          // transit node — was visited but not final
+          if (correct) b.success++;
+          else b.transit++;
+        }
+      });
+      // If finalNode wasn't in path explicitly, add it
+      if (finalNode && !seen.has(finalNode)) {
+        var b = ensure(finalNode);
+        if (correct) b.success++;
+        else b.wrongFinal++;
+      }
+    });
+  });
+  return breakdown;
+}
+
+// Tidy-tree layout: assign x by leaf count, y by depth
+function layoutTree(node, depth) {
+  if (!node.children || node.children.length === 0) {
+    node._w = 1;
+    node._d = depth;
+    return;
+  }
+  var w = 0;
+  node.children.forEach(function(c) {
+    layoutTree(c, depth + 1);
+    w += c._w;
+  });
+  node._w = w;
+  node._d = depth;
+}
+
+function assignPositions(node, x0, x1, levelHeight, positions) {
+  var cx = (x0 + x1) / 2;
+  var cy = node._d * levelHeight + levelHeight / 2;
+  positions[node.id] = { x: cx, y: cy, node: node };
+  if (node.children && node.children.length > 0) {
+    var totalW = node._w;
+    var span = x1 - x0;
+    var cursor = x0;
+    node.children.forEach(function(c) {
+      var portion = (c._w / totalW) * span;
+      assignPositions(c, cursor, cursor + portion, levelHeight, positions);
+      cursor += portion;
+    });
+  }
+}
+
+// SVG arc path for donut slice
+function donutSlice(cx, cy, rOuter, rInner, startAngle, endAngle) {
+  // angles in radians; 0 = top, clockwise
+  function pt(angle, r) {
+    return [cx + Math.sin(angle) * r, cy - Math.cos(angle) * r];
+  }
+  var p1 = pt(startAngle, rOuter);
+  var p2 = pt(endAngle, rOuter);
+  var p3 = pt(endAngle, rInner);
+  var p4 = pt(startAngle, rInner);
+  var largeArc = (endAngle - startAngle) > Math.PI ? 1 : 0;
+  return 'M ' + p1[0].toFixed(2) + ' ' + p1[1].toFixed(2)
+    + ' A ' + rOuter + ' ' + rOuter + ' 0 ' + largeArc + ' 1 ' + p2[0].toFixed(2) + ' ' + p2[1].toFixed(2)
+    + ' L ' + p3[0].toFixed(2) + ' ' + p3[1].toFixed(2)
+    + ' A ' + rInner + ' ' + rInner + ' 0 ' + largeArc + ' 0 ' + p4[0].toFixed(2) + ' ' + p4[1].toFixed(2)
+    + ' Z';
+}
+
+// Cubic Bezier link between parent and child nodes
+function svgLink(p, c) {
+  var midY = (p.y + c.y) / 2;
+  return 'M ' + p.x + ' ' + p.y
+    + ' C ' + p.x + ' ' + midY + ', ' + c.x + ' ' + midY + ', ' + c.x + ' ' + c.y;
+}
+
+function renderPieTreeSVG(task, sessions) {
+  var filtered = buildFilteredTree(DATA.tree, task);
+  if (!filtered.children || filtered.children.length === 0) {
+    return '<div class="empty-state" style="padding: 30px;">Nessun dato per questo task</div>';
+  }
+  layoutTree(filtered, 0);
+
+  // Compute breakdowns per node from session data
+  var breakdown = computeNodeBreakdown(task, sessions);
+
+  // Determine SVG dimensions
+  var leafCount = filtered._w;
+  var maxDepth = 0;
+  (function findDepth(n) {
+    if (n._d > maxDepth) maxDepth = n._d;
+    if (n.children) n.children.forEach(findDepth);
+  })(filtered);
+
+  var nodeWidth = 240;
+  var levelHeight = 130;
+  var width = Math.max(900, leafCount * nodeWidth);
+  var height = (maxDepth + 1) * levelHeight + 40;
+
+  var positions = {};
+  assignPositions(filtered, 30, width - 30, levelHeight, positions);
+
+  // Compute max traffic for sizing
+  var maxTraffic = 1;
+  Object.values(positions).forEach(function(p) {
+    var t = (p.node.visits || 0);
+    if (t > maxTraffic) maxTraffic = t;
+  });
+
+  var svg = '<svg class="pie-tree-svg" viewBox="0 0 ' + width + ' ' + height + '" xmlns="http://www.w3.org/2000/svg" style="width: ' + Math.max(900, width) + 'px; min-height: ' + height + 'px">';
+
+  // 1. Render links
+  Object.values(positions).forEach(function(p) {
+    if (p.node.children) {
+      p.node.children.forEach(function(c) {
+        var cp = positions[c.id];
+        if (!cp) return;
+        var onCorrect = c.onCorrect && p.node.onCorrect;
+        svg += '<path class="pt-link' + (onCorrect ? ' on-correct-path' : '') + '" d="' + svgLink(p, cp) + '"/>';
+      });
+    }
+  });
+
+  // 2. Render nodes (donut/empty circle)
+  Object.values(positions).forEach(function(p) {
+    var node = p.node;
+    var b = breakdown[node.id] || {success: 0, transit: 0, wrongFinal: 0};
+    var totalAtNode = b.success + b.transit + b.wrongFinal;
+    var radius = totalAtNode > 0 ? Math.max(14, 14 + Math.sqrt(totalAtNode / maxTraffic) * 16) : 10;
+    var rInner = radius * 0.45;
+
+    if (totalAtNode > 0) {
+      // Donut slices
+      var startAngle = 0;
+      var slices = [
+        { key: 'success', val: b.success, cls: 'pt-arc-success' },
+        { key: 'transit', val: b.transit, cls: 'pt-arc-transit' },
+        { key: 'wrong', val: b.wrongFinal, cls: 'pt-arc-wrong-final' }
+      ];
+      slices.forEach(function(s) {
+        if (s.val > 0) {
+          var sweep = (s.val / totalAtNode) * Math.PI * 2;
+          var endAngle = startAngle + sweep;
+          // Avoid full-circle issue
+          var pathAngle = sweep >= Math.PI * 2 - 0.001 ? Math.PI * 2 - 0.01 : sweep;
+          svg += '<path class="' + s.cls + '" d="' + donutSlice(p.x, p.y, radius, rInner, startAngle, startAngle + pathAngle) + '">';
+          svg += '<title>' + esc(node.label) + ' — ' + s.key + ': ' + s.val + '/' + totalAtNode + '</title>';
+          svg += '</path>';
+          startAngle = endAngle;
+        }
+      });
+    } else {
+      // Empty circle (untouched but on correct path)
+      svg += '<circle class="pt-node-empty" cx="' + p.x + '" cy="' + p.y + '" r="' + radius + '">';
+      svg += '<title>' + esc(node.label) + ' — non visitato</title></circle>';
+    }
+
+    // Highlight the correct target node
+    if (node.id === task.correctNodeId) {
+      svg += '<circle class="pt-node-target" cx="' + p.x + '" cy="' + p.y + '" r="' + (radius + 4) + '"/>';
+    }
+
+    // Inner number (visitors)
+    if (totalAtNode > 0) {
+      svg += '<text class="pt-node-count" x="' + p.x + '" y="' + (p.y + 4) + '">' + totalAtNode + '</text>';
+    }
+
+    // Label below node (truncated)
+    var lbl = node.label.length > 26 ? node.label.slice(0, 24) + '…' : node.label;
+    var labelClass = node.id === task.correctNodeId ? 'pt-node-label is-correct' : 'pt-node-label';
+    var icon = node.id === task.correctNodeId ? '✓ ' : '';
+    svg += '<text class="' + labelClass + '" x="' + p.x + '" y="' + (p.y + radius + 16) + '" text-anchor="middle">' + esc(icon + lbl) + '</text>';
+  });
+
+  svg += '</svg>';
+  return svg;
+}
+
+function renderTasksDetail(sessions) {
+  var perTask = computePerTaskMetrics(sessions);
+  var html = perTask.map(function(t) {
+    if (t.attempted === 0) {
+      return '<div class="task-card">'
+        + '<div class="task-header"><div class="task-id">' + t.id + ' — ' + esc(t.labelTested || '') + '</div><span class="pill neutral">Nessun dato</span></div>'
+        + '<div class="task-scenario">' + esc(t.scenario) + '</div>'
+        + '</div>';
+    }
+    var sr = Math.round(t.correct * 100 / t.attempted);
+    var dr = t.correct ? Math.round(t.direct * 100 / t.correct) : 0;
+    var avgT = fmtDur(t.totalDur / t.attempted);
+    var avgC = t.confCount ? (t.confSum / t.confCount).toFixed(1) : '—';
+    var topPaths = Object.entries(t.paths).sort(function(a,b){return b[1]-a[1];}).slice(0, 5);
+    var correctPathKey = (t.correctPath || []).join(' > ');
+
+    return '<div class="task-card">'
+      + '<div class="task-header">'
+        + '<div class="task-id">' + t.id + ' — ' + esc(t.labelTested || '') + '</div>'
+        + statusPill(sr)
+      + '</div>'
+      + '<div class="task-scenario">' + esc(t.scenario) + '</div>'
+      + '<div class="task-metrics">'
+        + metricBox('Tentativi', t.attempted)
+        + metricBox('Skip', t.skipped)
+        + metricBox('Success rate', sr + '%')
+        + metricBox('Directness', dr + '%')
+        + metricBox('Tempo medio', avgT)
+        + metricBox('Confidence', avgC + '/5')
+      + '</div>'
+
+      // === PIE TREE (Treejack-style) ===
+      + '<div class="pie-tree-container">'
+        + '<h4>Pie tree — distribuzione visite per nodo</h4>'
+        + '<div class="pie-tree-legend">'
+          + '<div class="legend-item"><span class="legend-swatch" style="background: var(--hm-correct);"></span>Successo (è passato e ha trovato la risposta corretta)</div>'
+          + '<div class="legend-item"><span class="legend-swatch" style="background: var(--hm-indirect);"></span>Transito (è passato ma è finito altrove)</div>'
+          + '<div class="legend-item"><span class="legend-swatch" style="background: var(--hm-wrong);"></span>Risposta finale sbagliata</div>'
+          + '<div class="legend-item">⊙ Cerchio tratteggiato = nodo non visitato (lungo il path corretto)</div>'
+          + '<div class="legend-item">✓ Target corretto evidenziato</div>'
+        + '</div>'
+        + '<div class="pie-tree-svg-wrap">' + renderPieTreeSVG(t, sessions) + '</div>'
+      + '</div>'
+
+      + '<div class="top-paths">'
+        + '<h4>Top percorsi seguiti dagli utenti</h4>'
+        + topPaths.map(function(p) {
+          var isCorrect = p[0] === correctPathKey;
+          var labels = p[0].split(' > ').map(function(id){return DATA.nodeLabels[id] || id;}).join(' › ');
+          return '<div class="path-row' + (isCorrect ? ' correct' : '') + '">'
+            + '<span class="count">' + p[1] + '×</span>'
+            + '<span class="path">' + esc(labels) + (isCorrect ? ' ✓' : '') + '</span>'
+            + '</div>';
+        }).join('')
+        + '<div style="margin-top: 8px; padding: 6px 10px; background: var(--bg-soft); border-radius: 3px; font-size: 11px; border-left: 2px solid var(--hm-correct);"><strong>Path corretto atteso:</strong> ' + esc((t.correctPath || []).map(function(id){return DATA.nodeLabels[id] || id;}).join(' › ')) + '</div>'
+      + '</div>'
+      + '</div>';
+  }).join('');
+  document.getElementById('taskCardsContainer').innerHTML = html;
+}
+
+function renderSessions(sessions) {
+  var rows = sessions.slice().sort(function(a,b){return b.startedAt-a.startedAt;}).map(function(s) {
+    var ok = (s.tasks || []).filter(function(t){return t.isCorrect;}).length;
+    var total = (s.tasks || []).length;
+    var ratio = total ? ok/total : 0;
+    var camp = s.campaign || 'default';
+    return '<tr data-session="' + esc(s.sessionId) + '" data-campaign="' + esc(camp) + '">'
+      + '<td><code style="font-size: 12px;">' + s.sessionId + '</code></td>'
+      + '<td><span class="pill neutral">' + esc(camp) + '</span></td>'
+      + '<td>' + new Date(s.startedAt).toLocaleString('it-IT') + '</td>'
+      + '<td>' + fmtDur(s.durationMs) + '</td>'
+      + '<td>' + total + '</td>'
+      + '<td><span class="pill ' + (ratio >= 0.8 ? 'success' : ratio >= 0.6 ? 'warning' : 'error') + '">' + ok + '/' + total + '</span></td>'
+      + '<td>' + (s.screenSize || '—') + '</td>'
+      + '<td><button onclick="deleteSession(\'' + esc(camp) + '\', \'' + esc(s.sessionId) + '\')" title="Cancella questa sessione" style="background:transparent; color:var(--hm-wrong); border:1px solid var(--hm-wrong); padding:4px 10px; border-radius:var(--r); font-size:12px; font-weight:600; cursor:pointer;">🗑️</button></td>'
+      + '</tr>';
+  }).join('');
+  document.querySelector('#sessionsTable tbody').innerHTML = rows;
+}
+
+// ====== Delete sessions ======
+function deleteSession(campaign, sessionId) {
+  if (!confirm('Cancellare la sessione ' + sessionId + ' (campagna: ' + campaign + ')?\n\nQuesta operazione non è reversibile.')) return;
+  db.ref('tree-testing-ae/sessions/' + campaign + '/' + sessionId).remove()
+    .then(function() {
+      DATA.sessions = DATA.sessions.filter(function(s) { return s.sessionId !== sessionId; });
+      render();
+      alert('Sessione ' + sessionId + ' cancellata.');
+    })
+    .catch(function(e) {
+      alert('Errore cancellazione: ' + e.message);
+    });
+}
+
+function deleteCurrentCampaign() {
+  var camp = document.getElementById('campaignFilter').value;
+  if (camp === '__all__') {
+    alert('Seleziona prima una campagna specifica dal filtro in alto a destra.\nIl pulsante cancella SOLO la campagna selezionata, non tutto il database.');
+    return;
+  }
+  var sessions = DATA.sessions.filter(function(s) { return s.campaign === camp; });
+  if (sessions.length === 0) {
+    alert('Nessuna sessione nella campagna "' + camp + '".');
+    return;
+  }
+  if (!confirm('Cancellare TUTTE le ' + sessions.length + ' sessioni della campagna "' + camp + '"?\n\nQuesta operazione non è reversibile.')) return;
+  if (!confirm('Sicuro? Stai per cancellare ' + sessions.length + ' sessioni. Ultima conferma.')) return;
+
+  db.ref('tree-testing-ae/sessions/' + camp).remove()
+    .then(function() {
+      DATA.sessions = DATA.sessions.filter(function(s) { return s.campaign !== camp; });
+      DATA.campaigns.delete(camp);
+      populateCampaignFilter();
+      document.getElementById('campaignFilter').value = '__all__';
+      render();
+      alert('Cancellate ' + sessions.length + ' sessioni della campagna "' + camp + '".');
+    })
+    .catch(function(e) {
+      alert('Errore cancellazione: ' + e.message);
+    });
+}
+
+function renderComments(sessions) {
+  var perTask = computePerTaskMetrics(sessions);
+  var byTaskHtml = perTask.filter(function(t){return t.doubts.length > 0;}).map(function(t) {
+    var commentsHtml = t.doubts.map(function(d) {
+      var resultPill = d.isCorrect
+        ? '<span class="pill success">corretto</span>'
+        : '<span class="pill error">sbagliato</span>';
+      return '<div class="comment-item">'
+        + '<div class="meta">' + d.sessionId + ' · confidence ' + (d.confidence || '?') + '/5 · scelta: ' + esc(d.finalLabel) + ' ' + resultPill + '</div>'
+        + '<div class="text">' + esc(d.comment) + '</div>'
+        + '</div>';
+    }).join('');
+    return '<div class="task-card">'
+      + '<h3>' + t.id + ' — ' + esc(t.scenario.slice(0, 80)) + '...</h3>'
+      + '<div class="comments-list">' + commentsHtml + '</div>'
+      + '</div>';
+  }).join('') || '<div class="empty-state">Nessun commento sui task</div>';
+  document.getElementById('commentsByTask').innerHTML = byTaskHtml;
+
+  var finals = sessions.filter(function(s){return s.finalFeedback && s.finalFeedback.comment;});
+  document.getElementById('finalComments').innerHTML = finals.length
+    ? finals.map(function(s) {
+      return '<div class="comment-item">'
+        + '<div class="meta">' + s.sessionId + ' · clarity ' + s.finalFeedback.clarity + '/5 · ease ' + s.finalFeedback.easeOfUse + '/5</div>'
+        + '<div class="text">' + esc(s.finalFeedback.comment) + '</div>'
+        + '</div>';
+    }).join('')
+    : '<div class="empty-state">Nessun commento finale</div>';
+}
+
+// CSV Export with new fields
+function exportCSV() {
+  var sessions = getFilteredSessions();
+  var rows = [['session_id','campaign','started_at','duration_ms','task_id','task_started_at','task_duration_ms','final_node_id','final_label','is_correct','is_direct','skipped','confidence','doubts','path','final_clarity_categorie','final_clarity_label','final_comment']];
+  sessions.forEach(function(s) {
+    (s.tasks || []).forEach(function(t) {
+      rows.push([
+        s.sessionId, s.campaign, new Date(s.startedAt).toISOString(), s.durationMs,
+        t.taskId, new Date(t.startedAt).toISOString(), t.durationMs,
+        t.finalNodeId || '', t.finalLabel || '',
+        t.isCorrect ? 'Y' : 'N', t.isDirect ? 'Y' : 'N',
+        t.skipped ? 'Y' : 'N', t.confidence || '',
+        (t.doubts || ''),
+        (t.path || []).join(' > '),
+        s.finalFeedback ? s.finalFeedback.clarity : '',
+        s.finalFeedback ? s.finalFeedback.easeOfUse : '',
+        s.finalFeedback ? (s.finalFeedback.comment || '') : ''
+      ]);
+    });
+  });
+  var csv = rows.map(function(r) {
+    return r.map(function(c) {
+      var s = String(c == null ? '' : c);
+      return /[",\n]/.test(s) ? '"' + s.replace(/"/g, '""') + '"' : s;
+    }).join(',');
+  }).join('\n');
+  var blob = new Blob([csv], { type: 'text/csv;charset=utf-8' });
+  var url = URL.createObjectURL(blob);
+  var a = document.createElement('a');
+  a.href = url;
+  a.download = 'tree-testing-ae-' + Date.now() + '.csv';
+  a.click();
+  URL.revokeObjectURL(url);
+}
+</script>
+</body>
+</html>

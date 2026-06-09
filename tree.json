@@ -1,0 +1,2158 @@
+{
+  "id": "root",
+  "label": "Home — Agenzia delle Entrate",
+  "children": [
+    {
+      "id": "ma_001",
+      "label": "Aprire e gestire un'attività o Partita IVA",
+      "children": [
+        {
+          "id": "ma_001_affitti_e_locazioni",
+          "label": "Affitti e locazioni",
+          "children": [
+            {
+              "id": "scheda_245",
+              "label": "Aggiungere l'IVA all'affitto di uffici, negozi o capannoni",
+              "isLeaf": true,
+              "schedaId": 245
+            }
+          ]
+        },
+        {
+          "id": "ma_001_altri_bonus_e_crediti_d_imposta",
+          "label": "Altri bonus e crediti d'imposta",
+          "children": [
+            {
+              "id": "scheda_38",
+              "label": "Aderire al concordato preventivo biennale (Regime forfettario)",
+              "isLeaf": true,
+              "schedaId": 38
+            }
+          ]
+        },
+        {
+          "id": "ma_001_avviare_un_attivit",
+          "label": "Avviare un'attività",
+          "children": [
+            {
+              "id": "scheda_238",
+              "label": "Ottenere partita iva per operazioni con l'estero",
+              "isLeaf": true,
+              "schedaId": 238
+            },
+            {
+              "id": "scheda_248",
+              "label": "Gestire l’IVA come un unico gruppo (Gruppo IVA)",
+              "isLeaf": true,
+              "schedaId": 248
+            },
+            {
+              "id": "scheda_257",
+              "label": "Aprire, variare o chiudere la Partita IVA (Società ed Enti)",
+              "isLeaf": true,
+              "schedaId": 257
+            },
+            {
+              "id": "scheda_484",
+              "label": "Comunicare la cessazione dell'incarico di depositario delle scritture contabili",
+              "isLeaf": true,
+              "schedaId": 484
+            }
+          ]
+        },
+        {
+          "id": "ma_001_certificati_fiscali",
+          "label": "Certificati fiscali",
+          "children": [
+            {
+              "id": "scheda_258",
+              "label": "Scaricare o richiedere il certificato della Partita IVA",
+              "isLeaf": true,
+              "schedaId": 258
+            },
+            {
+              "id": "scheda_260",
+              "label": "Richiedere il certificato di regolarità fiscale per appalti",
+              "isLeaf": true,
+              "schedaId": 260
+            }
+          ]
+        },
+        {
+          "id": "ma_001_fatturazione_elettronica",
+          "label": "Fatturazione elettronica",
+          "children": [
+            {
+              "id": "scheda_127",
+              "label": "Fatturazione elettronica",
+              "isLeaf": true,
+              "schedaId": 127
+            },
+            {
+              "id": "scheda_126",
+              "label": "Emettere fatture elettroniche verso la Pubblica Amministrazione",
+              "isLeaf": true,
+              "schedaId": 126
+            }
+          ]
+        },
+        {
+          "id": "ma_001_corrispettivi_telematici",
+          "label": "Corrispettivi telematici",
+          "children": [
+            {
+              "id": "scheda_254",
+              "label": "Comunicare e gestire i dati sulle biglietterie automatizzate (Spettacolo)",
+              "isLeaf": true,
+              "schedaId": 254
+            },
+            {
+              "id": "scheda_259",
+              "label": "Gestire l'invio dei corrispettivi e i registratori telematici",
+              "isLeaf": true,
+              "schedaId": 259
+            },
+            {
+              "id": "scheda_510",
+              "label": "Comunicare il collegamento tra POS e Registratore Telematico (POS-RT)"
+            },
+            {
+              "id": "scheda_511",
+              "label": "Aderire alla lotteria degli scontrini (esercenti)"
+            },
+            {
+              "id": "scheda_512",
+              "label": "Utilizzare soluzioni software per la memorizzazione e trasmissione dei corrispettivi"
+            }
+          ]
+        },
+        {
+          "id": "ma_001_fiscalita_internazionale",
+          "label": "Fiscalità Internazionale",
+          "children": [
+            {
+              "id": "scheda_243",
+              "label": "Ottenere certificato residenza fiscale",
+              "isLeaf": true,
+              "schedaId": 243
+            },
+            {
+              "id": "scheda_262",
+              "label": "Comunicare il possesso della documentazione sul Transfer Pricing",
+              "isLeaf": true,
+              "schedaId": 262
+            },
+            {
+              "id": "scheda_263",
+              "label": "Richiedere un accordo preventivo per attività internazionali (APA)",
+              "isLeaf": true,
+              "schedaId": 263
+            },
+            {
+              "id": "scheda_264",
+              "label": "Richiedere la collaborazione rafforzata per la fiscalità internazionale",
+              "isLeaf": true,
+              "schedaId": 264
+            },
+            {
+              "id": "scheda_247",
+              "label": "Richiedere un Cross Border Ruling (progetto pilota)",
+              "isLeaf": true,
+              "schedaId": 247
+            }
+          ]
+        },
+        {
+          "id": "ma_001_guida_iva_per_imprese_e_professionisti",
+          "label": "Guida IVA per imprese e professionisti",
+          "children": [
+            {
+              "id": "scheda_118",
+              "label": "Costituire la garanzia per i depositi fiscali di carburanti",
+              "isLeaf": true,
+              "schedaId": 118
+            },
+            {
+              "id": "scheda_119",
+              "label": "Presentare la dichiarazione sostitutiva per i depositi IVA",
+              "isLeaf": true,
+              "schedaId": 119
+            },
+            {
+              "id": "scheda_120",
+              "label": "Prestare la garanzia per l'estrazione dai depositi IVA",
+              "isLeaf": true,
+              "schedaId": 120
+            },
+            {
+              "id": "scheda_131",
+              "label": "Comunicare le liquidazioni periodiche IVA",
+              "isLeaf": true,
+              "schedaId": 131
+            },
+            {
+              "id": "scheda_164",
+              "label": "Gestire l’IVA come un unico gruppo (Gruppo IVA)",
+              "isLeaf": true,
+              "schedaId": 164
+            },
+            {
+              "id": "scheda_228",
+              "label": "Aprire, variare o chiudere la Partita IVA (Ditte e Professionisti)",
+              "isLeaf": true,
+              "schedaId": 228
+            },
+            {
+              "id": "scheda_315",
+              "label": "Come ottenere il rimborso dell’Iva",
+              "isLeaf": true,
+              "schedaId": 315
+            },
+            {
+              "id": "scheda_316",
+              "label": "Richiedere anticipazione credito IVA",
+              "isLeaf": true,
+              "schedaId": 316
+            },
+            {
+              "id": "scheda_321",
+              "label": "Presentare la garanzia per sbloccare il rimborso IVA",
+              "isLeaf": true,
+              "schedaId": 321
+            },
+            {
+              "id": "scheda_322",
+              "label": "Richiedere il rimborso per le tasse pagate all'estero",
+              "isLeaf": true,
+              "schedaId": 322
+            },
+            {
+              "id": "scheda_323",
+              "label": "Richiedere il rimborso IVA per residenti fuori dall'Unione Europea (Iva 79)",
+              "isLeaf": true,
+              "schedaId": 323
+            },
+            {
+              "id": "scheda_325",
+              "label": "Richiedere il rimborso IVA per imprese dell'Unione Europea (cittadino non com...",
+              "isLeaf": true,
+              "schedaId": 325
+            },
+            {
+              "id": "scheda_326",
+              "label": "Richiedere il rimborso dell'IVA pagata in altri Stati dell'Unione Europea (ci...",
+              "isLeaf": true,
+              "schedaId": 326
+            },
+            {
+              "id": "scheda_478",
+              "label": "Comunicare il regime IVA transfrontaliero di franchigia",
+              "isLeaf": true,
+              "schedaId": 478
+            },
+            {
+              "id": "scheda_479",
+              "label": "Optare per il regime IVA per servizi di trasporto e logistica",
+              "isLeaf": true,
+              "schedaId": 479
+            }
+          ]
+        },
+        {
+          "id": "ma_001_intermediari_e_professionisti",
+          "label": "Intermediari e Professionisti",
+          "children": [
+            {
+              "id": "scheda_233",
+              "label": "Verificare l'autorizzazione e i dati dei CAF",
+              "isLeaf": true,
+              "schedaId": 233
+            }
+          ]
+        },
+        {
+          "id": "ma_001_investments_investimenti_e_risparmio",
+          "label": "Investments (Investimenti e risparmio)",
+          "children": [
+            {
+              "id": "scheda_240",
+              "label": "Registrare o consultare il pegno sui beni mobili dell'impresa",
+              "isLeaf": true,
+              "schedaId": 240
+            }
+          ]
+        },
+        {
+          "id": "ma_001_transport_veicoli_e_mobilit",
+          "label": "Transport (Veicoli e mobilità)",
+          "children": [
+            {
+              "id": "scheda_236",
+              "label": "Richiedere la sospensione del pagamento del bollo per rivendita veicoli",
+              "isLeaf": true,
+              "schedaId": 236
+            }
+          ]
+        }
+      ]
+    },
+    {
+      "id": "ma_002",
+      "label": "Casa e terreni",
+      "children": [
+        {
+          "id": "ma_002_affitti_e_locazioni",
+          "label": "Affitti e locazioni",
+          "children": [
+            {
+              "id": "scheda_106",
+              "label": "Comunicare i dati dei contratti di locazione breve (per intermediari)",
+              "isLeaf": true,
+              "schedaId": 106
+            },
+            {
+              "id": "scheda_309",
+              "label": "Registrare un contratto di affitto o locazione (RLI)",
+              "isLeaf": true,
+              "schedaId": 309
+            },
+            {
+              "id": "scheda_311",
+              "label": "Gestire la proroga, la cessione o la chiusura di un contratto di affitto",
+              "isLeaf": true,
+              "schedaId": 311
+            },
+            {
+              "id": "scheda_312",
+              "label": "Registrare un contratto di comodato (gratuito)",
+              "isLeaf": true,
+              "schedaId": 312
+            },
+            {
+              "id": "scheda_313",
+              "label": "Scegliere la cedolare secca per l'affitto di casa",
+              "isLeaf": true,
+              "schedaId": 313
+            },
+            {
+              "id": "scheda_314",
+              "label": "Registrare collettivamente i contratti di affitto di terreni agricoli (Fondi ...",
+              "isLeaf": true,
+              "schedaId": 314
+            }
+          ]
+        },
+        {
+          "id": "ma_002_aggiornamento_catasto",
+          "label": "Aggiornamento catasto",
+          "children": [
+            {
+              "id": "scheda_188",
+              "label": "Presentare una voltura catastale",
+              "isLeaf": true,
+              "schedaId": 188
+            },
+            {
+              "id": "scheda_190",
+              "label": "Aggiornare il Catasto Fabbricati con il software Docfa",
+              "isLeaf": true,
+              "schedaId": 190
+            },
+            {
+              "id": "scheda_192",
+              "label": "Conoscere le Commissioni censuarie",
+              "isLeaf": true,
+              "schedaId": 192
+            },
+            {
+              "id": "scheda_196",
+              "label": "Conoscere il riconoscimento della ruralita' dei fabbricati",
+              "isLeaf": true,
+              "schedaId": 196
+            },
+            {
+              "id": "scheda_197",
+              "label": "Aggiornare il Catasto Terreni con il software Pregeo",
+              "isLeaf": true,
+              "schedaId": 197
+            },
+            {
+              "id": "scheda_199",
+              "label": "Richiedere la correzione dei dati catastali",
+              "isLeaf": true,
+              "schedaId": 199
+            },
+            {
+              "id": "scheda_203",
+              "label": "Conoscere le attivita' sui fabbricati non dichiarati al catasto",
+              "isLeaf": true,
+              "schedaId": 203
+            },
+            {
+              "id": "scheda_209",
+              "label": "Presentare un elaborato planimetrico",
+              "isLeaf": true,
+              "schedaId": 209
+            },
+            {
+              "id": "scheda_210",
+              "label": "Verificare lo stato di una pratica catastale",
+              "isLeaf": true,
+              "schedaId": 210
+            },
+            {
+              "id": "scheda_222",
+              "label": "Comunicare le variazioni colturali dei terreni",
+              "isLeaf": true,
+              "schedaId": 222
+            },
+            {
+              "id": "scheda_225",
+              "label": "Conoscere le revisioni parziali del classamento per microzone",
+              "isLeaf": true,
+              "schedaId": 225
+            }
+          ]
+        },
+        {
+          "id": "ma_002_cartografia_catastale",
+          "label": "Cartografia catastale",
+          "children": [
+            {
+              "id": "scheda_201",
+              "label": "Richiedere un estratto di mappa digitale",
+              "isLeaf": true,
+              "schedaId": 201
+            },
+            {
+              "id": "scheda_207",
+              "label": "Consultare la cartografia catastale online",
+              "isLeaf": true,
+              "schedaId": 207
+            },
+            {
+              "id": "scheda_216",
+              "label": "Consultare i punti fiduciali catastali",
+              "isLeaf": true,
+              "schedaId": 216
+            }
+          ]
+        },
+        {
+          "id": "ma_002_compravendita_immobili",
+          "label": "Compravendita immobili",
+          "children": [
+            {
+              "id": "scheda_187",
+              "label": "Registrare atti pubblici tramite l'Adempimento Unico",
+              "isLeaf": true,
+              "schedaId": 187
+            },
+            {
+              "id": "scheda_198",
+              "label": "Utilizzare l'Adempimento Unico telematico per atti immobiliari",
+              "isLeaf": true,
+              "schedaId": 198
+            },
+            {
+              "id": "scheda_218",
+              "label": "Presentare documenti telematici per atti relativi a societa'",
+              "isLeaf": true,
+              "schedaId": 218
+            },
+            {
+              "id": "scheda_310",
+              "label": "Registrare un contratto preliminare di compravendita (Compromesso)",
+              "isLeaf": true,
+              "schedaId": 310
+            }
+          ]
+        },
+        {
+          "id": "ma_002_consultazione_banche_dati_catastali",
+          "label": "Consultazione banche dati catastali",
+          "children": [
+            {
+              "id": "scheda_211",
+              "label": "Consultare le banche dati catastali e ipotecarie con Sister (Enti)",
+              "isLeaf": true,
+              "schedaId": 211
+            },
+            {
+              "id": "scheda_212",
+              "label": "Consultare le banche dati catastali e ipotecarie con Sister (Professionisti)",
+              "isLeaf": true,
+              "schedaId": 212
+            },
+            {
+              "id": "scheda_213",
+              "label": "Consultare il registro delle comunicazioni catastali",
+              "isLeaf": true,
+              "schedaId": 213
+            },
+            {
+              "id": "scheda_215",
+              "label": "Richiedere una fornitura massiva di dati catastali",
+              "isLeaf": true,
+              "schedaId": 215
+            },
+            {
+              "id": "scheda_498",
+              "label": "Consultare il registro delle partite catastali",
+              "isLeaf": true,
+              "schedaId": 498
+            }
+          ]
+        },
+        {
+          "id": "ma_002_dati_ipotecari_e_pubblicita_immobiliare",
+          "label": "Dati ipotecari e pubblicita' immobiliare",
+          "children": [
+            {
+              "id": "scheda_191",
+              "label": "Aggiornare le banche dati ipotecarie (professionisti)",
+              "isLeaf": true,
+              "schedaId": 191
+            },
+            {
+              "id": "scheda_195",
+              "label": "Effettuare un'ispezione ipotecaria online",
+              "isLeaf": true,
+              "schedaId": 195
+            },
+            {
+              "id": "scheda_200",
+              "label": "Ottenere la cancellazione semplificata dell'ipoteca",
+              "isLeaf": true,
+              "schedaId": 200
+            },
+            {
+              "id": "scheda_205",
+              "label": "Aggiornare la banca dati ipotecaria in ufficio",
+              "isLeaf": true,
+              "schedaId": 205
+            },
+            {
+              "id": "scheda_217",
+              "label": "Richiedere il certificato ipotecario e rilascio di copia",
+              "isLeaf": true,
+              "schedaId": 217
+            },
+            {
+              "id": "scheda_497",
+              "label": "Presentare documenti telematici per atti del debitore",
+              "isLeaf": true,
+              "schedaId": 497
+            }
+          ]
+        },
+        {
+          "id": "ma_002_quotazioni_immobiliari_omi",
+          "label": "Quotazioni immobiliari OMI",
+          "children": [
+            {
+              "id": "scheda_194",
+              "label": "Consultare le quotazioni immobiliari OMI",
+              "isLeaf": true,
+              "schedaId": 194
+            }
+          ]
+        },
+        {
+          "id": "ma_002_servizi_catastali_per_enti_e_professioni",
+          "label": "Servizi catastali per enti e professionisti",
+          "children": [
+            {
+              "id": "scheda_189",
+              "label": "Accedere ai servizi tecnico-estimativi dell'Agenzia",
+              "isLeaf": true,
+              "schedaId": 189
+            },
+            {
+              "id": "scheda_202",
+              "label": "Aggiornare le banche dati catastali con la piattaforma SIT",
+              "isLeaf": true,
+              "schedaId": 202
+            },
+            {
+              "id": "scheda_208",
+              "label": "Accedere al Portale per i Comuni (servizi catastali)",
+              "isLeaf": true,
+              "schedaId": 208
+            },
+            {
+              "id": "scheda_224",
+              "label": "Utilizzare il Sistema di Interscambio catastale (SIT)",
+              "isLeaf": true,
+              "schedaId": 224
+            }
+          ]
+        },
+        {
+          "id": "ma_002_visure_catastali",
+          "label": "Visure catastali",
+          "children": [
+            {
+              "id": "scheda_206",
+              "label": "Consultare gratuitamente i propri dati catastali e ipotecari",
+              "isLeaf": true,
+              "schedaId": 206
+            },
+            {
+              "id": "scheda_219",
+              "label": "Richiedere una visura catastale online",
+              "isLeaf": true,
+              "schedaId": 219
+            },
+            {
+              "id": "scheda_220",
+              "label": "Richiedere la visura della planimetria catastale online",
+              "isLeaf": true,
+              "schedaId": 220
+            },
+            {
+              "id": "scheda_221",
+              "label": "Richiedere la visura della mappa catastale",
+              "isLeaf": true,
+              "schedaId": 221
+            }
+          ]
+        }
+      ]
+    },
+    {
+      "id": "ma_003",
+      "label": "Certificati e attestazioni",
+      "children": [
+        {
+          "id": "ma_003_certificati_catastali",
+          "label": "Certificati catastali",
+          "children": [
+            {
+              "id": "scheda_214",
+              "label": "Richiedere un certificato catastale",
+              "isLeaf": true,
+              "schedaId": 214
+            }
+          ]
+        }
+      ]
+    },
+    {
+      "id": "ma_004",
+      "label": "Codice Fiscale e Tessera Sanitaria",
+      "children": [
+        {
+          "id": "ma_004_certificati_fiscali",
+          "label": "Certificati fiscali",
+          "children": [
+            {
+              "id": "scheda_242",
+              "label": "Richiedere certificato del codice fiscale",
+              "isLeaf": true,
+              "schedaId": 242
+            }
+          ]
+        },
+        {
+          "id": "ma_004_identificativi_fiscali_e_abilitazioni",
+          "label": "Identificativi fiscali e abilitazioni",
+          "children": [
+            {
+              "id": "scheda_232",
+              "label": "Richiedere o duplicare il Codice Fiscale",
+              "isLeaf": true,
+              "schedaId": 232
+            }
+          ]
+        }
+      ]
+    },
+    {
+      "id": "ma_005",
+      "label": "Compilare ed inviare dichiarazioni",
+      "children": [
+        {
+          "id": "ma_005_dati_per_la_dichiarazione_precompilata",
+          "label": "Dati per la dichiarazione precompilata",
+          "children": [
+            {
+              "id": "scheda_97",
+              "label": "Comunicare i dati dei bonifici per detrazioni fiscali",
+              "isLeaf": true,
+              "schedaId": 97
+            },
+            {
+              "id": "scheda_103",
+              "label": "Comunicare le spese per la frequenza degli asili nido",
+              "isLeaf": true,
+              "schedaId": 103
+            },
+            {
+              "id": "scheda_104",
+              "label": "Comunicare le erogazioni liberali agli enti del Terzo Settore",
+              "isLeaf": true,
+              "schedaId": 104
+            },
+            {
+              "id": "scheda_105",
+              "label": "Comunicare i dati sui redditi di capitale (D.lgs. 239/1996)",
+              "isLeaf": true,
+              "schedaId": 105
+            },
+            {
+              "id": "scheda_107",
+              "label": "Comunicare i dati di contratti e premi assicurativi",
+              "isLeaf": true,
+              "schedaId": 107
+            },
+            {
+              "id": "scheda_108",
+              "label": "Comunicare i contributi di previdenza complementare versati",
+              "isLeaf": true,
+              "schedaId": 108
+            },
+            {
+              "id": "scheda_109",
+              "label": "Comunicare i contributi previdenziali versati",
+              "isLeaf": true,
+              "schedaId": 109
+            },
+            {
+              "id": "scheda_135",
+              "label": "Opporsi all'utilizzo delle proprie spese nella dichiarazione precompilata",
+              "isLeaf": true,
+              "schedaId": 135
+            },
+            {
+              "id": "scheda_139",
+              "label": "Ricevere e gestire i risultati contabili del Modello 730 (730-4)",
+              "isLeaf": true,
+              "schedaId": 139
+            },
+            {
+              "id": "scheda_141",
+              "label": "Comunicare i rimborsi delle spese sanitarie erogati",
+              "isLeaf": true,
+              "schedaId": 141
+            },
+            {
+              "id": "scheda_142",
+              "label": "Comunicare le spese per ristrutturazione e risparmio energetico condominiale",
+              "isLeaf": true,
+              "schedaId": 142
+            },
+            {
+              "id": "scheda_146",
+              "label": "Comunicare gli interessi passivi sui mutui erogati",
+              "isLeaf": true,
+              "schedaId": 146
+            },
+            {
+              "id": "scheda_147",
+              "label": "Comunicare le spese funebri sostenute",
+              "isLeaf": true,
+              "schedaId": 147
+            },
+            {
+              "id": "scheda_148",
+              "label": "Comunicare le spese per abbonamenti al trasporto pubblico",
+              "isLeaf": true,
+              "schedaId": 148
+            },
+            {
+              "id": "scheda_149",
+              "label": "Comunicare le spese scolastiche sostenute",
+              "isLeaf": true,
+              "schedaId": 149
+            },
+            {
+              "id": "scheda_150",
+              "label": "Comunicare le spese universitarie sostenute",
+              "isLeaf": true,
+              "schedaId": 150
+            },
+            {
+              "id": "scheda_151",
+              "label": "Comunicare le spese universitarie rimborsate",
+              "isLeaf": true,
+              "schedaId": 151
+            },
+            {
+              "id": "scheda_480",
+              "label": "Comunicare le spese sanitarie sostenute",
+              "isLeaf": true,
+              "schedaId": 480
+            },
+            {
+              "id": "scheda_481",
+              "label": "Comunicare i proventi dalla cessione di energia da fonti rinnovabili",
+              "isLeaf": true,
+              "schedaId": 481
+            }
+          ]
+        },
+        {
+          "id": "ma_005_dichiarazione_dei_redditi_730_redditi_pf",
+          "label": "Dichiarazione dei redditi (730, Redditi PF)",
+          "children": [
+            {
+              "id": "scheda_157",
+              "label": "Compilare e inviare il modello Redditi Persone Fisiche 2026",
+              "isLeaf": true,
+              "schedaId": 157
+            }
+          ]
+        },
+        {
+          "id": "ma_005_dichiarazioni_imprese_e_societa",
+          "label": "Dichiarazioni imprese e societa'",
+          "children": [
+            {
+              "id": "scheda_156",
+              "label": "Compilare e inviare il Consolidato nazionale e Mondiale 2026",
+              "isLeaf": true,
+              "schedaId": 156
+            },
+            {
+              "id": "scheda_504",
+              "label": "Compilare e inviare la dichiarazione fiscale Globe (Pillar Two)",
+              "isLeaf": true,
+              "schedaId": 504
+            }
+          ]
+        },
+        {
+          "id": "ma_005_successioni_ed_eredita",
+          "label": "Successioni ed eredita'",
+          "children": [
+            {
+              "id": "scheda_174",
+              "label": "Compilare e inviare la dichiarazione di successione",
+              "isLeaf": true,
+              "schedaId": 174
+            }
+          ]
+        }
+      ]
+    },
+    {
+      "id": "ma_006",
+      "label": "Controlli fiscali e contenziosi",
+      "children": [
+        {
+          "id": "ma_006_senza_sotto_categoria",
+          "label": "Altri contenuti",
+          "children": [
+            {
+              "id": "scheda_427",
+              "label": "Annullamento del debito",
+              "isLeaf": true,
+              "schedaId": 427
+            },
+            {
+              "id": "scheda_410",
+              "label": "Compensazioni",
+              "isLeaf": true,
+              "schedaId": 410
+            },
+            {
+              "id": "scheda_407",
+              "label": "Pagamenti",
+              "isLeaf": true,
+              "schedaId": 407
+            },
+            {
+              "id": "scheda_408",
+              "label": "Come e dove pagare",
+              "isLeaf": true,
+              "schedaId": 408
+            },
+            {
+              "id": "scheda_409",
+              "label": "Pagamenti dall'estero",
+              "isLeaf": true,
+              "schedaId": 409
+            },
+            {
+              "id": "scheda_413",
+              "label": "Rateizzazione",
+              "isLeaf": true,
+              "schedaId": 413
+            },
+            {
+              "id": "scheda_415",
+              "label": "Istanze \"a semplice richiesta\"",
+              "isLeaf": true,
+              "schedaId": 415
+            },
+            {
+              "id": "scheda_416",
+              "label": "Istanze \"documentate\"",
+              "isLeaf": true,
+              "schedaId": 416
+            },
+            {
+              "id": "scheda_418",
+              "label": "Istanze \"documentate\" - Indicatori",
+              "isLeaf": true,
+              "schedaId": 418
+            },
+            {
+              "id": "scheda_419",
+              "label": "Istanze \"documentate\" - Simula il numero delle rate",
+              "isLeaf": true,
+              "schedaId": 419
+            },
+            {
+              "id": "scheda_420",
+              "label": "Cosa succede con la presentazione della richiesta di rateizzazione",
+              "isLeaf": true,
+              "schedaId": 420
+            },
+            {
+              "id": "scheda_421",
+              "label": "Decadenza dal piano di rateizzazione",
+              "isLeaf": true,
+              "schedaId": 421
+            },
+            {
+              "id": "scheda_425",
+              "label": "Enti che hanno autorizzato l’Agente della riscossione a concedere la rateizza...",
+              "isLeaf": true,
+              "schedaId": 425
+            },
+            {
+              "id": "scheda_424",
+              "label": "Enti che rateizzano in proprio e tributi/tipi imposta non rateizzabili",
+              "isLeaf": true,
+              "schedaId": 424
+            },
+            {
+              "id": "scheda_414",
+              "label": "La  rateizzazione dal 1° gennaio 2025",
+              "isLeaf": true,
+              "schedaId": 414
+            },
+            {
+              "id": "scheda_417",
+              "label": "Proroga del piano di rateizzazione",
+              "isLeaf": true,
+              "schedaId": 417
+            },
+            {
+              "id": "scheda_422",
+              "label": "Rateizzazione - Domiciliazione bancaria",
+              "isLeaf": true,
+              "schedaId": 422
+            },
+            {
+              "id": "scheda_423",
+              "label": "Rateizzazione - Richiedi i moduli di pagamento",
+              "isLeaf": true,
+              "schedaId": 423
+            },
+            {
+              "id": "scheda_428",
+              "label": "Rimborsi",
+              "isLeaf": true,
+              "schedaId": 428
+            },
+            {
+              "id": "scheda_426",
+              "label": "Sospensione",
+              "isLeaf": true,
+              "schedaId": 426
+            },
+            {
+              "id": "scheda_384",
+              "label": "Pagamenti",
+              "isLeaf": true,
+              "schedaId": 384
+            },
+            {
+              "id": "scheda_385",
+              "label": "Come e dove pagare",
+              "isLeaf": true,
+              "schedaId": 385
+            },
+            {
+              "id": "scheda_386",
+              "label": "Pagamenti dall'estero",
+              "isLeaf": true,
+              "schedaId": 386
+            },
+            {
+              "id": "scheda_387",
+              "label": "Compensazioni",
+              "isLeaf": true,
+              "schedaId": 387
+            },
+            {
+              "id": "scheda_388",
+              "label": "Rateizzazione",
+              "isLeaf": true,
+              "schedaId": 388
+            },
+            {
+              "id": "scheda_389",
+              "label": "La  rateizzazione dal 1° gennaio 2025",
+              "isLeaf": true,
+              "schedaId": 389
+            },
+            {
+              "id": "scheda_390",
+              "label": "Istanze \"a semplice richiesta\"",
+              "isLeaf": true,
+              "schedaId": 390
+            },
+            {
+              "id": "scheda_391",
+              "label": "Istanze \"documentate\"",
+              "isLeaf": true,
+              "schedaId": 391
+            },
+            {
+              "id": "scheda_392",
+              "label": "Proroga del piano di rateizzazione",
+              "isLeaf": true,
+              "schedaId": 392
+            },
+            {
+              "id": "scheda_393",
+              "label": "Istanze \"documentate\" - Indicatori",
+              "isLeaf": true,
+              "schedaId": 393
+            },
+            {
+              "id": "scheda_394",
+              "label": "Istanze \"documentate\" - Simula il numero delle rate",
+              "isLeaf": true,
+              "schedaId": 394
+            },
+            {
+              "id": "scheda_395",
+              "label": "Cosa succede con la presentazione della richiesta di rateizzazione",
+              "isLeaf": true,
+              "schedaId": 395
+            },
+            {
+              "id": "scheda_396",
+              "label": "Decadenza dal piano di rateizzazione",
+              "isLeaf": true,
+              "schedaId": 396
+            },
+            {
+              "id": "scheda_397",
+              "label": "Rateizzazione - Domiciliazione bancaria",
+              "isLeaf": true,
+              "schedaId": 397
+            },
+            {
+              "id": "scheda_398",
+              "label": "Rateizzazione - Richiedi i moduli di pagamento",
+              "isLeaf": true,
+              "schedaId": 398
+            },
+            {
+              "id": "scheda_399",
+              "label": "Enti che rateizzano in proprio e tributi/tipi imposta non rateizzabili",
+              "isLeaf": true,
+              "schedaId": 399
+            },
+            {
+              "id": "scheda_400",
+              "label": "Enti che hanno autorizzato l’Agente della riscossione a concedere la rateizza...",
+              "isLeaf": true,
+              "schedaId": 400
+            },
+            {
+              "id": "scheda_401",
+              "label": "Sospensione",
+              "isLeaf": true,
+              "schedaId": 401
+            },
+            {
+              "id": "scheda_402",
+              "label": "Annullamento del debito",
+              "isLeaf": true,
+              "schedaId": 402
+            },
+            {
+              "id": "scheda_403",
+              "label": "Rimborsi",
+              "isLeaf": true,
+              "schedaId": 403
+            },
+            {
+              "id": "scheda_404",
+              "label": "Notifica a mezzo PEC",
+              "isLeaf": true,
+              "schedaId": 404
+            },
+            {
+              "id": "scheda_405",
+              "label": "Delega un intermediario",
+              "isLeaf": true,
+              "schedaId": 405
+            },
+            {
+              "id": "scheda_406",
+              "label": "Opera come persona di fiducia o rappresentante",
+              "isLeaf": true,
+              "schedaId": 406
+            },
+            {
+              "id": "scheda_411",
+              "label": "Compensazioni crediti d'imposta",
+              "isLeaf": true,
+              "schedaId": 411
+            },
+            {
+              "id": "scheda_412",
+              "label": "Compensazioni con crediti verso la PA",
+              "isLeaf": true,
+              "schedaId": 412
+            },
+            {
+              "id": "scheda_429",
+              "label": "Rimborsi in conto fiscale",
+              "isLeaf": true,
+              "schedaId": 429
+            },
+            {
+              "id": "scheda_430",
+              "label": "Rimborsi IVA in conto fiscale",
+              "isLeaf": true,
+              "schedaId": 430
+            },
+            {
+              "id": "scheda_431",
+              "label": "Cessione - Revoca - Sospensione",
+              "isLeaf": true,
+              "schedaId": 431
+            }
+          ]
+        },
+        {
+          "id": "ma_006_accertamenti_e_verifiche",
+          "label": "Accertamenti e verifiche",
+          "children": [
+            {
+              "id": "scheda_1",
+              "label": "Gestire il tutoraggio e i controlli per le grandi imprese",
+              "isLeaf": true,
+              "schedaId": 1
+            },
+            {
+              "id": "scheda_2",
+              "label": "Cosa fare se si riceve un accertamento fiscale",
+              "isLeaf": true,
+              "schedaId": 2
+            },
+            {
+              "id": "scheda_3",
+              "label": "Controlli fiscali e avvisi",
+              "isLeaf": true,
+              "schedaId": 3
+            },
+            {
+              "id": "scheda_17",
+              "label": "Definizione agevolata dei processi verbali di constatazione"
+            }
+          ]
+        },
+        {
+          "id": "ma_006_controlli_automatici",
+          "label": "Controlli automatici",
+          "children": [
+            {
+              "id": "scheda_19",
+              "label": "Cosa fare se ricevo una lettera di compliance dall’Agenzia",
+              "isLeaf": true,
+              "schedaId": 19
+            },
+            {
+              "id": "scheda_22",
+              "label": "Cosa fare se ricevo una lettera di compliance dall’Agenzia",
+              "isLeaf": true,
+              "schedaId": 22
+            }
+          ]
+        }
+      ]
+    },
+    {
+      "id": "ma_007",
+      "label": "Gestire una successione o un'eredità",
+      "children": []
+    },
+    {
+      "id": "ma_008",
+      "label": "Ottenere bonus e agevolazioni",
+      "children": [
+        {
+          "id": "ma_008_agevolazioni_casa_e_ristrutturazioni",
+          "label": "Agevolazioni casa e ristrutturazioni",
+          "children": [
+            {
+              "id": "scheda_23",
+              "label": "Ottenere agevolazioni per acquisto prima casa",
+              "isLeaf": true,
+              "schedaId": 23
+            },
+            {
+              "id": "scheda_32",
+              "label": "Ottenere il bonus per acquisto di mobili ed elettrodomestici",
+              "isLeaf": true,
+              "schedaId": 32
+            },
+            {
+              "id": "scheda_91",
+              "label": "Ottenere la detrazione per le ristrutturazioni edilizie",
+              "isLeaf": true,
+              "schedaId": 91
+            }
+          ]
+        },
+        {
+          "id": "ma_008_agevolazioni_famiglia_e_figli",
+          "label": "Agevolazioni famiglia e figli",
+          "children": [
+            {
+              "id": "scheda_37",
+              "label": "Canone TV",
+              "isLeaf": true,
+              "schedaId": 37
+            }
+          ]
+        },
+        {
+          "id": "ma_008_agevolazioni_imprese_e_start_up",
+          "label": "Agevolazioni imprese e start-up",
+          "children": [
+            {
+              "id": "scheda_39",
+              "label": "Aderire al Concordato Preventivo Biennale (CPB) per forfettari",
+              "isLeaf": true,
+              "schedaId": 39
+            },
+            {
+              "id": "scheda_63",
+              "label": "Richiedere il credito d'imposta per imprese agricole e agroalimentari",
+              "isLeaf": true,
+              "schedaId": 63
+            },
+            {
+              "id": "scheda_69",
+              "label": "Richiedere il credito d'imposta Transizione 4.0",
+              "isLeaf": true,
+              "schedaId": 69
+            },
+            {
+              "id": "scheda_71",
+              "label": "Richiedere il credito d'imposta per investimenti pubblicitari incrementali",
+              "isLeaf": true,
+              "schedaId": 71
+            },
+            {
+              "id": "scheda_110",
+              "label": "Ottenere il credito d'imposta sulle commissioni dei pagamenti elettronici",
+              "isLeaf": true,
+              "schedaId": 110
+            },
+            {
+              "id": "scheda_465",
+              "label": "Richiedere il credito d'imposta per investimenti in ZLS e zone sisma",
+              "isLeaf": true,
+              "schedaId": 465
+            },
+            {
+              "id": "scheda_467",
+              "label": "Richiedere il credito d'imposta per cuochi professionisti",
+              "isLeaf": true,
+              "schedaId": 467
+            },
+            {
+              "id": "scheda_469",
+              "label": "Ottenere le agevolazioni per il primo insediamento di imprese giovanili in ag...",
+              "isLeaf": true,
+              "schedaId": 469
+            },
+            {
+              "id": "scheda_470",
+              "label": "Richiedere il credito d'imposta per la formazione in gestione agricola",
+              "isLeaf": true,
+              "schedaId": 470
+            },
+            {
+              "id": "scheda_471",
+              "label": "Richiedere il credito d'imposta per investimenti nella ZES unica 2025",
+              "isLeaf": true,
+              "schedaId": 471
+            },
+            {
+              "id": "scheda_473",
+              "label": "Richiedere il credito d'imposta ZES per agricoltura, pesca e acquacoltura",
+              "isLeaf": true,
+              "schedaId": 473
+            },
+            {
+              "id": "scheda_476",
+              "label": "Richiedere il credito d'imposta per investimenti nella ZES unica 2026",
+              "isLeaf": true,
+              "schedaId": 476
+            },
+            {
+              "id": "scheda_477",
+              "label": "Richiedere il credito d'imposta per investimenti nelle ZLS 2026",
+              "isLeaf": true,
+              "schedaId": 477
+            }
+          ]
+        },
+        {
+          "id": "ma_008_enti_del_terzo_settore",
+          "label": "Enti del Terzo Settore",
+          "children": [
+            {
+              "id": "scheda_27",
+              "label": "Ottenere le agevolazioni per le associazioni senza fine di lucro",
+              "isLeaf": true,
+              "schedaId": 27
+            },
+            {
+              "id": "scheda_472",
+              "label": "Iscriversi al contributo del 5 per mille",
+              "isLeaf": true,
+              "schedaId": 472
+            }
+          ]
+        },
+        {
+          "id": "ma_008_eventi_e_calamit_naturali",
+          "label": "Eventi e calamità naturali",
+          "children": [
+            {
+              "id": "scheda_94",
+              "label": "Effettuare i versamenti agevolati per i contribuenti di Linosa e Lampedusa",
+              "isLeaf": true,
+              "schedaId": 94
+            },
+            {
+              "id": "scheda_246",
+              "label": "Ottenere contributi e finanziamenti per sisma Abruzzo 2009",
+              "isLeaf": true,
+              "schedaId": 246
+            },
+            {
+              "id": "scheda_251",
+              "label": "Richiedere agevolazioni per il terremoto del 2012 (Emilia, Lombardia e Veneto)",
+              "isLeaf": true,
+              "schedaId": 251
+            },
+            {
+              "id": "scheda_252",
+              "label": "Richiedere agevolazioni per l'alluvione in Sardegna (2013)",
+              "isLeaf": true,
+              "schedaId": 252
+            },
+            {
+              "id": "scheda_253",
+              "label": "Richiedere agevolazioni per il terremoto del Centro Italia (Sisma 2016)",
+              "isLeaf": true,
+              "schedaId": 253
+            }
+          ]
+        },
+        {
+          "id": "ma_008_regimi_opzionali_per_le_imprese_e_profes",
+          "label": "Regimi opzionali per le imprese e professionisti",
+          "children": [
+            {
+              "id": "scheda_74",
+              "label": "Gestire le operazioni MOSS (Mini One Stop Shop)",
+              "isLeaf": true,
+              "schedaId": 74
+            },
+            {
+              "id": "scheda_76",
+              "label": "Optare per il regime di Branch Exemption",
+              "isLeaf": true,
+              "schedaId": 76
+            },
+            {
+              "id": "scheda_77",
+              "label": "Determinare il reddito su base catastale per le società agricole",
+              "isLeaf": true,
+              "schedaId": 77
+            },
+            {
+              "id": "scheda_78",
+              "label": "Optare per la determinazione IRAP su base fiscale",
+              "isLeaf": true,
+              "schedaId": 78
+            },
+            {
+              "id": "scheda_79",
+              "label": "Optare per il regime IVA per cassa",
+              "isLeaf": true,
+              "schedaId": 79
+            },
+            {
+              "id": "scheda_80",
+              "label": "Optare per il regime del Consolidato Nazionale",
+              "isLeaf": true,
+              "schedaId": 80
+            },
+            {
+              "id": "scheda_81",
+              "label": "Optare per il regime della tonnage tax",
+              "isLeaf": true,
+              "schedaId": 81
+            },
+            {
+              "id": "scheda_82",
+              "label": "Optare per il regime di trasparenza fiscale",
+              "isLeaf": true,
+              "schedaId": 82
+            },
+            {
+              "id": "scheda_83",
+              "label": "Optare per il regime SIIQ e SIINQ",
+              "isLeaf": true,
+              "schedaId": 83
+            },
+            {
+              "id": "scheda_84",
+              "label": "Optare per il regime Patent Box",
+              "isLeaf": true,
+              "schedaId": 84
+            },
+            {
+              "id": "scheda_85",
+              "label": "Aderire al regime di adempimento collaborativo (Cooperative Compliance)",
+              "isLeaf": true,
+              "schedaId": 85
+            },
+            {
+              "id": "scheda_86",
+              "label": "Aderire al regime forfetario per contribuenti con ricavi ridotti",
+              "isLeaf": true,
+              "schedaId": 86
+            },
+            {
+              "id": "scheda_87",
+              "label": "Aderire al regime IOSS per le importazioni",
+              "isLeaf": true,
+              "schedaId": 87
+            },
+            {
+              "id": "scheda_88",
+              "label": "Aderire al regime OSS per le vendite a distanza",
+              "isLeaf": true,
+              "schedaId": 88
+            },
+            {
+              "id": "scheda_474",
+              "label": "Aderire al regime IVA transfrontaliero di franchigia",
+              "isLeaf": true,
+              "schedaId": 474
+            },
+            {
+              "id": "scheda_475",
+              "label": "Adottare il sistema di controllo del rischio fiscale",
+              "isLeaf": true,
+              "schedaId": 475
+            }
+          ]
+        },
+        {
+          "id": "ma_008_regimi_opzionali_per_le_persone_fisiche",
+          "label": "Regimi opzionali per le persone fisiche",
+          "children": [
+            {
+              "id": "scheda_67",
+              "label": "Ottenere le agevolazioni fiscali per docenti e ricercatori rientrati in Italia",
+              "isLeaf": true,
+              "schedaId": 67
+            },
+            {
+              "id": "scheda_75",
+              "label": "Aderire al regime opzionale per i neo-residenti in Italia",
+              "isLeaf": true,
+              "schedaId": 75
+            }
+          ]
+        }
+      ]
+    },
+    {
+      "id": "ma_009",
+      "label": "Pagamenti e Rimborsi",
+      "children": [
+        {
+          "id": "ma_009_istruzioni_per_il_pagamento_delle_impost",
+          "label": "Istruzioni per il pagamento delle imposte",
+          "children": [
+            {
+              "id": "scheda_68",
+              "label": "Pagare l'imposta sostitutiva sui compensi per ripetizioni e lezioni private",
+              "isLeaf": true,
+              "schedaId": 68
+            },
+            {
+              "id": "scheda_134",
+              "label": "Pagare l'imposta sostitutiva per il noleggio occasionale di imbarcazioni",
+              "isLeaf": true,
+              "schedaId": 134
+            },
+            {
+              "id": "scheda_158",
+              "label": "Imposta sui servizi digitali",
+              "isLeaf": true,
+              "schedaId": 158
+            },
+            {
+              "id": "scheda_265",
+              "label": "Pagare tasse scolastiche",
+              "isLeaf": true,
+              "schedaId": 265
+            },
+            {
+              "id": "scheda_267",
+              "label": "Pagare il bollo auto (per Friuli Venezia Giulia e Sardegna)",
+              "isLeaf": true,
+              "schedaId": 267
+            },
+            {
+              "id": "scheda_273",
+              "label": "Pagare il contributo per un ricorso (Contributo Unificato)",
+              "isLeaf": true,
+              "schedaId": 273
+            },
+            {
+              "id": "scheda_281",
+              "label": "Pagare l'imposta su azioni e derivati (Tobin Tax)",
+              "isLeaf": true,
+              "schedaId": 281
+            },
+            {
+              "id": "scheda_283",
+              "label": "Scoprire come funziona l’IVA: regole, aliquote e pagamenti",
+              "isLeaf": true,
+              "schedaId": 283
+            },
+            {
+              "id": "scheda_285",
+              "label": "Pagare l'imposta di registro su sentenze e atti giudiziari",
+              "isLeaf": true,
+              "schedaId": 285
+            },
+            {
+              "id": "scheda_289",
+              "label": "Pagare imposte sugli immobili all'estero (IVIE)",
+              "isLeaf": true,
+              "schedaId": 289
+            },
+            {
+              "id": "scheda_292",
+              "label": "Versamenti IVA",
+              "isLeaf": true,
+              "schedaId": 292
+            },
+            {
+              "id": "scheda_293",
+              "label": "Pagare imposta sui passeggeri di aerotaxi",
+              "isLeaf": true,
+              "schedaId": 293
+            },
+            {
+              "id": "scheda_294",
+              "label": "Versamenti IVA",
+              "isLeaf": true,
+              "schedaId": 294
+            },
+            {
+              "id": "scheda_296",
+              "label": "Pagare imposta su beni ereditati (imposta di successione)",
+              "isLeaf": true,
+              "schedaId": 296
+            },
+            {
+              "id": "scheda_298",
+              "label": "Pagare imposte registri contabili",
+              "isLeaf": true,
+              "schedaId": 298
+            },
+            {
+              "id": "scheda_299",
+              "label": "Versamenti IVA",
+              "isLeaf": true,
+              "schedaId": 299
+            },
+            {
+              "id": "scheda_300",
+              "label": "Pagare le tasse sulla vendita di una casa (Plusvalenze)",
+              "isLeaf": true,
+              "schedaId": 300
+            },
+            {
+              "id": "scheda_301",
+              "label": "Pagare imposte sulle donazioni ricevute",
+              "isLeaf": true,
+              "schedaId": 301
+            },
+            {
+              "id": "scheda_302",
+              "label": "Pagare le tasse su conti e investimenti all'estero (IVAFE)",
+              "isLeaf": true,
+              "schedaId": 302
+            },
+            {
+              "id": "scheda_304",
+              "label": "Pagare l'imposta sul reddito delle persone fisiche (Irpef)",
+              "isLeaf": true,
+              "schedaId": 304
+            },
+            {
+              "id": "scheda_306",
+              "label": "Pagare imposta su aerei privati",
+              "isLeaf": true,
+              "schedaId": 306
+            },
+            {
+              "id": "scheda_308",
+              "label": "Pagare l'imposta sui redditi delle società (Ires)",
+              "isLeaf": true,
+              "schedaId": 308
+            },
+            {
+              "id": "scheda_513",
+              "label": "Pagare l'ecotassa per veicoli M1 immatricolati 2019-2021",
+              "isLeaf": true,
+              "schedaId": 513
+            }
+          ]
+        },
+        {
+          "id": "ma_009_istruzioni_per_il_pagamento_delle_ritenu",
+          "label": "Istruzioni per il pagamento delle ritenute d’acconto",
+          "children": [
+            {
+              "id": "scheda_287",
+              "label": "Pagare le ritenute d'acconto per lavoratori autonomi (Ritenute dei datori di ...",
+              "isLeaf": true,
+              "schedaId": 287
+            },
+            {
+              "id": "scheda_290",
+              "label": "Pagare le ritenute d'acconto per dipendenti e collaboratori (Ritenute dei dat...",
+              "isLeaf": true,
+              "schedaId": 290
+            },
+            {
+              "id": "scheda_291",
+              "label": "Pagare l'imposta sulla rivalutazione del TFR (Ritenute dei datori di lavoro o...",
+              "isLeaf": true,
+              "schedaId": 291
+            },
+            {
+              "id": "scheda_305",
+              "label": "Versare le ritenute per lavori e servizi in condominio (Ritenute dei datori d...",
+              "isLeaf": true,
+              "schedaId": 305
+            }
+          ]
+        },
+        {
+          "id": "ma_009_notifiche_e_scadenze",
+          "label": "Notifiche e scadenze",
+          "children": [
+            {
+              "id": "scheda_15",
+              "label": "Cosa fare se si riceve una cartella di pagamento",
+              "isLeaf": true,
+              "schedaId": 15
+            }
+          ]
+        },
+        {
+          "id": "ma_009_richieste_di_rimborso",
+          "label": "Richieste di rimborso",
+          "children": [
+            {
+              "id": "scheda_317",
+              "label": "Richiedere i rimborsi intestati ad un parente deceduto",
+              "isLeaf": true,
+              "schedaId": 317
+            },
+            {
+              "id": "scheda_318",
+              "label": "Canone TV",
+              "isLeaf": true,
+              "schedaId": 318
+            },
+            {
+              "id": "scheda_319",
+              "label": "Richiedere il rimborso per le tasse pagate all'estero (Doppia imposizione)",
+              "isLeaf": true,
+              "schedaId": 319
+            },
+            {
+              "id": "scheda_324",
+              "label": "Richiedere il rimborso maggiori imposte IRAP",
+              "isLeaf": true,
+              "schedaId": 324
+            },
+            {
+              "id": "scheda_327",
+              "label": "Come ottenere un rimborso",
+              "isLeaf": true,
+              "schedaId": 327
+            }
+          ]
+        },
+        {
+          "id": "ma_009_strumenti_e_modalit_di_pagamento",
+          "label": "Strumenti e modalità di pagamento",
+          "children": [
+            {
+              "id": "scheda_266",
+              "label": "Pagare con bollettino postale",
+              "isLeaf": true,
+              "schedaId": 266
+            },
+            {
+              "id": "scheda_268",
+              "label": "Pagare con F24",
+              "isLeaf": true,
+              "schedaId": 268
+            },
+            {
+              "id": "scheda_270",
+              "label": "Pagare con F23",
+              "isLeaf": true,
+              "schedaId": 270
+            },
+            {
+              "id": "scheda_271",
+              "label": "Pagare imposta di bollo (@e.bollo)",
+              "isLeaf": true,
+              "schedaId": 271
+            },
+            {
+              "id": "scheda_272",
+              "label": "Pagare imposta di bollo (@e.bollo)",
+              "isLeaf": true,
+              "schedaId": 272
+            },
+            {
+              "id": "scheda_275",
+              "label": "Pagare imposta di bollo (@e.bollo)",
+              "isLeaf": true,
+              "schedaId": 275
+            },
+            {
+              "id": "scheda_276",
+              "label": "Pagare con F24",
+              "isLeaf": true,
+              "schedaId": 276
+            },
+            {
+              "id": "scheda_278",
+              "label": "Pagare con F24",
+              "isLeaf": true,
+              "schedaId": 278
+            },
+            {
+              "id": "scheda_280",
+              "label": "Pagare con F24",
+              "isLeaf": true,
+              "schedaId": 280
+            },
+            {
+              "id": "scheda_282",
+              "label": "Pagare con F24",
+              "isLeaf": true,
+              "schedaId": 282
+            },
+            {
+              "id": "scheda_284",
+              "label": "Pagare con F24",
+              "isLeaf": true,
+              "schedaId": 284
+            },
+            {
+              "id": "scheda_286",
+              "label": "Modello F24 crediti PP. AA.",
+              "isLeaf": true,
+              "schedaId": 286
+            },
+            {
+              "id": "scheda_288",
+              "label": "Pagare con F24",
+              "isLeaf": true,
+              "schedaId": 288
+            },
+            {
+              "id": "scheda_297",
+              "label": "Pagamento delle imposte dall'estero",
+              "isLeaf": true,
+              "schedaId": 297
+            }
+          ]
+        }
+      ]
+    },
+    {
+      "id": "ma_010",
+      "label": "Fiscalità internazionale e residenti all'estero",
+      "children": [
+        {
+          "id": "ma_010_agevolazioni_per_residenti_all_estero",
+          "label": "Agevolazioni per residenti all'estero",
+          "children": [
+            {
+              "id": "scheda_72",
+              "label": "Aderire al regime agevolato per i lavoratori impatriati",
+              "isLeaf": true,
+              "schedaId": 72
+            },
+            {
+              "id": "scheda_89",
+              "label": "Aderire al regime opzionale per i pensionati esteri trasferiti in Italia",
+              "isLeaf": true,
+              "schedaId": 89
+            }
+          ]
+        },
+        {
+          "id": "ma_010_comunicazioni_fiscali_internazionali",
+          "label": "Comunicazioni fiscali internazionali",
+          "children": [
+            {
+              "id": "scheda_138",
+              "label": "Adempiere alla rendicontazione CbCR/DAC4 (Country-by-Country Reporting)",
+              "isLeaf": true,
+              "schedaId": 138
+            },
+            {
+              "id": "scheda_143",
+              "label": "Adempiere allo scambio automatico di informazioni dei gestori di piattaforme ...",
+              "isLeaf": true,
+              "schedaId": 143
+            },
+            {
+              "id": "scheda_145",
+              "label": "Adempiere alla comunicazione dei meccanismi transfrontalieri (DAC6)",
+              "isLeaf": true,
+              "schedaId": 145
+            }
+          ]
+        },
+        {
+          "id": "ma_010_iva_e_adempimenti",
+          "label": "IVA e adempimenti",
+          "children": [
+            {
+              "id": "scheda_154",
+              "label": "Adempiere agli obblighi IVA per la vendita a distanza di beni",
+              "isLeaf": true,
+              "schedaId": 154
+            }
+          ]
+        },
+        {
+          "id": "ma_010_identificazione_fiscale_per_non_resident",
+          "label": "Identificazione fiscale per non residenti",
+          "children": [
+            {
+              "id": "scheda_235",
+              "label": "Identificazione Iva soggetti non residenti (Anr/3)",
+              "isLeaf": true,
+              "schedaId": 235
+            },
+            {
+              "id": "scheda_500",
+              "label": "Registrazione Iva per soggetti non residenti tramite rappresentante fiscale",
+              "isLeaf": true,
+              "schedaId": 500
+            }
+          ]
+        }
+      ]
+    },
+    {
+      "id": "ma_011",
+      "label": "Richieste e comunicazioni all'Agenzia",
+      "children": [
+        {
+          "id": "ma_011_accertamenti_e_verifiche",
+          "label": "Accertamenti e verifiche",
+          "children": [
+            {
+              "id": "scheda_231",
+              "label": "Richiedere un parere ufficiale (Interpello)",
+              "isLeaf": true,
+              "schedaId": 231
+            }
+          ]
+        },
+        {
+          "id": "ma_011_altre_dichiarazioni_e_comunicazioni",
+          "label": "Altre dichiarazioni e comunicazioni",
+          "children": [
+            {
+              "id": "scheda_111",
+              "label": "Comunicare i dati sui sinistri da parte delle assicurazioni",
+              "isLeaf": true,
+              "schedaId": 111
+            },
+            {
+              "id": "scheda_121",
+              "label": "Richiedere la deroga al limite per l'uso del contante",
+              "isLeaf": true,
+              "schedaId": 121
+            },
+            {
+              "id": "scheda_124",
+              "label": "Comunicare le erogazioni liberali effettuate",
+              "isLeaf": true,
+              "schedaId": 124
+            },
+            {
+              "id": "scheda_226",
+              "label": "Richiedere copia di documenti (Accesso atti)",
+              "isLeaf": true,
+              "schedaId": 226
+            },
+            {
+              "id": "scheda_505",
+              "label": "Registrare un pegno mobiliare non possessorio",
+              "isLeaf": true,
+              "schedaId": 505
+            }
+          ]
+        },
+        {
+          "id": "ma_011_certificati_fiscali",
+          "label": "Certificati fiscali",
+          "children": [
+            {
+              "id": "scheda_239",
+              "label": "Ottenere attestazione del proprio reddito",
+              "isLeaf": true,
+              "schedaId": 239
+            }
+          ]
+        },
+        {
+          "id": "ma_011_comunicazioni_da_parte_di_enti_pa_e_altr",
+          "label": "Comunicazioni da parte di enti, PA e altri soggetti",
+          "children": [
+            {
+              "id": "scheda_99",
+              "label": "Comunicare i dati sulla tassa rifiuti urbani",
+              "isLeaf": true,
+              "schedaId": 99
+            },
+            {
+              "id": "scheda_100",
+              "label": "Trasmettere i dati delle dichiarazioni edilizie comunali (DIA)",
+              "isLeaf": true,
+              "schedaId": 100
+            },
+            {
+              "id": "scheda_101",
+              "label": "Trasmettere le informazioni fiscali dei Comuni",
+              "isLeaf": true,
+              "schedaId": 101
+            },
+            {
+              "id": "scheda_102",
+              "label": "Comunicare dati da parte di ordini professionali, enti e uffici",
+              "isLeaf": true,
+              "schedaId": 102
+            },
+            {
+              "id": "scheda_112",
+              "label": "Comunicare i dati delle circoscrizioni aeroportuali",
+              "isLeaf": true,
+              "schedaId": 112
+            },
+            {
+              "id": "scheda_113",
+              "label": "Comunicare i compensi delle società di calcio professionistiche",
+              "isLeaf": true,
+              "schedaId": 113
+            },
+            {
+              "id": "scheda_114",
+              "label": "Comunicare i dati delle strutture sanitarie private",
+              "isLeaf": true,
+              "schedaId": 114
+            },
+            {
+              "id": "scheda_122",
+              "label": "Comunicare i dati ENAC relativi ad attività aeronautiche",
+              "isLeaf": true,
+              "schedaId": 122
+            },
+            {
+              "id": "scheda_123",
+              "label": "Comunicare i dati degli enti associativi (Modello EAS)",
+              "isLeaf": true,
+              "schedaId": 123
+            },
+            {
+              "id": "scheda_128",
+              "label": "Comunicare i dati dei gestori di servizi di pubblica utilità",
+              "isLeaf": true,
+              "schedaId": 128
+            },
+            {
+              "id": "scheda_152",
+              "label": "Comunicare i dati degli uffici marittimi e della motorizzazione",
+              "isLeaf": true,
+              "schedaId": 152
+            },
+            {
+              "id": "scheda_153",
+              "label": "Comunicare licenze, autorizzazioni e concessioni di aree demaniali",
+              "isLeaf": true,
+              "schedaId": 153
+            }
+          ]
+        },
+        {
+          "id": "ma_011_comunicazioni_da_parte_di_operatori_fina",
+          "label": "Comunicazioni da parte di operatori finanziari",
+          "children": [
+            {
+              "id": "scheda_96",
+              "label": "Comunicare i rapporti con gli operatori finanziari (Archivio)",
+              "isLeaf": true,
+              "schedaId": 96
+            },
+            {
+              "id": "scheda_98",
+              "label": "Trasmettere i dati dei pagamenti transfrontalieri (CESOP)",
+              "isLeaf": true,
+              "schedaId": 98
+            },
+            {
+              "id": "scheda_125",
+              "label": "Trasmettere i dati FATCA (Foreign Account Tax Compliance Act)",
+              "isLeaf": true,
+              "schedaId": 125
+            },
+            {
+              "id": "scheda_130",
+              "label": "Rispondere alle richieste di indagine finanziaria dell'Agenzia",
+              "isLeaf": true,
+              "schedaId": 130
+            },
+            {
+              "id": "scheda_136",
+              "label": "Gestire il Registro Elettronico degli Indirizzi (REI)",
+              "isLeaf": true,
+              "schedaId": 136
+            },
+            {
+              "id": "scheda_144",
+              "label": "Adempiere allo scambio automatico finanziario internazionale (CRS/DAC2)",
+              "isLeaf": true,
+              "schedaId": 144
+            },
+            {
+              "id": "scheda_485",
+              "label": "Comunicare le transazioni con pagamenti elettronici",
+              "isLeaf": true,
+              "schedaId": 485
+            }
+          ]
+        },
+        {
+          "id": "ma_011_deleghe_e_abilitazioni",
+          "label": "Deleghe e abilitazioni",
+          "children": [
+            {
+              "id": "scheda_140",
+              "label": "Richiedere l'abilitazione ai servizi online per genitori, tutori e rappresent...",
+              "isLeaf": true,
+              "schedaId": 140
+            },
+            {
+              "id": "scheda_155",
+              "label": "Ottenere il visto di conformità e verificare i professionisti abilitati",
+              "isLeaf": true,
+              "schedaId": 155
+            },
+            {
+              "id": "scheda_483",
+              "label": "Delegare l'accesso ai servizi online dell'Agenzia delle Entrate e della Risco...",
+              "isLeaf": true,
+              "schedaId": 483
+            }
+          ]
+        },
+        {
+          "id": "ma_011_notifiche_e_domicilio_digitale",
+          "label": "Notifiche e domicilio digitale",
+          "children": [
+            {
+              "id": "scheda_482",
+              "label": "Indicare il domicilio digitale (PEC) per ricevere atti e comunicazioni",
+              "isLeaf": true,
+              "schedaId": 482
+            },
+            {
+              "id": "scheda_501",
+              "label": "Operare come persona di fiducia o rappresentante presso la Riscossione",
+              "isLeaf": true,
+              "schedaId": 501
+            }
+          ]
+        }
+      ]
+    },
+    {
+      "id": "ma_012",
+      "label": "Agevolazioni per persone con disabilità",
+      "children": [
+        {
+          "id": "ma_012_da_popolare",
+          "label": "(da popolare con schede dedicate)",
+          "children": []
+        }
+      ]
+    },
+    {
+      "id": "sr",
+      "label": "Servizi rapidi",
+      "children": [
+        {
+          "id": "sr_acc_riservata",
+          "label": "Area riservata",
+          "isLeaf": true
+        },
+        {
+          "id": "sr_cassetto",
+          "label": "Cassetto fiscale",
+          "isLeaf": true
+        },
+        {
+          "id": "sr_civis",
+          "label": "CIVIS",
+          "isLeaf": true
+        },
+        {
+          "id": "sr_fatture",
+          "label": "Fatture e Corrispettivi",
+          "isLeaf": true
+        }
+      ]
+    }
+  ]
+}

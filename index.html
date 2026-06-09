@@ -1,0 +1,1143 @@
+<!DOCTYPE html>
+<html lang="it">
+<head>
+<meta charset="UTF-8">
+<meta name="viewport" content="width=device-width, initial-scale=1.0">
+<title>Tree Testing — Agenzia delle Entrate</title>
+<link rel="preconnect" href="https://fonts.googleapis.com">
+<link rel="preconnect" href="https://fonts.gstatic.com" crossorigin>
+<link href="https://fonts.googleapis.com/css2?family=Titillium+Web:wght@400;600;700&display=swap" rel="stylesheet">
+<style>
+  /* ===== Sogei AE Wireframe — Design tokens (from Figma) ===== */
+  * { box-sizing: border-box; margin: 0; padding: 0; }
+  :root {
+    /* Brand */
+    --brand-primary: #323232;
+    --brand-secondary: #fab600;
+    /* Neutrals */
+    --bg: #ffffff;
+    --bg-soft: #f8f9fa;
+    --bg-alt: #d6d6d6;
+    /* Borders */
+    --border: #ced4da;
+    --border-strong: #6c757d;
+    --border-input: #6c757d;
+    /* Text */
+    --text: #1a1a1a;
+    --text-secondary: #6c757d;
+    --text-muted: #adb5bd;
+    --text-on-dark: #ffffff;
+    /* Actions (CTA giallo Sogei) */
+    --action-bg: #fab600;
+    --action-label: #323232;
+    --action-hover: #e0a300;
+    --link: #995c00;
+    /* States */
+    --info: #0066cc;
+    --error: #b91c1c;
+    --success: #047857;
+    --warning: #fab600;
+    /* Scales */
+    --r: 4px;
+    --r-full: 9999px;
+  }
+  html, body { height: 100%; }
+  body {
+    font-family: "Titillium Web", -apple-system, BlinkMacSystemFont, "Segoe UI", Roboto, Helvetica, Arial, sans-serif;
+    color: var(--text);
+    background: var(--bg);
+    line-height: 1.5;
+    min-height: 100vh;
+    display: flex;
+    flex-direction: column;
+    font-size: 16px;
+  }
+
+  /* Top mini-bar (ministeriale) */
+  .top-bar {
+    background: var(--brand-primary);
+    color: var(--text-on-dark);
+    font-size: 13px;
+    padding: 6px 24px;
+    border-bottom: 1px solid rgba(255,255,255,0.15);
+  }
+
+  header {
+    background: var(--bg);
+    color: var(--text);
+    padding: 16px 24px;
+    border-bottom: 1px solid var(--border);
+    display: flex;
+    align-items: center;
+    justify-content: space-between;
+    gap: 16px;
+    flex-wrap: wrap;
+  }
+  header .brand {
+    display: flex;
+    align-items: center;
+    gap: 12px;
+  }
+  header .brand-logo {
+    width: 40px;
+    height: 40px;
+    background: var(--brand-primary);
+    color: var(--brand-secondary);
+    display: flex;
+    align-items: center;
+    justify-content: center;
+    border-radius: var(--r);
+    font-weight: 700;
+    font-size: 18px;
+    letter-spacing: -0.02em;
+  }
+  header h1 {
+    font-size: 18px;
+    font-weight: 600;
+    letter-spacing: -0.01em;
+    color: var(--text);
+  }
+  header .brand-sub {
+    font-size: 13px;
+    color: var(--text-secondary);
+    font-weight: 400;
+  }
+  header .progress-info {
+    font-size: 14px;
+    color: var(--text-secondary);
+    display: flex;
+    gap: 16px;
+    align-items: center;
+  }
+  header .timer {
+    font-family: ui-monospace, "SF Mono", monospace;
+    background: var(--brand-primary);
+    color: var(--text-on-dark);
+    padding: 4px 10px;
+    border-radius: var(--r);
+    font-variant-numeric: tabular-nums;
+    font-weight: 600;
+  }
+  main { flex: 1; padding: 32px 20px; max-width: 880px; width: 100%; margin: 0 auto; }
+  .screen { display: none; }
+  .screen.active { display: block; }
+
+  /* Cards */
+  .card {
+    background: var(--bg);
+    border: 1px solid var(--border);
+    border-radius: var(--r);
+    padding: 32px;
+    margin-bottom: 16px;
+  }
+  .card h2 {
+    color: var(--text);
+    font-size: 32px;
+    margin-bottom: 16px;
+    font-weight: 600;
+    line-height: 1.2;
+    letter-spacing: -0.01em;
+  }
+  .card h3 { color: var(--text); font-size: 20px; margin: 20px 0 10px; font-weight: 600; line-height: 1.2; }
+  .card p { margin-bottom: 14px; }
+  .card ul { margin-left: 20px; margin-bottom: 16px; }
+  .card li { margin-bottom: 6px; }
+
+  /* Buttons */
+  button {
+    font-family: inherit;
+    font-size: 16px;
+    font-weight: 600;
+    padding: 10px 24px;
+    border: 1px solid transparent;
+    border-radius: var(--r);
+    cursor: pointer;
+    transition: background 0.1s, color 0.1s, border-color 0.1s;
+    background: var(--bg);
+    color: var(--text);
+    line-height: 1.5;
+  }
+  .btn-primary {
+    background: var(--action-bg);
+    color: var(--action-label);
+    border-color: var(--action-bg);
+  }
+  .btn-primary:hover { background: var(--action-hover); border-color: var(--action-hover); }
+  .btn-primary:disabled {
+    background: var(--bg-alt);
+    color: var(--text-muted);
+    border-color: var(--border);
+    cursor: not-allowed;
+  }
+  .btn-secondary {
+    background: var(--bg);
+    color: var(--brand-primary);
+    border-color: var(--brand-primary);
+  }
+  .btn-secondary:hover { background: var(--bg-soft); }
+  .btn-skip {
+    background: transparent;
+    color: var(--text-secondary);
+    border: 1px solid var(--border);
+    font-weight: 400;
+  }
+  .btn-skip:hover { background: var(--bg-soft); color: var(--text); }
+  .btn-row { display: flex; gap: 12px; margin-top: 24px; align-items: center; flex-wrap: wrap; }
+
+  /* Welcome */
+  .welcome-hero { text-align: center; padding: 32px 20px; }
+  .welcome-hero h2 {
+    font-size: 40px;
+    margin-bottom: 12px;
+    font-weight: 600;
+    letter-spacing: -0.02em;
+    line-height: 1.2;
+    color: var(--text);
+  }
+  .welcome-hero .subtitle {
+    color: var(--text-secondary);
+    font-size: 16px;
+    margin-bottom: 28px;
+  }
+  .welcome-stats {
+    display: flex;
+    justify-content: center;
+    gap: 28px;
+    margin: 24px 0;
+    flex-wrap: wrap;
+  }
+  .welcome-stats .stat { text-align: center; padding: 16px 24px; border: 1px solid var(--border); border-radius: 4px; min-width: 120px; }
+  .welcome-stats .stat-value { font-size: 24px; font-weight: 700; color: var(--text); }
+  .welcome-stats .stat-label {
+    font-size: 11px;
+    color: var(--text-secondary);
+    text-transform: uppercase;
+    letter-spacing: 0.05em;
+    margin-top: 4px;
+  }
+  .info-box {
+    background: var(--bg-soft);
+    border: 1px solid var(--border);
+    border-left: 4px solid var(--brand-secondary);
+    padding: 14px 18px;
+    border-radius: 0 var(--r) var(--r) 0;
+    margin: 16px 0;
+    font-size: 16px;
+    color: var(--text);
+  }
+  .info-box.warning { border-left-color: var(--brand-secondary); }
+
+  /* Task screen */
+  .task-scenario {
+    background: var(--bg-soft);
+    border: 1px solid var(--border);
+    border-left: 4px solid var(--brand-secondary);
+    padding: 16px 20px;
+    border-radius: 0 var(--r) var(--r) 0;
+    margin-bottom: 24px;
+  }
+  .task-scenario .scenario-label {
+    font-size: 11px;
+    text-transform: uppercase;
+    color: var(--text-secondary);
+    font-weight: 700;
+    letter-spacing: 0.08em;
+    margin-bottom: 6px;
+  }
+  .task-scenario .scenario-text { font-size: 16px; color: var(--text); line-height: 1.5; }
+
+  /* Tree */
+  .tree-container {
+    background: var(--bg);
+    border: 1px solid var(--border);
+    border-radius: 4px;
+    padding: 8px 0;
+    max-height: 60vh;
+    overflow-y: auto;
+  }
+  .tree-node {
+    display: flex;
+    align-items: center;
+    padding: 8px 12px;
+    cursor: pointer;
+    transition: background 0.1s;
+    user-select: none;
+    gap: 8px;
+    border-left: 2px solid transparent;
+  }
+  .tree-node:hover { background: var(--bg-soft); }
+  .tree-node.selected {
+    background: var(--bg-soft);
+    border-left-color: var(--brand-secondary);
+  }
+  .tree-node .caret {
+    width: 16px;
+    color: var(--text-secondary);
+    font-size: 11px;
+    transition: transform 0.15s;
+    text-align: center;
+  }
+  .tree-node.expanded .caret { transform: rotate(90deg); }
+  .tree-node.leaf .caret { color: var(--text-muted); }
+  .tree-node .label { flex: 1; font-size: 14px; color: var(--text); }
+  .tree-node .find-btn {
+    opacity: 0;
+    background: var(--action-bg);
+    color: var(--action-label);
+    border: 1px solid var(--action-bg);
+    font-size: 13px;
+    font-weight: 600;
+    padding: 4px 14px;
+    border-radius: var(--r);
+    transition: opacity 0.15s, background 0.1s;
+    white-space: nowrap;
+  }
+  .tree-node:hover .find-btn,
+  .tree-node.selected .find-btn { opacity: 1; }
+  .tree-node .find-btn:hover { background: var(--action-hover); border-color: var(--action-hover); }
+  .tree-children { display: none; }
+  .tree-children.open { display: block; }
+
+  /* Form fields */
+  .field { margin-bottom: 20px; }
+  .field-label {
+    display: block;
+    font-size: 14px;
+    font-weight: 600;
+    color: var(--text);
+    margin-bottom: 4px;
+  }
+  .field-help {
+    display: block;
+    font-size: 12px;
+    color: var(--text-secondary);
+    margin-bottom: 8px;
+  }
+  .field-required::after {
+    content: " *";
+    color: var(--error);
+  }
+  textarea, input[type="text"] {
+    width: 100%;
+    padding: 10px 12px;
+    border: 1px solid var(--border-input);
+    border-radius: var(--r);
+    font-family: inherit;
+    font-size: 16px;
+    color: var(--text);
+    background: var(--bg);
+    resize: vertical;
+    min-height: 70px;
+    transition: border-color 0.1s;
+  }
+  textarea:focus, input[type="text"]:focus {
+    outline: none;
+    border-color: var(--brand-secondary);
+    box-shadow: 0 0 0 3px rgba(250, 182, 0, 0.25);
+  }
+  textarea.error { border-color: var(--error); }
+  .error-msg {
+    color: var(--error);
+    font-size: 12px;
+    margin-top: 4px;
+    display: none;
+  }
+  .error-msg.visible { display: block; }
+
+  /* Confidence rating */
+  .rating-row {
+    display: flex;
+    align-items: center;
+    gap: 8px;
+    flex-wrap: wrap;
+  }
+  .rating-pill {
+    cursor: pointer;
+    padding: 8px 16px;
+    border: 1px solid var(--brand-primary);
+    background: var(--bg);
+    border-radius: var(--r);
+    font-size: 14px;
+    font-weight: 600;
+    color: var(--text);
+    transition: all 0.1s;
+    user-select: none;
+    min-width: 40px;
+    text-align: center;
+  }
+  .rating-pill:hover { background: var(--bg-soft); }
+  .rating-pill.selected {
+    background: var(--action-bg);
+    color: var(--action-label);
+    border-color: var(--action-bg);
+  }
+  .rating-labels {
+    display: flex;
+    justify-content: space-between;
+    font-size: 11px;
+    color: var(--text-muted);
+    margin-top: 6px;
+    text-transform: uppercase;
+    letter-spacing: 0.05em;
+  }
+
+  /* Progress bar */
+  .progress-bar {
+    height: 4px;
+    background: var(--bg-alt);
+    overflow: hidden;
+    margin: 8px 0 24px;
+    border-radius: 2px;
+  }
+  .progress-fill { height: 100%; background: var(--brand-secondary); transition: width 0.3s ease; }
+
+  /* Final feedback */
+  .feedback-row {
+    display: flex;
+    align-items: center;
+    justify-content: space-between;
+    padding: 16px 0;
+    border-bottom: 1px solid var(--border);
+    flex-wrap: wrap;
+    gap: 12px;
+  }
+  .feedback-row:last-child { border-bottom: 0; }
+  .feedback-row .label { font-size: 14px; color: var(--text); flex: 1; min-width: 240px; }
+
+  /* Thank you */
+  .thank-you { text-align: center; padding: 40px 20px; }
+  .thank-you .icon {
+    width: 64px;
+    height: 64px;
+    background: var(--brand-secondary);
+    color: var(--brand-primary);
+    margin: 0 auto 16px;
+    display: flex;
+    align-items: center;
+    justify-content: center;
+    border-radius: var(--r-full);
+    font-size: 32px;
+    font-weight: 700;
+  }
+  .thank-you h2 { font-size: 32px; margin-bottom: 16px; font-weight: 600; line-height: 1.2; }
+  .thank-you code {
+    background: var(--bg-soft);
+    border: 1px solid var(--border);
+    padding: 4px 10px;
+    border-radius: var(--r);
+    font-family: ui-monospace, "SF Mono", monospace;
+    font-size: 14px;
+    font-weight: 600;
+  }
+  .thank-you .contact-card {
+    background: var(--bg-soft);
+    border: 1px solid var(--border);
+    border-radius: 4px;
+    padding: 18px;
+    margin: 24px auto;
+    max-width: 480px;
+    text-align: left;
+  }
+  .thank-you .contact-card strong { color: var(--text); }
+  .thank-you .contact-card a {
+    color: var(--link);
+    font-weight: 600;
+    text-decoration: underline;
+  }
+
+  /* Loading */
+  .loading { text-align: center; padding: 80px 20px; color: var(--text-secondary); }
+  .spinner {
+    border: 3px solid var(--bg-alt);
+    border-top: 3px solid var(--brand-secondary);
+    border-radius: 50%;
+    width: 36px;
+    height: 36px;
+    margin: 0 auto 16px;
+    animation: spin 0.8s linear infinite;
+  }
+  @keyframes spin { 0% { transform: rotate(0deg); } 100% { transform: rotate(360deg); } }
+
+  /* Toast */
+  .toast {
+    position: fixed;
+    bottom: 24px;
+    left: 50%;
+    transform: translateX(-50%);
+    background: var(--brand-primary);
+    color: var(--text-on-dark);
+    padding: 12px 20px;
+    border-radius: var(--r);
+    font-size: 14px;
+    font-weight: 500;
+    opacity: 0;
+    transition: opacity 0.2s;
+    pointer-events: none;
+    z-index: 1000;
+  }
+  .toast.visible { opacity: 1; }
+  .toast.error { background: var(--error); }
+
+  @media (max-width: 600px) {
+    main { padding: 16px 12px; }
+    .card { padding: 20px; }
+    header { padding: 12px 16px; }
+    header h1 { font-size: 14px; }
+    header .progress-info { font-size: 11px; gap: 10px; }
+    .welcome-hero h2 { font-size: 22px; }
+    .welcome-stats { gap: 12px; }
+    .rating-pill { padding: 8px 11px; min-width: 32px; }
+  }
+
+  footer {
+    text-align: center;
+    padding: 24px 20px;
+    color: var(--text-on-dark);
+    background: var(--brand-primary);
+    font-size: 13px;
+  }
+  footer .footer-brand { font-weight: 600; margin-bottom: 4px; font-size: 14px; }
+  footer .footer-meta { color: rgba(255,255,255,0.6); font-size: 12px; }
+</style>
+</head>
+<body>
+
+<div class="top-bar">Ministero dell'Economia e delle Finanze</div>
+
+<header>
+  <div class="brand">
+    <div class="brand-logo">AE</div>
+    <div>
+      <h1>Tree Testing — Nuovo portale Agenzia delle Entrate</h1>
+      <div class="brand-sub">Validazione architettura informativa</div>
+    </div>
+  </div>
+  <div class="progress-info" id="headerProgress" style="display: none;">
+    <span id="taskCounter"></span>
+    <span class="timer" id="taskTimer">00:00</span>
+  </div>
+</header>
+
+<main>
+  <!-- LOADING -->
+  <div class="screen active" id="screen-loading">
+    <div class="loading">
+      <div class="spinner"></div>
+      <p>Caricamento in corso...</p>
+    </div>
+  </div>
+
+  <!-- WELCOME -->
+  <div class="screen" id="screen-welcome">
+    <div class="card welcome-hero">
+      <h2>Benvenuto/a</h2>
+      <div class="subtitle">Stai partecipando a una breve attività di ricerca sulla nuova architettura del sito dell'Agenzia delle Entrate.</div>
+
+      <div class="welcome-stats">
+        <div class="stat">
+          <div class="stat-value">~15-20 min</div>
+          <div class="stat-label">Durata</div>
+        </div>
+        <div class="stat">
+          <div class="stat-value">10</div>
+          <div class="stat-label">Brevi task</div>
+        </div>
+        <div class="stat">
+          <div class="stat-value">100%</div>
+          <div class="stat-label">Anonimo</div>
+        </div>
+      </div>
+
+      <div class="info-box" style="text-align: left;">
+        <strong>Cosa farai:</strong> per ogni task ti verrà presentato uno scenario realistico (es. "Devi richiedere il codice fiscale di tuo figlio"). Dovrai navigare l'albero dei contenuti del nuovo sito e dichiarare dove pensi di trovare l'informazione.
+        <br><br>
+        <strong>Privacy:</strong> nessun dato personale viene raccolto. La tua sessione è identificata solo da un codice anonimo.
+      </div>
+
+      <div class="btn-row" style="justify-content: center;">
+        <button class="btn-primary" onclick="goToProfile()">Inizia il test →</button>
+      </div>
+    </div>
+  </div>
+
+  <!-- SCREENING PROFILO (v1.2 — minuta riunione 8 maggio) -->
+  <div class="screen" id="screen-profile">
+    <div class="card welcome-hero">
+      <h2>Prima domanda — chi sei?</h2>
+      <div class="subtitle">Per analizzare i risultati ci serve sapere il tuo profilo principale di utilizzo del sito dell'Agenzia delle Entrate. Scegli quello in cui ti riconosci di più.</div>
+
+      <div class="profile-grid" style="display: grid; grid-template-columns: repeat(auto-fit, minmax(220px, 1fr)); gap: 16px; margin: 24px 0;">
+        <button class="btn-profile" onclick="setProfileAndContinue('cittadino')" style="padding: 24px 18px; border: 2px solid var(--border); border-radius: 12px; background: white; cursor: pointer; text-align: left; font-size: 16px; line-height: 1.4;">
+          <strong style="display: block; font-size: 18px; margin-bottom: 8px; color: var(--primary);">👤 Cittadino</strong>
+          <span style="color: var(--text-muted);">Persona fisica che usa il sito per esigenze personali (codice fiscale, dichiarazione, casa, bonus, F24, successioni…)</span>
+        </button>
+        <button class="btn-profile" onclick="setProfileAndContinue('impresa_piva')" style="padding: 24px 18px; border: 2px solid var(--border); border-radius: 12px; background: white; cursor: pointer; text-align: left; font-size: 16px; line-height: 1.4;">
+          <strong style="display: block; font-size: 18px; margin-bottom: 8px; color: var(--primary);">🏢 Impresa o Partita IVA</strong>
+          <span style="color: var(--text-muted);">Lavoratore autonomo, libero professionista, ditta individuale o impiegato amministrativo di un'azienda</span>
+        </button>
+        <button class="btn-profile" onclick="setProfileAndContinue('professionista')" style="padding: 24px 18px; border: 2px solid var(--border); border-radius: 12px; background: white; cursor: pointer; text-align: left; font-size: 16px; line-height: 1.4;">
+          <strong style="display: block; font-size: 18px; margin-bottom: 8px; color: var(--primary);">🧑‍💼 Professionista fiscale</strong>
+          <span style="color: var(--text-muted);">Commercialista, consulente del lavoro, CAF, intermediario fiscale</span>
+        </button>
+      </div>
+
+      <div class="info-box" style="text-align: left; font-size: 14px;">
+        <strong>Perché te lo chiediamo?</strong> I risultati saranno analizzati per profilo per capire se la nuova architettura del sito funziona bene per tutti. Nessun dato personale verrà raccolto: la scelta del profilo è completamente anonima.
+      </div>
+    </div>
+  </div>
+
+  <!-- INSTRUCTIONS -->
+  <div class="screen" id="screen-instructions">
+    <div class="card">
+      <h2>Istruzioni</h2>
+      <p>Per ogni task vedrai:</p>
+      <ul>
+        <li>Uno <strong>scenario</strong> in alto che descrive la situazione</li>
+        <li>L'<strong>albero del sito</strong> in versione testuale, navigabile</li>
+      </ul>
+      <p>Dovrai:</p>
+      <ul>
+        <li>Espandere/collassare le sezioni cliccandole</li>
+        <li>Cliccare il pulsante <strong>"Lo troverei qui"</strong> sul nodo dove pensi di trovare l'informazione richiesta</li>
+        <li>Puoi tornare indietro nell'albero in qualsiasi momento</li>
+        <li>Se sei bloccato, puoi <strong>saltare</strong> il task</li>
+      </ul>
+
+      <div class="info-box">
+        <strong>Suggerimento:</strong> non c'è una risposta giusta o sbagliata. Vogliamo capire come <em>tu</em> ti orienteresti — fai la scelta che ti viene più naturale.
+      </div>
+
+      <p style="margin-top: 18px;">Dopo ogni task ti chiederemo brevemente cosa ti ha guidato nella scelta — è la parte più importante per noi.</p>
+
+      <div class="btn-row">
+        <button class="btn-secondary" onclick="show('welcome')">← Indietro</button>
+        <button class="btn-primary" onclick="startTest()">Avvia il primo task →</button>
+      </div>
+    </div>
+  </div>
+
+  <!-- TASK -->
+  <div class="screen" id="screen-task">
+    <div class="card">
+      <div class="progress-bar"><div class="progress-fill" id="taskProgress"></div></div>
+      <div class="task-scenario">
+        <div class="scenario-label">Task <span id="taskNum"></span></div>
+        <div class="scenario-text" id="taskScenario"></div>
+      </div>
+      <div class="tree-container" id="treeContainer"></div>
+      <div class="btn-row">
+        <button class="btn-skip" onclick="skipTask()">Salta questo task</button>
+        <span style="flex: 1;"></span>
+        <span style="color: var(--text-muted); font-size: 12px;" id="lastClicked"></span>
+      </div>
+    </div>
+  </div>
+
+  <!-- POST-TASK FEEDBACK -->
+  <div class="screen" id="screen-postTask">
+    <div class="card">
+      <h2 style="text-align: center;">Cosa ti ha guidato in questa scelta?</h2>
+      <p style="text-align: center; color: var(--text-secondary); margin-bottom: 24px;">
+        Hai indicato: <strong id="postTaskChoice"></strong>
+      </p>
+
+      <!-- Q1: Confidence -->
+      <div class="field">
+        <label class="field-label field-required">Quanto sei sicuro/a della tua scelta?</label>
+        <div class="rating-row" id="confidencePills"></div>
+        <div class="rating-labels"><span>Per niente</span><span>Molto</span></div>
+        <div class="error-msg" id="errConfidence">Seleziona un valore.</div>
+      </div>
+
+      <!-- Q2: Doubts -->
+      <div class="field">
+        <label class="field-label field-required" for="doubtsInput">Hai avuto dubbi? Avresti selezionato altre categorie o etichette?</label>
+        <span class="field-help">Se sì, quali alternative hai considerato? Se non hai avuto dubbi, scrivi semplicemente "no".</span>
+        <textarea id="doubtsInput" placeholder='Es. "ho esitato tra Pagamenti e Bonus" oppure "no"'></textarea>
+        <div class="error-msg" id="errDoubts">Compila questo campo per proseguire (anche solo con "no").</div>
+      </div>
+
+      <div class="btn-row" style="justify-content: center;">
+        <button class="btn-primary" onclick="submitPostTask()">Continua →</button>
+      </div>
+    </div>
+  </div>
+
+  <!-- FINAL FEEDBACK -->
+  <div class="screen" id="screen-finalFeedback">
+    <div class="card">
+      <h2>Hai completato i task</h2>
+      <p style="color: var(--text-secondary); margin-bottom: 8px;">
+        Prima di chiudere, ci aiuti con un'ultima valutazione complessiva?
+      </p>
+      <div class="info-box" style="margin-bottom: 20px;">
+        <strong>Importante:</strong> queste domande riguardano <strong>l'organizzazione delle categorie, sotto-categorie ed etichette</strong> dei contenuti del nuovo portale, <em>non</em> la piattaforma di test che stai usando.
+      </div>
+
+      <div class="feedback-row">
+        <span class="label">Quanto è chiara l'organizzazione di categorie e sotto-categorie?</span>
+        <div class="rating-row" data-feedback="clarity"></div>
+      </div>
+      <div class="feedback-row">
+        <span class="label">Quanto sono comprensibili le etichette (label) usate?</span>
+        <div class="rating-row" data-feedback="easeOfUse"></div>
+      </div>
+
+      <div class="field" style="margin-top: 24px;">
+        <label class="field-label" for="finalComment">Commento generale (opzionale)</label>
+        <span class="field-help">Quali categorie o etichette ti hanno convinto? Quali invece risultano confuse o ridondanti?</span>
+        <textarea id="finalComment" placeholder="Scrivi qui..." style="min-height: 100px;"></textarea>
+      </div>
+
+      <div class="btn-row" style="justify-content: center;">
+        <button class="btn-primary" onclick="submitFinalFeedback()">Invia e termina →</button>
+      </div>
+    </div>
+  </div>
+
+  <!-- THANK YOU -->
+  <div class="screen" id="screen-thankYou">
+    <div class="card thank-you">
+      <div class="icon">✓</div>
+      <h2>Grazie per la partecipazione</h2>
+      <p style="font-size: 15px; margin-bottom: 16px;">
+        Le tue risposte aiuteranno a migliorare il nuovo portale dell'Agenzia delle Entrate.
+      </p>
+      <p style="color: var(--text-secondary); font-size: 14px;">
+        Codice sessione: <code id="sessionCodeDisplay"></code>
+      </p>
+
+      <div class="contact-card">
+        <strong>Contatti del gruppo di ricerca</strong>
+        <p style="margin: 8px 0 0; font-size: 14px; color: var(--text-secondary);">
+          Per domande sul test, per cancellare la tua sessione (cita il codice qui sopra) o per ricevere i risultati aggregati, scrivi a:<br>
+          <a href="mailto:groccabianca@sogei.it">groccabianca@sogei.it</a>
+        </p>
+      </div>
+
+      <p style="color: var(--text-muted); font-size: 12px; margin-top: 16px;">
+        Puoi chiudere questa finestra.
+      </p>
+    </div>
+  </div>
+</main>
+
+<div class="toast" id="toast"></div>
+
+<footer>
+  <div class="footer-brand">Agenzia Entrate · Sogei</div>
+  <div class="footer-meta">Tree Testing · 2026 · v1.1</div>
+</footer>
+
+<!-- Firebase -->
+<script src="https://www.gstatic.com/firebasejs/8.10.1/firebase-app.js"></script>
+<script src="https://www.gstatic.com/firebasejs/8.10.1/firebase-database.js"></script>
+<script>
+// ===== Firebase config =====
+var firebaseConfig = {
+    apiKey: "AIzaSyCCwVul0FxeFDApxlGoX6s671FaVWt_BwY",
+    authDomain: "card-sorting-ae-c2283.firebaseapp.com",
+    databaseURL: "https://card-sorting-ae-c2283-default-rtdb.europe-west1.firebasedatabase.app",
+    projectId: "card-sorting-ae-c2283",
+    storageBucket: "card-sorting-ae-c2283.firebasestorage.app",
+    messagingSenderId: "9248431790",
+    appId: "1:9248431790:web:540bd4c9d7857a362b573f"
+};
+var firebaseReady = false;
+try { firebase.initializeApp(firebaseConfig); firebaseReady = true; } catch (e) { console.warn(e); }
+var db = firebaseReady ? firebase.database() : null;
+
+// ===== State =====
+var STATE = {
+  sessionId: null, campaign: null,
+  profile: null,                                  // v1.2 — screening profilo (cittadino/impresa_piva/professionista)
+  tree: null, tasks: [], taskOrder: [], taskIndex: 0, currentTask: null,
+  startedAt: null, taskStartedAt: null, taskTimerInterval: null,
+  expandedNodes: new Set(),
+  currentPath: [], selectedNode: null, lastVisited: null,
+  postTaskConfidence: 0,
+  finalFeedback: { clarity: 0, easeOfUse: 0 },
+  taskResults: []
+};
+
+// ===== Utils =====
+function $(id) { return document.getElementById(id); }
+function show(name) {
+  document.querySelectorAll('.screen').forEach(s => s.classList.remove('active'));
+  var el = $('screen-' + name);
+  if (el) el.classList.add('active');
+  $('headerProgress').style.display = (name === 'task') ? 'flex' : 'none';
+  window.scrollTo(0, 0);
+}
+function toast(msg, type) {
+  var t = $('toast');
+  t.textContent = msg;
+  t.classList.toggle('error', type === 'error');
+  t.classList.add('visible');
+  setTimeout(function() { t.classList.remove('visible'); }, 2400);
+}
+function generateSessionId() {
+  var s = 'P-';
+  var chars = 'ABCDEFGHJKLMNPQRSTUVWXYZ23456789';
+  for (var i = 0; i < 6; i++) s += chars[Math.floor(Math.random() * chars.length)];
+  return s;
+}
+function fmtTime(ms) {
+  var s = Math.floor(ms / 1000);
+  var m = Math.floor(s / 60);
+  s = s % 60;
+  return (m < 10 ? '0' + m : m) + ':' + (s < 10 ? '0' + s : s);
+}
+function shuffle(arr) {
+  var a = arr.slice();
+  for (var i = a.length - 1; i > 0; i--) {
+    var j = Math.floor(Math.random() * (i + 1));
+    var tmp = a[i]; a[i] = a[j]; a[j] = tmp;
+  }
+  return a;
+}
+
+// ===== Boot =====
+async function loadData() {
+  try {
+    var [treeRes, tasksRes] = await Promise.all([
+      fetch('tree.json?v=' + Date.now()).then(r => r.json()),
+      fetch('tasks.json?v=' + Date.now()).then(r => r.json())
+    ]);
+    STATE.tree = treeRes;
+    STATE.tasks = tasksRes.tasks;
+    STATE.taskConfig = tasksRes.config;
+    STATE.sessionId = generateSessionId();
+    var url = new URL(window.location.href);
+    STATE.campaign = url.searchParams.get('session') || 'default';
+    show('welcome');
+  } catch (e) {
+    console.error(e);
+    $('screen-loading').innerHTML = '<div class="loading"><p style="color: var(--error);">Errore nel caricamento dei dati. Aggiorna la pagina.</p></div>';
+  }
+}
+
+function goToInstructions() { show('instructions'); }
+function goToProfile() {
+  // v1.2 — solo se screening abilitato; altrimenti salta direttamente alle istruzioni
+  if (STATE.taskConfig && STATE.taskConfig.screeningEnabled === false) {
+    show('instructions');
+  } else {
+    show('profile');
+  }
+}
+function setProfileAndContinue(profile) {
+  STATE.profile = profile;
+  // Persisto anche in firebase appena disponibile insieme alla sessione
+  show('instructions');
+}
+
+function startTest() {
+  // v1.1 (07/05/2026): fixedSeedTask può essere null → tutti i task sono campionati casualmente.
+  var perSession = STATE.taskConfig.tasksPerSession || 10;
+  var seedId = STATE.taskConfig.fixedSeedTask;
+  var taskOrder;
+  if (seedId) {
+    // Modalità con seed obbligatorio (legacy)
+    var seed = STATE.tasks.find(function(t) { return t.id === seedId; });
+    var pool = STATE.tasks.filter(function(t) { return t.id !== seedId; });
+    var picked = shuffle(pool).slice(0, perSession - 1);
+    taskOrder = shuffle([seed].concat(picked));
+  } else {
+    // Modalità campionamento casuale puro su tutto il pool
+    taskOrder = shuffle(STATE.tasks.slice()).slice(0, perSession);
+  }
+  STATE.taskOrder = taskOrder.map(function(t) { return t.id; });
+  STATE.taskIndex = 0;
+  STATE.startedAt = Date.now();
+  STATE.taskResults = [];
+  loadTask();
+}
+
+// ===== Task flow =====
+function loadTask() {
+  if (STATE.taskIndex >= STATE.taskOrder.length) {
+    show('finalFeedback');
+    setupFinalFeedback();
+    return;
+  }
+  var taskId = STATE.taskOrder[STATE.taskIndex];
+  STATE.currentTask = STATE.tasks.find(function(t) { return t.id === taskId; });
+  STATE.taskStartedAt = Date.now();
+  STATE.expandedNodes = new Set(['root']);
+  STATE.currentPath = [];
+  STATE.selectedNode = null;
+  STATE.lastVisited = null;
+
+  $('taskNum').textContent = (STATE.taskIndex + 1) + ' di ' + STATE.taskOrder.length;
+  $('taskCounter').textContent = 'Task ' + (STATE.taskIndex + 1) + ' di ' + STATE.taskOrder.length;
+  $('taskScenario').textContent = STATE.currentTask.scenario;
+  $('taskProgress').style.width = ((STATE.taskIndex / STATE.taskOrder.length) * 100) + '%';
+  $('lastClicked').textContent = '';
+  renderTree();
+  show('task');
+  startTaskTimer();
+}
+
+function startTaskTimer() {
+  if (STATE.taskTimerInterval) clearInterval(STATE.taskTimerInterval);
+  $('taskTimer').textContent = '00:00';
+  STATE.taskTimerInterval = setInterval(function() {
+    $('taskTimer').textContent = fmtTime(Date.now() - STATE.taskStartedAt);
+  }, 1000);
+}
+function stopTaskTimer() {
+  if (STATE.taskTimerInterval) {
+    clearInterval(STATE.taskTimerInterval);
+    STATE.taskTimerInterval = null;
+  }
+}
+
+// ===== Tree =====
+function renderTree() {
+  var container = $('treeContainer');
+  container.innerHTML = '';
+  renderNode(STATE.tree, container, 0);
+}
+function renderNode(node, container, depth) {
+  var hasChildren = node.children && node.children.length > 0;
+  var isRoot = (node.id === 'root');
+  var nodeEl = document.createElement('div');
+  nodeEl.className = 'tree-node' + (hasChildren ? '' : ' leaf');
+  if (STATE.expandedNodes.has(node.id)) nodeEl.classList.add('expanded');
+  if (STATE.selectedNode === node.id) nodeEl.classList.add('selected');
+  nodeEl.style.paddingLeft = (12 + depth * 22) + 'px';
+
+  var caret = document.createElement('span');
+  caret.className = 'caret';
+  caret.textContent = hasChildren ? '▶' : '·';
+  nodeEl.appendChild(caret);
+
+  var label = document.createElement('span');
+  label.className = 'label';
+  label.textContent = node.label;
+  nodeEl.appendChild(label);
+
+  // Only leaf nodes (schede) are selectable — non si possono scegliere macro-aree o sotto-categorie
+  if (!isRoot && !hasChildren) {
+    var btn = document.createElement('button');
+    btn.className = 'find-btn';
+    btn.textContent = 'Lo troverei qui';
+    btn.addEventListener('click', function(e) {
+      e.stopPropagation();
+      submitAnswer(node);
+    });
+    nodeEl.appendChild(btn);
+  }
+
+  nodeEl.addEventListener('click', function() {
+    trackClick(node.id);
+    if (hasChildren) {
+      if (STATE.expandedNodes.has(node.id)) {
+        STATE.expandedNodes.delete(node.id);
+      } else {
+        STATE.expandedNodes.add(node.id);
+      }
+      renderTree();
+    }
+    STATE.selectedNode = node.id;
+    $('lastClicked').textContent = '↑ ' + (hasChildren ? 'Espanso: ' : 'Selezionato: ') + node.label;
+  });
+  container.appendChild(nodeEl);
+
+  if (hasChildren && STATE.expandedNodes.has(node.id)) {
+    var childContainer = document.createElement('div');
+    childContainer.className = 'tree-children open';
+    container.appendChild(childContainer);
+    node.children.forEach(function(child) { renderNode(child, childContainer, depth + 1); });
+  }
+}
+
+function trackClick(nodeId) {
+  if (STATE.currentPath[STATE.currentPath.length - 1] !== nodeId) {
+    STATE.currentPath.push(nodeId);
+  }
+}
+
+function submitAnswer(node) {
+  STATE.lastVisited = node;
+  trackClick(node.id);
+  recordTaskResult(false, node.id, node.label);
+  show('postTask');
+  setupConfidencePills();
+  $('postTaskChoice').textContent = node.label;
+  $('doubtsInput').value = '';
+  ['errConfidence', 'errDoubts'].forEach(function(id) { $(id).classList.remove('visible'); });
+  $('doubtsInput').classList.remove('error');
+}
+
+function skipTask() {
+  if (!confirm('Sei sicuro/a di voler saltare questo task?')) return;
+  recordTaskResult(true);
+  STATE.taskIndex++;
+  loadTask();
+}
+
+function recordTaskResult(skipped, finalNodeId, finalLabel) {
+  stopTaskTimer();
+  var task = STATE.currentTask;
+  var durationMs = Date.now() - STATE.taskStartedAt;
+  var isCorrect = false;
+  var isDirect = false;
+  if (!skipped && finalNodeId) {
+    var alts = task.alternateAcceptable || [];
+    isCorrect = (finalNodeId === task.correctNodeId) || alts.indexOf(finalNodeId) !== -1;
+    var correctPath = task.correctPath || [];
+    isDirect = isCorrect;
+    if (isCorrect) {
+      for (var i = 0; i < STATE.currentPath.length; i++) {
+        if (STATE.currentPath[i] !== correctPath[i] && STATE.currentPath[i] !== finalNodeId) {
+          isDirect = false;
+          break;
+        }
+      }
+    }
+  }
+  STATE.taskResults.push({
+    taskId: task.id,
+    startedAt: STATE.taskStartedAt,
+    completedAt: Date.now(),
+    durationMs: durationMs,
+    path: STATE.currentPath.slice(),
+    finalNodeId: skipped ? null : finalNodeId,
+    finalLabel: skipped ? null : finalLabel,
+    isCorrect: isCorrect,
+    isDirect: isDirect,
+    skipped: !!skipped,
+    confidence: null,
+    doubts: null
+  });
+}
+
+// ===== Confidence pills =====
+function setupConfidencePills() {
+  STATE.postTaskConfidence = 0;
+  var container = $('confidencePills');
+  container.innerHTML = '';
+  for (var i = 1; i <= 5; i++) {
+    (function(rating) {
+      var pill = document.createElement('span');
+      pill.className = 'rating-pill';
+      pill.textContent = rating;
+      pill.addEventListener('click', function() {
+        STATE.postTaskConfidence = rating;
+        Array.from(container.children).forEach(function(p, idx) {
+          p.classList.toggle('selected', (idx + 1) === rating);
+        });
+        $('errConfidence').classList.remove('visible');
+      });
+      container.appendChild(pill);
+    })(i);
+  }
+}
+
+function submitPostTask() {
+  var hasError = false;
+  if (STATE.postTaskConfidence === 0) {
+    $('errConfidence').classList.add('visible');
+    hasError = true;
+  }
+  var doubts = $('doubtsInput').value.trim();
+  if (doubts.length < 1) {
+    $('errDoubts').classList.add('visible');
+    $('doubtsInput').classList.add('error');
+    hasError = true;
+  } else {
+    $('errDoubts').classList.remove('visible');
+    $('doubtsInput').classList.remove('error');
+  }
+  if (hasError) {
+    toast('Compila i campi obbligatori per proseguire', 'error');
+    return;
+  }
+  var lastResult = STATE.taskResults[STATE.taskResults.length - 1];
+  lastResult.confidence = STATE.postTaskConfidence;
+  lastResult.doubts = doubts;
+
+  STATE.taskIndex++;
+  loadTask();
+}
+
+// ===== Final feedback =====
+function setupFinalFeedback() {
+  ['clarity', 'easeOfUse'].forEach(function(key) {
+    var container = document.querySelector('[data-feedback="' + key + '"]');
+    container.innerHTML = '';
+    for (var i = 1; i <= 5; i++) {
+      (function(rating) {
+        var pill = document.createElement('span');
+        pill.className = 'rating-pill';
+        pill.textContent = rating;
+        pill.addEventListener('click', function() {
+          STATE.finalFeedback[key] = rating;
+          Array.from(container.children).forEach(function(p, idx) {
+            p.classList.toggle('selected', (idx + 1) === rating);
+          });
+        });
+        container.appendChild(pill);
+      })(i);
+    }
+  });
+}
+
+function submitFinalFeedback() {
+  if (STATE.finalFeedback.clarity === 0 || STATE.finalFeedback.easeOfUse === 0) {
+    toast('Compila entrambi i rating prima di proseguire', 'error');
+    return;
+  }
+  var session = {
+    sessionId: STATE.sessionId,
+    campaign: STATE.campaign,
+    profile: STATE.profile,                       // v1.2 — profilo screening
+    startedAt: STATE.startedAt,
+    completedAt: Date.now(),
+    durationMs: Date.now() - STATE.startedAt,
+    userAgent: navigator.userAgent.slice(0, 200),
+    screenSize: window.innerWidth + 'x' + window.innerHeight,
+    tasks: STATE.taskResults,
+    finalFeedback: {
+      clarity: STATE.finalFeedback.clarity,
+      easeOfUse: STATE.finalFeedback.easeOfUse,
+      comment: $('finalComment').value.trim() || null
+    }
+  };
+  saveSession(session);
+  $('sessionCodeDisplay').textContent = STATE.sessionId;
+  show('thankYou');
+}
+
+function saveSession(session) {
+  if (!firebaseReady || !db) {
+    try { localStorage.setItem('tree_test_' + session.sessionId, JSON.stringify(session)); } catch(e) {}
+    return;
+  }
+  try {
+    db.ref('tree-testing-ae/sessions/' + session.campaign + '/' + session.sessionId).set(session)
+      .catch(function(e) {
+        console.error(e);
+        localStorage.setItem('tree_test_' + session.sessionId, JSON.stringify(session));
+      });
+  } catch (e) {
+    console.error(e);
+    localStorage.setItem('tree_test_' + session.sessionId, JSON.stringify(session));
+  }
+}
+
+window.addEventListener('beforeunload', function(e) {
+  if (STATE.taskIndex > 0 && STATE.taskIndex < STATE.taskOrder.length) {
+    e.preventDefault();
+    e.returnValue = 'Stai per uscire dal test. I tuoi progressi non saranno salvati.';
+    return e.returnValue;
+  }
+});
+
+loadData();
+</script>
+</body>
+</html>
