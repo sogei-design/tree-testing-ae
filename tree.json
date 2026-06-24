@@ -1586,12 +1586,6 @@
               "schedaId": 298
             },
             {
-              "id": "scheda_299",
-              "label": "Versamenti IVA",
-              "isLeaf": true,
-              "schedaId": 299
-            },
-            {
               "id": "scheda_300",
               "label": "Pagare le tasse sulla vendita di una casa (Plusvalenze)",
               "isLeaf": true,
@@ -1724,12 +1718,6 @@
               "schedaId": 266
             },
             {
-              "id": "scheda_268",
-              "label": "Pagare con F24",
-              "isLeaf": true,
-              "schedaId": 268
-            },
-            {
               "id": "scheda_270",
               "label": "Pagare con F23",
               "isLeaf": true,
@@ -1754,30 +1742,6 @@
               "schedaId": 275
             },
             {
-              "id": "scheda_276",
-              "label": "Pagare con F24",
-              "isLeaf": true,
-              "schedaId": 276
-            },
-            {
-              "id": "scheda_278",
-              "label": "Pagare con F24",
-              "isLeaf": true,
-              "schedaId": 278
-            },
-            {
-              "id": "scheda_280",
-              "label": "Pagare con F24",
-              "isLeaf": true,
-              "schedaId": 280
-            },
-            {
-              "id": "scheda_282",
-              "label": "Pagare con F24",
-              "isLeaf": true,
-              "schedaId": 282
-            },
-            {
               "id": "scheda_284",
               "label": "Pagare con F24",
               "isLeaf": true,
@@ -1788,12 +1752,6 @@
               "label": "Modello F24 crediti PP. AA.",
               "isLeaf": true,
               "schedaId": 286
-            },
-            {
-              "id": "scheda_288",
-              "label": "Pagare con F24",
-              "isLeaf": true,
-              "schedaId": 288
             },
             {
               "id": "scheda_297",
