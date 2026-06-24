@@ -560,6 +560,22 @@
     </div>
   </div>
 
+  <!-- RESUME (v1.4 — riprendi sessione interrotta) -->
+  <div class="screen" id="screen-resume">
+    <div class="card welcome-hero">
+      <h2>Hai una sessione in corso</h2>
+      <div class="subtitle" id="resumeSubtitle" style="margin-bottom: 18px;">Riprendi da dove avevi lasciato oppure ricomincia da zero.</div>
+      <div class="info-box" id="resumeInfoBox" style="text-align: left; margin: 16px 0; font-size: 14px;">
+        <strong>Sessione: <span id="resumeSessionId"></span></strong><br>
+        <span id="resumeProgressDetail"></span>
+      </div>
+      <div class="btn-row" style="justify-content: center; gap: 12px; flex-wrap: wrap;">
+        <button class="btn-primary" onclick="applyResume()">↪ Riprendi sessione</button>
+        <button class="btn-secondary" onclick="discardResumeAndRestart()" style="background: transparent; color: var(--text); border: 1px solid var(--border);">Ricomincia da zero</button>
+      </div>
+    </div>
+  </div>
+
   <!-- SCREENING PROFILO (v1.2 — minuta riunione 8 maggio) -->
   <div class="screen" id="screen-profile">
     <div class="card welcome-hero">
@@ -798,6 +814,79 @@ function shuffle(arr) {
   return a;
 }
 
+// ===== Resume / autosave (v1.4) =====
+var RESUME_KEY = 'tree_test_resume_v1';
+var RESUME_TTL_MS = 1000 * 60 * 60 * 24 * 14;   // 14 giorni: dopo tanto scartiamo lo snapshot
+
+function persistResume(currentScreen) {
+  try {
+    var snap = {
+      version: 1,
+      savedAt: Date.now(),
+      screen: currentScreen,
+      campaign: STATE.campaign,
+      sessionId: STATE.sessionId,
+      profile: STATE.profile,
+      taskOrder: STATE.taskOrder,
+      taskIndex: STATE.taskIndex,
+      taskResults: STATE.taskResults,
+      startedAt: STATE.startedAt
+    };
+    localStorage.setItem(RESUME_KEY, JSON.stringify(snap));
+  } catch (e) { /* localStorage pieno o disabilitato */ }
+}
+
+function clearResume() {
+  try { localStorage.removeItem(RESUME_KEY); } catch (e) {}
+}
+
+function readResumeSnapshot() {
+  try {
+    var raw = localStorage.getItem(RESUME_KEY);
+    if (!raw) return null;
+    var snap = JSON.parse(raw);
+    if (!snap || !snap.sessionId) return null;
+    if (Date.now() - (snap.savedAt || 0) > RESUME_TTL_MS) { clearResume(); return null; }
+    return snap;
+  } catch (e) { return null; }
+}
+
+function offerResume(snap) {
+  STATE._pendingResume = snap;
+  $('resumeSessionId').textContent = snap.sessionId;
+  var tot = (snap.taskOrder && snap.taskOrder.length) || 10;
+  var done = snap.taskIndex || 0;
+  var prof = snap.profile ? snap.profile.replace('_', ' ') : '(profilo non scelto)';
+  $('resumeProgressDetail').textContent = 'Profilo: ' + prof + ' · task completati: ' + done + ' di ' + tot;
+  show('resume');
+}
+
+function applyResume() {
+  var snap = STATE._pendingResume;
+  if (!snap) { show('welcome'); return; }
+  STATE.sessionId = snap.sessionId;
+  STATE.campaign = snap.campaign || STATE.campaign;
+  STATE.profile = snap.profile;
+  STATE.taskOrder = snap.taskOrder || [];
+  STATE.taskIndex = snap.taskIndex || 0;
+  STATE.taskResults = snap.taskResults || [];
+  STATE.startedAt = snap.startedAt || Date.now();
+  if (snap.screen === 'profile' || !snap.profile) {
+    show('profile');
+  } else if (snap.screen === 'instructions' || !STATE.taskOrder.length) {
+    show('instructions');
+  } else {
+    loadTask();
+  }
+}
+
+function discardResumeAndRestart() {
+  clearResume();
+  STATE._pendingResume = null;
+  STATE.sessionId = generateSessionId();
+  show('welcome');
+}
+
 // ===== Boot =====
 async function loadData() {
   try {
@@ -812,7 +901,13 @@ async function loadData() {
     var url = new URL(window.location.href);
     // v1.3 (09/06/2026) — campagna default cambiata da 'default' a 'ufficiale' dopo archivio sessioni preliminare
     STATE.campaign = url.searchParams.get('session') || url.searchParams.get('campaign') || 'ufficiale';
-    show('welcome');
+    // v1.4 (09/06/2026) — check resume
+    var snap = readResumeSnapshot();
+    if (snap && snap.campaign === STATE.campaign) {
+      offerResume(snap);
+    } else {
+      show('welcome');
+    }
   } catch (e) {
     console.error(e);
     $('screen-loading').innerHTML = '<div class="loading"><p style="color: var(--error);">Errore nel caricamento dei dati. Aggiorna la pagina.</p></div>';
@@ -830,7 +925,8 @@ function goToProfile() {
 }
 function setProfileAndContinue(profile) {
   STATE.profile = profile;
-  // Persisto anche in firebase appena disponibile insieme alla sessione
+  persistResume('instructions');                    // v1.4 — autosave dopo scelta profilo
+  saveInProgressToFirebase('profile_set');          // v1.4 — opzionale: salva su Firebase per monitoraggio drop-off
   show('instructions');
 }
 
@@ -853,6 +949,7 @@ function startTest() {
   STATE.taskIndex = 0;
   STATE.startedAt = Date.now();
   STATE.taskResults = [];
+  persistResume('task');                            // v1.4 — autosave inizio test
   loadTask();
 }
 
@@ -977,6 +1074,8 @@ function skipTask() {
   if (!confirm('Sei sicuro/a di voler saltare questo task?')) return;
   recordTaskResult(true);
   STATE.taskIndex++;
+  persistResume('task');                            // v1.4 — autosave anche su skip
+  saveInProgressToFirebase('task_skipped');
   loadTask();
 }
 
@@ -1062,6 +1161,8 @@ function submitPostTask() {
   lastResult.doubts = doubts;
 
   STATE.taskIndex++;
+  persistResume('task');                            // v1.4 — autosave dopo ogni task
+  saveInProgressToFirebase('task_completed');       // v1.4 — Firebase incrementale per drop-off
   loadTask();
 }
 
@@ -1109,6 +1210,7 @@ function submitFinalFeedback() {
     }
   };
   saveSession(session);
+  clearResume();                                    // v1.4 — sessione completata, niente più resume
   $('sessionCodeDisplay').textContent = STATE.sessionId;
   show('thankYou');
 }
@@ -1130,13 +1232,33 @@ function saveSession(session) {
   }
 }
 
-window.addEventListener('beforeunload', function(e) {
-  if (STATE.taskIndex > 0 && STATE.taskIndex < STATE.taskOrder.length) {
-    e.preventDefault();
-    e.returnValue = 'Stai per uscire dal test. I tuoi progressi non saranno salvati.';
-    return e.returnValue;
-  }
-});
+// v1.4 — Save incrementale su Firebase per monitoraggio drop-off in dashboard.
+// La dashboard filtra completedAt, quindi queste sessioni in-progress NON contano come complete
+// ma sono visibili tramite il flag inProgress se aggiungeremo la sezione monitor.
+function saveInProgressToFirebase(stage) {
+  if (!firebaseReady || !db) return;
+  if (!STATE.sessionId || !STATE.campaign) return;
+  var data = {
+    sessionId: STATE.sessionId,
+    campaign: STATE.campaign,
+    profile: STATE.profile,
+    stage: stage,                                   // 'profile_set', 'task_completed', 'task_skipped'
+    startedAt: STATE.startedAt,
+    lastActivityAt: Date.now(),
+    tasksCompleted: STATE.taskIndex,
+    tasksTotal: (STATE.taskOrder && STATE.taskOrder.length) || 0,
+    tasksPartial: STATE.taskResults,
+    inProgress: true,
+    userAgent: navigator.userAgent.slice(0, 200),
+    screenSize: window.innerWidth + 'x' + window.innerHeight
+  };
+  try {
+    db.ref('tree-testing-ae/sessions/' + STATE.campaign + '/' + STATE.sessionId).set(data).catch(function(e){});
+  } catch (e) {}
+}
+
+// v1.4 — il beforeunload warning non serve più perché la sessione è ripristinabile.
+// Niente listener: chiudere la finestra non è più "perdita" di dati.
 
 loadData();
 </script>
