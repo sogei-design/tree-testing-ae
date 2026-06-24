@@ -504,6 +504,7 @@
       <!-- Tabs -->
       <div class="tabs">
         <div class="tab active" data-tab="overview">Overview</div>
+        <div class="tab" data-tab="monitoring">Monitoraggio campagna</div>
         <div class="tab" data-tab="tasks">Per task (con pie tree)</div>
         <div class="tab" data-tab="sessions">Sessioni</div>
         <div class="tab" data-tab="comments">Commenti</div>
@@ -529,6 +530,27 @@
         </div>
       </div>
 
+      <!-- Monitoraggio campagna (v1.4) — drop-off funnel + breakdown profilo -->
+      <div class="tab-content" id="tab-monitoring">
+        <div class="panel">
+          <h2>KPI campagna</h2>
+          <p style="font-size:12px; color:var(--text-secondary); margin-bottom:12px;">
+            Target Riunione 8 maggio: <strong>90 sessioni complete</strong> = 30 cittadini + 30 imprese/PIVA + 30 professionisti.
+          </p>
+          <div class="stats-grid" id="campaignKpi"></div>
+        </div>
+        <div class="panel">
+          <h2>Funnel drop-off</h2>
+          <p style="font-size:12px; color:var(--text-secondary); margin-bottom:16px;">A che step si ferma la gente. Include sessioni in corso (con flag <code>inProgress</code>) oltre alle completate.</p>
+          <div id="dropoffFunnel"></div>
+        </div>
+        <div class="panel">
+          <h2>Breakdown per profilo</h2>
+          <p style="font-size:12px; color:var(--text-secondary); margin-bottom:16px;">Avanzamento e completamento per ognuno dei 3 profili. Cliccare la card per filtrare la tab Sessioni.</p>
+          <div id="profileBreakdown"></div>
+        </div>
+      </div>
+
       <!-- Per Task with Pie Tree -->
       <div class="tab-content" id="tab-tasks">
         <div id="taskCardsContainer"></div>
@@ -547,7 +569,7 @@
           <table id="sessionsTable">
             <thead>
               <tr>
-                <th>ID</th><th>Campagna</th><th>Inizio</th><th>Durata</th><th>Task</th><th>Success</th><th>Schermo</th><th>Azioni</th>
+                <th>ID</th><th>Campagna</th><th>Profilo</th><th>Inizio</th><th>Durata</th><th>Task</th><th>Success</th><th>Schermo</th><th>Azioni</th>
               </tr>
             </thead>
             <tbody></tbody>
@@ -641,14 +663,17 @@ async function loadData() {
 
     var snap = await db.ref('tree-testing-ae/sessions').once('value');
     var raw = snap.val() || {};
-    DATA.sessions = [];
+    DATA.sessions = [];          // sessioni COMPLETE (per overview/per task/comments)
+    DATA.allRecords = [];        // v1.4 — TUTTI i record (complete + in-progress) per funnel drop-off
     DATA.campaigns = new Set();
     Object.keys(raw).forEach(function(camp) {
       DATA.campaigns.add(camp);
       var camps = raw[camp] || {};
       Object.keys(camps).forEach(function(sid) {
         var s = camps[sid];
-        if (s && s.completedAt) DATA.sessions.push(s);
+        if (!s || sid.startsWith('_')) return;                  // salta metadata placeholder
+        DATA.allRecords.push(s);
+        if (s.completedAt) DATA.sessions.push(s);
       });
     });
     populateCampaignFilter();
@@ -694,6 +719,7 @@ function render() {
     return;
   }
   renderOverview(sessions);
+  renderMonitoring();              // v1.4 — funnel drop-off + KPI + breakdown profilo (su allRecords)
   renderTasksDetail(sessions);
   renderSessions(sessions);
   renderComments(sessions);
@@ -1127,6 +1153,13 @@ function renderTasksDetail(sessions) {
   document.getElementById('taskCardsContainer').innerHTML = html;
 }
 
+function profileLabel(p) {
+  if (p === 'cittadino') return '👤 Cittadino';
+  if (p === 'impresa_piva') return '🏢 Impresa/PIVA';
+  if (p === 'professionista') return '🧑‍💼 Professionista';
+  return '—';
+}
+
 function renderSessions(sessions) {
   var rows = sessions.slice().sort(function(a,b){return b.startedAt-a.startedAt;}).map(function(s) {
     var ok = (s.tasks || []).filter(function(t){return t.isCorrect;}).length;
@@ -1136,6 +1169,7 @@ function renderSessions(sessions) {
     return '<tr data-session="' + esc(s.sessionId) + '" data-campaign="' + esc(camp) + '">'
       + '<td><code style="font-size: 12px;">' + s.sessionId + '</code></td>'
       + '<td><span class="pill neutral">' + esc(camp) + '</span></td>'
+      + '<td><span class="pill neutral">' + profileLabel(s.profile) + '</span></td>'
       + '<td>' + new Date(s.startedAt).toLocaleString('it-IT') + '</td>'
       + '<td>' + fmtDur(s.durationMs) + '</td>'
       + '<td>' + total + '</td>'
@@ -1145,6 +1179,111 @@ function renderSessions(sessions) {
       + '</tr>';
   }).join('');
   document.querySelector('#sessionsTable tbody').innerHTML = rows;
+}
+
+// ===== Monitoring (v1.4) — drop-off funnel + KPI + breakdown profilo =====
+function getFilteredAllRecords() {
+  var camp = document.getElementById('campaignFilter').value;
+  if (!DATA.allRecords) return [];
+  if (camp === '__all__') return DATA.allRecords;
+  return DATA.allRecords.filter(function(s) { return s.campaign === camp; });
+}
+
+function renderMonitoring() {
+  var all = getFilteredAllRecords();
+  if (all.length === 0) {
+    document.getElementById('campaignKpi').innerHTML = '<div class="empty-state">Nessuna sessione</div>';
+    document.getElementById('dropoffFunnel').innerHTML = '<div class="empty-state">Nessun dato</div>';
+    document.getElementById('profileBreakdown').innerHTML = '<div class="empty-state">Nessun dato</div>';
+    return;
+  }
+
+  // === Funnel ===
+  // Step 1: ha aperto (= ha record)
+  // Step 2: ha scelto profilo (profile != null)
+  // Step 3: ha iniziato almeno 1 task (tasksCompleted >= 1 or tasks length >= 1)
+  // Step 4: ha completato metà task (>= 5)
+  // Step 5: ha completato 10 task (>= 10)
+  // Step 6: ha inviato feedback finale (completedAt != null)
+  var n_open = all.length;
+  var n_profile = all.filter(function(s){ return s.profile; }).length;
+  var n_t1 = all.filter(function(s){
+    var done = s.tasksCompleted != null ? s.tasksCompleted : ((s.tasks||[]).length);
+    return done >= 1;
+  }).length;
+  var n_t5 = all.filter(function(s){
+    var done = s.tasksCompleted != null ? s.tasksCompleted : ((s.tasks||[]).length);
+    return done >= 5;
+  }).length;
+  var n_t10 = all.filter(function(s){
+    var done = s.tasksCompleted != null ? s.tasksCompleted : ((s.tasks||[]).length);
+    return done >= 10;
+  }).length;
+  var n_done = all.filter(function(s){ return s.completedAt; }).length;
+
+  var steps = [
+    { label: '1. Aperto il link',           n: n_open    },
+    { label: '2. Profilo selezionato',      n: n_profile },
+    { label: '3. ≥ 1 task completato',      n: n_t1      },
+    { label: '4. ≥ 5 task completati',      n: n_t5      },
+    { label: '5. 10 task completati',       n: n_t10     },
+    { label: '6. Feedback finale inviato',  n: n_done    }
+  ];
+  var fhtml = '<div style="display:flex; flex-direction:column; gap:6px;">';
+  steps.forEach(function(st, i) {
+    var pctTot = n_open ? Math.round(st.n * 100 / n_open) : 0;
+    var w = Math.max(8, pctTot);
+    var dropFromPrev = (i > 0 && steps[i-1].n > 0) ? (steps[i-1].n - st.n) : 0;
+    var dropLabel = dropFromPrev > 0 ? ' (−' + dropFromPrev + ' dal precedente)' : '';
+    fhtml += '<div style="display:flex; align-items:center; gap:12px;">'
+      +   '<div style="width: 240px; font-size:13px;">' + st.label + '</div>'
+      +   '<div style="flex:1; background:var(--bg-soft); border-radius:4px; overflow:hidden; height:28px; position:relative;">'
+      +     '<div style="width:' + w + '%; height:100%; background: linear-gradient(90deg, var(--accent), #b8860b); display:flex; align-items:center; padding-left:10px; color:#fff; font-weight:700; font-size:13px;">' + st.n + '</div>'
+      +   '</div>'
+      +   '<div style="width: 110px; font-size:13px; color:var(--text-secondary);">' + pctTot + '%' + dropLabel + '</div>'
+      + '</div>';
+  });
+  fhtml += '</div>';
+  document.getElementById('dropoffFunnel').innerHTML = fhtml;
+
+  // === KPI campagna ===
+  var TARGET_PER_PROFILE = 30;
+  var TARGET_TOTAL = 90;
+  var byProfile = { cittadino: { open:0, done:0 }, impresa_piva: { open:0, done:0 }, professionista: { open:0, done:0 } };
+  all.forEach(function(s){
+    var p = s.profile;
+    if (!p || !byProfile[p]) return;
+    byProfile[p].open += 1;
+    if (s.completedAt) byProfile[p].done += 1;
+  });
+  var ko = '<div class="stat-card"><div class="stat-label">Aperture totali</div><div class="stat-value">' + n_open + '</div></div>'
+    + '<div class="stat-card"><div class="stat-label">Sessioni complete</div><div class="stat-value">' + n_done + '</div></div>'
+    + '<div class="stat-card"><div class="stat-label">Target totale</div><div class="stat-value">' + n_done + ' / ' + TARGET_TOTAL + '</div><div class="stat-label" style="margin-top:4px;">' + Math.round(n_done*100/TARGET_TOTAL) + '%</div></div>'
+    + '<div class="stat-card"><div class="stat-label">Completion rate</div><div class="stat-value">' + (n_open ? Math.round(n_done*100/n_open) + '%' : '—') + '</div><div class="stat-label" style="margin-top:4px;">complete / aperture</div></div>';
+  document.getElementById('campaignKpi').innerHTML = ko;
+
+  // === Breakdown per profilo ===
+  var bp = '<div style="display:grid; grid-template-columns: repeat(auto-fit, minmax(260px, 1fr)); gap:14px;">';
+  ['cittadino', 'impresa_piva', 'professionista'].forEach(function(key){
+    var data = byProfile[key];
+    var emoji = key === 'cittadino' ? '👤' : (key === 'impresa_piva' ? '🏢' : '🧑‍💼');
+    var name = key === 'cittadino' ? 'Cittadino' : (key === 'impresa_piva' ? 'Impresa o Partita IVA' : 'Professionista fiscale');
+    var pctTarget = Math.round(data.done * 100 / TARGET_PER_PROFILE);
+    var color = pctTarget >= 100 ? 'var(--hm-correct)' : (pctTarget >= 60 ? 'var(--accent)' : 'var(--hm-wrong)');
+    bp += '<div class="panel" style="margin:0; padding:18px;">'
+      + '<div style="font-size:14px; font-weight:700; margin-bottom:10px;">' + emoji + ' ' + name + '</div>'
+      + '<div style="display:flex; gap:18px; align-items:baseline;"><div style="font-size:28px; font-weight:900; color:' + color + ';">' + data.done + '</div><div style="color:var(--text-secondary); font-size:14px;">/ ' + TARGET_PER_PROFILE + ' completi</div></div>'
+      + '<div style="font-size:12px; color:var(--text-secondary); margin-top:4px;">' + data.open + ' aperture · ' + (data.open ? Math.round(data.done*100/data.open) + '%' : '—') + ' completion</div>'
+      + '<div style="background:var(--bg-soft); border-radius:4px; height:8px; margin-top:10px; overflow:hidden;"><div style="width:' + Math.min(100, pctTarget) + '%; height:100%; background:' + color + ';"></div></div>'
+      + '</div>';
+  });
+  bp += '</div>';
+  // Profilo non scelto/sconosciuto
+  var nProfileUnknown = all.filter(function(s){ return !s.profile; }).length;
+  if (nProfileUnknown > 0) {
+    bp += '<div style="margin-top:14px; font-size:12px; color:var(--text-secondary);">+ <strong>' + nProfileUnknown + '</strong> sessione/i aperta/e senza scelta del profilo (drop prima del passo 2).</div>';
+  }
+  document.getElementById('profileBreakdown').innerHTML = bp;
 }
 
 // ====== Delete sessions ======
