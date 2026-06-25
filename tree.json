@@ -845,252 +845,6 @@
           "label": "Altri contenuti",
           "children": [
             {
-              "id": "scheda_427",
-              "label": "Annullamento del debito",
-              "isLeaf": true,
-              "schedaId": 427
-            },
-            {
-              "id": "scheda_410",
-              "label": "Compensazioni",
-              "isLeaf": true,
-              "schedaId": 410
-            },
-            {
-              "id": "scheda_407",
-              "label": "Pagamenti",
-              "isLeaf": true,
-              "schedaId": 407
-            },
-            {
-              "id": "scheda_408",
-              "label": "Come e dove pagare",
-              "isLeaf": true,
-              "schedaId": 408
-            },
-            {
-              "id": "scheda_409",
-              "label": "Pagamenti dall'estero",
-              "isLeaf": true,
-              "schedaId": 409
-            },
-            {
-              "id": "scheda_413",
-              "label": "Rateizzazione",
-              "isLeaf": true,
-              "schedaId": 413
-            },
-            {
-              "id": "scheda_415",
-              "label": "Istanze \"a semplice richiesta\"",
-              "isLeaf": true,
-              "schedaId": 415
-            },
-            {
-              "id": "scheda_416",
-              "label": "Istanze \"documentate\"",
-              "isLeaf": true,
-              "schedaId": 416
-            },
-            {
-              "id": "scheda_418",
-              "label": "Istanze \"documentate\" - Indicatori",
-              "isLeaf": true,
-              "schedaId": 418
-            },
-            {
-              "id": "scheda_419",
-              "label": "Istanze \"documentate\" - Simula il numero delle rate",
-              "isLeaf": true,
-              "schedaId": 419
-            },
-            {
-              "id": "scheda_420",
-              "label": "Cosa succede con la presentazione della richiesta di rateizzazione",
-              "isLeaf": true,
-              "schedaId": 420
-            },
-            {
-              "id": "scheda_421",
-              "label": "Decadenza dal piano di rateizzazione",
-              "isLeaf": true,
-              "schedaId": 421
-            },
-            {
-              "id": "scheda_425",
-              "label": "Enti che hanno autorizzato l’Agente della riscossione a concedere la rateizza...",
-              "isLeaf": true,
-              "schedaId": 425
-            },
-            {
-              "id": "scheda_424",
-              "label": "Enti che rateizzano in proprio e tributi/tipi imposta non rateizzabili",
-              "isLeaf": true,
-              "schedaId": 424
-            },
-            {
-              "id": "scheda_414",
-              "label": "La  rateizzazione dal 1° gennaio 2025",
-              "isLeaf": true,
-              "schedaId": 414
-            },
-            {
-              "id": "scheda_417",
-              "label": "Proroga del piano di rateizzazione",
-              "isLeaf": true,
-              "schedaId": 417
-            },
-            {
-              "id": "scheda_422",
-              "label": "Rateizzazione - Domiciliazione bancaria",
-              "isLeaf": true,
-              "schedaId": 422
-            },
-            {
-              "id": "scheda_423",
-              "label": "Rateizzazione - Richiedi i moduli di pagamento",
-              "isLeaf": true,
-              "schedaId": 423
-            },
-            {
-              "id": "scheda_428",
-              "label": "Rimborsi",
-              "isLeaf": true,
-              "schedaId": 428
-            },
-            {
-              "id": "scheda_426",
-              "label": "Sospensione",
-              "isLeaf": true,
-              "schedaId": 426
-            },
-            {
-              "id": "scheda_384",
-              "label": "Pagamenti",
-              "isLeaf": true,
-              "schedaId": 384
-            },
-            {
-              "id": "scheda_385",
-              "label": "Come e dove pagare",
-              "isLeaf": true,
-              "schedaId": 385
-            },
-            {
-              "id": "scheda_386",
-              "label": "Pagamenti dall'estero",
-              "isLeaf": true,
-              "schedaId": 386
-            },
-            {
-              "id": "scheda_387",
-              "label": "Compensazioni",
-              "isLeaf": true,
-              "schedaId": 387
-            },
-            {
-              "id": "scheda_388",
-              "label": "Rateizzazione",
-              "isLeaf": true,
-              "schedaId": 388
-            },
-            {
-              "id": "scheda_389",
-              "label": "La  rateizzazione dal 1° gennaio 2025",
-              "isLeaf": true,
-              "schedaId": 389
-            },
-            {
-              "id": "scheda_390",
-              "label": "Istanze \"a semplice richiesta\"",
-              "isLeaf": true,
-              "schedaId": 390
-            },
-            {
-              "id": "scheda_391",
-              "label": "Istanze \"documentate\"",
-              "isLeaf": true,
-              "schedaId": 391
-            },
-            {
-              "id": "scheda_392",
-              "label": "Proroga del piano di rateizzazione",
-              "isLeaf": true,
-              "schedaId": 392
-            },
-            {
-              "id": "scheda_393",
-              "label": "Istanze \"documentate\" - Indicatori",
-              "isLeaf": true,
-              "schedaId": 393
-            },
-            {
-              "id": "scheda_394",
-              "label": "Istanze \"documentate\" - Simula il numero delle rate",
-              "isLeaf": true,
-              "schedaId": 394
-            },
-            {
-              "id": "scheda_395",
-              "label": "Cosa succede con la presentazione della richiesta di rateizzazione",
-              "isLeaf": true,
-              "schedaId": 395
-            },
-            {
-              "id": "scheda_396",
-              "label": "Decadenza dal piano di rateizzazione",
-              "isLeaf": true,
-              "schedaId": 396
-            },
-            {
-              "id": "scheda_397",
-              "label": "Rateizzazione - Domiciliazione bancaria",
-              "isLeaf": true,
-              "schedaId": 397
-            },
-            {
-              "id": "scheda_398",
-              "label": "Rateizzazione - Richiedi i moduli di pagamento",
-              "isLeaf": true,
-              "schedaId": 398
-            },
-            {
-              "id": "scheda_399",
-              "label": "Enti che rateizzano in proprio e tributi/tipi imposta non rateizzabili",
-              "isLeaf": true,
-              "schedaId": 399
-            },
-            {
-              "id": "scheda_400",
-              "label": "Enti che hanno autorizzato l’Agente della riscossione a concedere la rateizza...",
-              "isLeaf": true,
-              "schedaId": 400
-            },
-            {
-              "id": "scheda_401",
-              "label": "Sospensione",
-              "isLeaf": true,
-              "schedaId": 401
-            },
-            {
-              "id": "scheda_402",
-              "label": "Annullamento del debito",
-              "isLeaf": true,
-              "schedaId": 402
-            },
-            {
-              "id": "scheda_403",
-              "label": "Rimborsi",
-              "isLeaf": true,
-              "schedaId": 403
-            },
-            {
-              "id": "scheda_404",
-              "label": "Notifica a mezzo PEC",
-              "isLeaf": true,
-              "schedaId": 404
-            },
-            {
               "id": "scheda_405",
               "label": "Delega un intermediario",
               "isLeaf": true,
@@ -1101,36 +855,6 @@
               "label": "Opera come persona di fiducia o rappresentante",
               "isLeaf": true,
               "schedaId": 406
-            },
-            {
-              "id": "scheda_411",
-              "label": "Compensazioni crediti d'imposta",
-              "isLeaf": true,
-              "schedaId": 411
-            },
-            {
-              "id": "scheda_412",
-              "label": "Compensazioni con crediti verso la PA",
-              "isLeaf": true,
-              "schedaId": 412
-            },
-            {
-              "id": "scheda_429",
-              "label": "Rimborsi in conto fiscale",
-              "isLeaf": true,
-              "schedaId": 429
-            },
-            {
-              "id": "scheda_430",
-              "label": "Rimborsi IVA in conto fiscale",
-              "isLeaf": true,
-              "schedaId": 430
-            },
-            {
-              "id": "scheda_431",
-              "label": "Cessione - Revoca - Sospensione",
-              "isLeaf": true,
-              "schedaId": 431
             }
           ]
         },
@@ -1704,6 +1428,162 @@
               "label": "Come ottenere un rimborso",
               "isLeaf": true,
               "schedaId": 327
+            },
+            {
+              "id": "scheda_429",
+              "label": "Rimborsi in conto fiscale",
+              "isLeaf": true,
+              "schedaId": 429
+            },
+            {
+              "id": "scheda_430",
+              "label": "Rimborsi IVA in conto fiscale",
+              "isLeaf": true,
+              "schedaId": 430
+            },
+            {
+              "id": "scheda_431",
+              "label": "Cessione - Revoca - Sospensione",
+              "isLeaf": true,
+              "schedaId": 431
+            }
+          ]
+        },
+        {
+          "id": "ma_009_pagamenti_all_agenzia_entrate_riscossione",
+          "label": "Pagamenti all'Agenzia delle Entrate-Riscossione",
+          "children": [
+            {
+              "id": "scheda_384",
+              "label": "Pagamenti",
+              "isLeaf": true,
+              "schedaId": 384
+            },
+            {
+              "id": "scheda_385",
+              "label": "Come e dove pagare",
+              "isLeaf": true,
+              "schedaId": 385
+            },
+            {
+              "id": "scheda_386",
+              "label": "Pagamenti dall'estero",
+              "isLeaf": true,
+              "schedaId": 386
+            },
+            {
+              "id": "scheda_387",
+              "label": "Compensazioni",
+              "isLeaf": true,
+              "schedaId": 387
+            },
+            {
+              "id": "scheda_388",
+              "label": "Rateizzazione",
+              "isLeaf": true,
+              "schedaId": 388
+            },
+            {
+              "id": "scheda_389",
+              "label": "La  rateizzazione dal 1° gennaio 2025",
+              "isLeaf": true,
+              "schedaId": 389
+            },
+            {
+              "id": "scheda_390",
+              "label": "Istanze \"a semplice richiesta\"",
+              "isLeaf": true,
+              "schedaId": 390
+            },
+            {
+              "id": "scheda_391",
+              "label": "Istanze \"documentate\"",
+              "isLeaf": true,
+              "schedaId": 391
+            },
+            {
+              "id": "scheda_392",
+              "label": "Proroga del piano di rateizzazione",
+              "isLeaf": true,
+              "schedaId": 392
+            },
+            {
+              "id": "scheda_393",
+              "label": "Istanze \"documentate\" - Indicatori",
+              "isLeaf": true,
+              "schedaId": 393
+            },
+            {
+              "id": "scheda_394",
+              "label": "Istanze \"documentate\" - Simula il numero delle rate",
+              "isLeaf": true,
+              "schedaId": 394
+            },
+            {
+              "id": "scheda_395",
+              "label": "Cosa succede con la presentazione della richiesta di rateizzazione",
+              "isLeaf": true,
+              "schedaId": 395
+            },
+            {
+              "id": "scheda_396",
+              "label": "Decadenza dal piano di rateizzazione",
+              "isLeaf": true,
+              "schedaId": 396
+            },
+            {
+              "id": "scheda_397",
+              "label": "Rateizzazione - Domiciliazione bancaria",
+              "isLeaf": true,
+              "schedaId": 397
+            },
+            {
+              "id": "scheda_398",
+              "label": "Rateizzazione - Richiedi i moduli di pagamento",
+              "isLeaf": true,
+              "schedaId": 398
+            },
+            {
+              "id": "scheda_399",
+              "label": "Enti che rateizzano in proprio e tributi/tipi imposta non rateizzabili",
+              "isLeaf": true,
+              "schedaId": 399
+            },
+            {
+              "id": "scheda_400",
+              "label": "Enti che hanno autorizzato l’Agente della riscossione a concedere la rateizza...",
+              "isLeaf": true,
+              "schedaId": 400
+            },
+            {
+              "id": "scheda_401",
+              "label": "Sospensione",
+              "isLeaf": true,
+              "schedaId": 401
+            },
+            {
+              "id": "scheda_402",
+              "label": "Annullamento del debito",
+              "isLeaf": true,
+              "schedaId": 402
+            },
+            {
+              "id": "scheda_403",
+              "label": "Rimborsi",
+              "isLeaf": true,
+              "schedaId": 403
+            },
+            {
+              "id": "scheda_411",
+              "label": "Compensazioni crediti d'imposta",
+              "isLeaf": true,
+              "schedaId": 411
+            },
+            {
+              "id": "scheda_412",
+              "label": "Compensazioni con crediti verso la PA",
+              "isLeaf": true,
+              "schedaId": 412
             }
           ]
         },
@@ -2070,6 +1950,12 @@
               "label": "Operare come persona di fiducia o rappresentante presso la Riscossione",
               "isLeaf": true,
               "schedaId": 501
+            },
+            {
+              "id": "scheda_404",
+              "label": "Notifica a mezzo PEC",
+              "isLeaf": true,
+              "schedaId": 404
             }
           ]
         }
