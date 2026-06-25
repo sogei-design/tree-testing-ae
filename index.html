@@ -654,23 +654,26 @@
   <div class="screen" id="screen-postTask">
     <div class="card">
       <h2 style="text-align: center;">Cosa ti ha guidato in questa scelta?</h2>
-      <p style="text-align: center; color: var(--text-secondary); margin-bottom: 24px;">
+      <p style="text-align: center; color: var(--text-secondary); margin-bottom: 12px;">
         Hai indicato: <strong id="postTaskChoice"></strong>
       </p>
+      <!-- v1.5 (25/06/2026) — breadcrumb completo per aiutare a ricordare il percorso fatto -->
+      <div id="postTaskBreadcrumb" style="text-align:center; font-size:13px; color:var(--text-secondary); background:var(--bg-soft); padding:10px 16px; border-radius:6px; margin: 0 auto 24px; max-width: 700px; line-height:1.5;"></div>
 
       <!-- Q1: Confidence -->
       <div class="field">
         <label class="field-label field-required">Quanto sei sicuro/a della tua scelta?</label>
+        <span class="field-help">Hai trovato facilmente la scheda dove l'avresti cercata, oppure hai dovuto pensarci a lungo?</span>
         <div class="rating-row" id="confidencePills"></div>
         <div class="rating-labels"><span>Per niente</span><span>Molto</span></div>
         <div class="error-msg" id="errConfidence">Seleziona un valore.</div>
       </div>
 
-      <!-- Q2: Doubts -->
+      <!-- Q2: Doubts (testo guida ampliato v1.5) -->
       <div class="field">
-        <label class="field-label field-required" for="doubtsInput">Hai avuto dubbi? Avresti selezionato altre categorie o etichette?</label>
-        <span class="field-help">Se sì, quali alternative hai considerato? Se non hai avuto dubbi, scrivi semplicemente "no".</span>
-        <textarea id="doubtsInput" placeholder='Es. "ho esitato tra Pagamenti e Bonus" oppure "no"'></textarea>
+        <label class="field-label field-required" for="doubtsInput">Cosa ti ha guidato in questa scelta? Hai avuto dubbi?</label>
+        <span class="field-help">Raccontaci cosa ti ha fatto decidere (es. la parola "pagamento" nel nome, l'aver riconosciuto il bollo, l'esclusione delle altre categorie). Se hai esitato fra più voci, scrivi quali. Se non hai avuto dubbi, scrivi semplicemente "no".</span>
+        <textarea id="doubtsInput" placeholder='Es. "il nome era esplicito"; "ho esitato fra Pagamenti e Bonus"; "no, ho riconosciuto subito la voce"'></textarea>
         <div class="error-msg" id="errDoubts">Compila questo campo per proseguire (anche solo con "no").</div>
       </div>
 
@@ -805,6 +808,24 @@ function fmtTime(ms) {
   s = s % 60;
   return (m < 10 ? '0' + m : m) + ':' + (s < 10 ? '0' + s : s);
 }
+// v1.5 — costruisce il breadcrumb completo dal root al nodo target
+function buildBreadcrumbForNode(targetId) {
+  var path = [];
+  function dfs(node, currentChain) {
+    var chain = currentChain.concat([node]);
+    if (node.id === targetId) { path = chain.slice(); return true; }
+    if (node.children) {
+      for (var i = 0; i < node.children.length; i++) {
+        if (dfs(node.children[i], chain)) return true;
+      }
+    }
+    return false;
+  }
+  if (STATE.tree) dfs(STATE.tree, []);
+  // Saltiamo il root (Home) per non appesantire; mostriamo dalla L1 in poi
+  return path.slice(1).map(function(n){ return n.label; });
+}
+
 function shuffle(arr) {
   var a = arr.slice();
   for (var i = a.length - 1; i > 0; i--) {
@@ -1065,6 +1086,11 @@ function submitAnswer(node) {
   show('postTask');
   setupConfidencePills();
   $('postTaskChoice').textContent = node.label;
+  // v1.5 (25/06/2026) — breadcrumb completo del percorso scelto
+  var bc = buildBreadcrumbForNode(node.id);
+  $('postTaskBreadcrumb').innerHTML = bc.length
+    ? '<strong>Percorso scelto:</strong><br>' + bc.map(function(b){ return '<span style="color:var(--text); font-weight:500;">' + b + '</span>'; }).join(' <span style="color:var(--accent); margin:0 4px;">›</span> ')
+    : '';
   $('doubtsInput').value = '';
   ['errConfidence', 'errDoubts'].forEach(function(id) { $(id).classList.remove('visible'); });
   $('doubtsInput').classList.remove('error');
