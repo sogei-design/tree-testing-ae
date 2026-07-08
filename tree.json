@@ -255,6 +255,18 @@
               "label": "Optare per il regime IVA per servizi di trasporto e logistica",
               "isLeaf": true,
               "schedaId": 479
+            },
+            {
+              "id": "scheda_166",
+              "label": "Presentare la dichiarazione d'intento come esportatore abituale",
+              "isLeaf": true,
+              "schedaId": 166
+            },
+            {
+              "id": "scheda_171",
+              "label": "Presentare la dichiarazione della non imponibilità IVA (percentuali di detraibilità)",
+              "isLeaf": true,
+              "schedaId": 171
             }
           ]
         },
@@ -339,6 +351,12 @@
               "label": "Registrare collettivamente i contratti di affitto di terreni agricoli (Fondi ...",
               "isLeaf": true,
               "schedaId": 314
+            },
+            {
+              "id": "scheda_502",
+              "label": "Comunicare gli adempimenti successivi alla registrazione di un contratto di locazione (in lingua tedesca)",
+              "isLeaf": true,
+              "schedaId": 502
             }
           ]
         },
@@ -635,6 +653,30 @@
               "schedaId": 214
             }
           ]
+        },
+        {
+          "id": "ma_003_certificati_fiscali",
+          "label": "Certificati fiscali",
+          "children": [
+            {
+              "id": "scheda_230",
+              "label": "Richiedere il certificato sull'esistenza di contestazioni fiscali in corso",
+              "isLeaf": true,
+              "schedaId": 230
+            },
+            {
+              "id": "scheda_244",
+              "label": "Richiedere il certificato unico dei debiti tributari (CUDT)",
+              "isLeaf": true,
+              "schedaId": 244
+            },
+            {
+              "id": "scheda_261",
+              "label": "Richiedere il certificato dei carichi pendenti fiscali",
+              "isLeaf": true,
+              "schedaId": 261
+            }
+          ]
         }
       ]
     },
@@ -663,6 +705,12 @@
               "label": "Richiedere o duplicare il Codice Fiscale",
               "isLeaf": true,
               "schedaId": 232
+            },
+            {
+              "id": "scheda_499",
+              "label": "Richiedere Codice Fiscale e Tessera Sanitaria",
+              "isLeaf": true,
+              "schedaId": 499
             }
           ]
         }
@@ -801,6 +849,18 @@
               "label": "Compilare e inviare il modello Redditi Persone Fisiche 2026",
               "isLeaf": true,
               "schedaId": 157
+            },
+            {
+              "id": "scheda_179",
+              "label": "Consultare e inviare la dichiarazione precompilata come cittadino",
+              "isLeaf": true,
+              "schedaId": 179
+            },
+            {
+              "id": "scheda_494",
+              "label": "Destinare l'8, il 5 e il 2 per mille dell'IRPEF nella dichiarazione 2026",
+              "isLeaf": true,
+              "schedaId": 494
             }
           ]
         },
@@ -819,6 +879,126 @@
               "label": "Compilare e inviare la dichiarazione fiscale Globe (Pillar Two)",
               "isLeaf": true,
               "schedaId": 504
+            },
+            {
+              "id": "scheda_169",
+              "label": "Presentare il Modello Redditi SC 2026 come società di capitali",
+              "isLeaf": true,
+              "schedaId": 169
+            },
+            {
+              "id": "scheda_170",
+              "label": "Presentare la Certificazione Unica (CU) 2026 come sostituto d'imposta",
+              "isLeaf": true,
+              "schedaId": 170
+            },
+            {
+              "id": "scheda_173",
+              "label": "Presentare il Modello 770/2026 come sostituto d'imposta",
+              "isLeaf": true,
+              "schedaId": 173
+            },
+            {
+              "id": "scheda_175",
+              "label": "Presentare la dichiarazione dell'imposta sostitutiva sui finanziamenti",
+              "isLeaf": true,
+              "schedaId": 175
+            },
+            {
+              "id": "scheda_177",
+              "label": "Presentare la dichiarazione IVA Base 2026 come piccolo contribuente",
+              "isLeaf": true,
+              "schedaId": 177
+            },
+            {
+              "id": "scheda_178",
+              "label": "Presentare il Modello Redditi ENC 2026 come ente non commerciale",
+              "isLeaf": true,
+              "schedaId": 178
+            },
+            {
+              "id": "scheda_181",
+              "label": "Presentare la Certificazione degli utili (CUPE) come società erogante",
+              "isLeaf": true,
+              "schedaId": 181
+            },
+            {
+              "id": "scheda_185",
+              "label": "Presentare la dichiarazione IVA 2026 come impresa",
+              "isLeaf": true,
+              "schedaId": 185
+            },
+            {
+              "id": "scheda_186",
+              "label": "Presentare il Modello Redditi SP 2026 come società di persone",
+              "isLeaf": true,
+              "schedaId": 186
+            },
+            {
+              "id": "scheda_486",
+              "label": "Presentare la dichiarazione IVA in caso di fallimento (art. 74-bis)",
+              "isLeaf": true,
+              "schedaId": 486
+            },
+            {
+              "id": "scheda_487",
+              "label": "Denunciare l'imposta sulle assicurazioni, premi e accessori",
+              "isLeaf": true,
+              "schedaId": 487
+            },
+            {
+              "id": "scheda_488",
+              "label": "Presentare la dichiarazione dell'imposta di bollo assolta in modo virtuale",
+              "isLeaf": true,
+              "schedaId": 488
+            },
+            {
+              "id": "scheda_489",
+              "label": "Compilare gli Indici Sintetici di Affidabilità (ISA) per il proprio settore",
+              "isLeaf": true,
+              "schedaId": 489
+            },
+            {
+              "id": "scheda_490",
+              "label": "Presentare il modello Intra 12 per acquisti intracomunitari da parte di enti non commerciali",
+              "isLeaf": true,
+              "schedaId": 490
+            },
+            {
+              "id": "scheda_491",
+              "label": "Presentare il modello Intra 13 per acquisti intracomunitari",
+              "isLeaf": true,
+              "schedaId": 491
+            },
+            {
+              "id": "scheda_492",
+              "label": "Presentare gli elenchi riepilogativi Intrastat delle operazioni con l'estero UE",
+              "isLeaf": true,
+              "schedaId": 492
+            },
+            {
+              "id": "scheda_493",
+              "label": "Presentare la dichiarazione IVA 74-bis in caso di procedura concorsuale",
+              "isLeaf": true,
+              "schedaId": 493
+            },
+            {
+              "id": "scheda_495",
+              "label": "Presentare l'autodichiarazione dei requisiti Temporary Framework (aiuti Covid)",
+              "isLeaf": true,
+              "schedaId": 495
+            },
+            {
+              "id": "scheda_496",
+              "label": "Presentare la dichiarazione IRAP 2026 come impresa o ente",
+              "isLeaf": true,
+              "schedaId": 496
+            },
+            {
+              "id": "scheda_503",
+              "label": "Registrare il verbale di distribuzione utili con il modello RAP",
+              "isLeaf": true,
+              "schedaId": 503
             }
           ]
         },
@@ -843,20 +1023,7 @@
         {
           "id": "ma_006_senza_sotto_categoria",
           "label": "Altri contenuti",
-          "children": [
-            {
-              "id": "scheda_405",
-              "label": "Delega un intermediario",
-              "isLeaf": true,
-              "schedaId": 405
-            },
-            {
-              "id": "scheda_406",
-              "label": "Opera come persona di fiducia o rappresentante",
-              "isLeaf": true,
-              "schedaId": 406
-            }
-          ]
+          "children": []
         },
         {
           "id": "ma_006_accertamenti_e_verifiche",
@@ -901,6 +1068,30 @@
               "label": "Cosa fare se ricevo una lettera di compliance dall’Agenzia",
               "isLeaf": true,
               "schedaId": 22
+            },
+            {
+              "id": "scheda_14",
+              "label": "Rispondere a una comunicazione di irregolarità dell'Agenzia delle Entrate",
+              "isLeaf": true,
+              "schedaId": 14
+            },
+            {
+              "id": "scheda_16",
+              "label": "Regolarizzare la propria posizione fiscale con il ravvedimento operoso",
+              "isLeaf": true,
+              "schedaId": 16
+            },
+            {
+              "id": "scheda_462",
+              "label": "Aderire al ravvedimento speciale CPB per le annualità 2019-2023",
+              "isLeaf": true,
+              "schedaId": 462
+            },
+            {
+              "id": "scheda_464",
+              "label": "Aderire al ravvedimento speciale CPB per le annualità 2018-2022",
+              "isLeaf": true,
+              "schedaId": 464
             }
           ]
         }
@@ -936,6 +1127,18 @@
               "label": "Ottenere la detrazione per le ristrutturazioni edilizie",
               "isLeaf": true,
               "schedaId": 91
+            },
+            {
+              "id": "scheda_90",
+              "label": "Richiedere le detrazioni per interventi di riqualificazione energetica (Ecobonus)",
+              "isLeaf": true,
+              "schedaId": 90
+            },
+            {
+              "id": "scheda_468",
+              "label": "Richiedere il contributo a fondo perduto per interventi edilizi 2024",
+              "isLeaf": true,
+              "schedaId": 468
             }
           ]
         },
@@ -1032,6 +1235,12 @@
               "label": "Richiedere il credito d'imposta per investimenti nelle ZLS 2026",
               "isLeaf": true,
               "schedaId": 477
+            },
+            {
+              "id": "scheda_466",
+              "label": "Richiedere il credito d'imposta aggiuntivo per investimenti nella ZES unica 2025",
+              "isLeaf": true,
+              "schedaId": 466
             }
           ]
         },
@@ -1350,6 +1559,12 @@
               "label": "Pagare l'ecotassa per veicoli M1 immatricolati 2019-2021",
               "isLeaf": true,
               "schedaId": 513
+            },
+            {
+              "id": "scheda_303",
+              "label": "Pagare l'imposta di registro sui contratti",
+              "isLeaf": true,
+              "schedaId": 303
             }
           ]
         },
@@ -1707,7 +1922,7 @@
           "children": [
             {
               "id": "scheda_235",
-              "label": "Identificazione Iva soggetti non residenti (Anr/3)",
+              "label": "Registrarsi ai fini IVA come soggetto non residente (Modello ANR/3)",
               "isLeaf": true,
               "schedaId": 235
             },
@@ -1770,6 +1985,12 @@
               "label": "Registrare un pegno mobiliare non possessorio",
               "isLeaf": true,
               "schedaId": 505
+            },
+            {
+              "id": "scheda_227",
+              "label": "Registrare un atto firmato digitalmente",
+              "isLeaf": true,
+              "schedaId": 227
             }
           ]
         },
@@ -1908,6 +2129,18 @@
               "label": "Comunicare le transazioni con pagamenti elettronici",
               "isLeaf": true,
               "schedaId": 485
+            },
+            {
+              "id": "scheda_132",
+              "label": "Comunicare i dati dei trasferimenti da/verso l'estero come intermediario finanziario",
+              "isLeaf": true,
+              "schedaId": 132
+            },
+            {
+              "id": "scheda_133",
+              "label": "Rispondere alle richieste di informazioni sui movimenti finanziari transfrontalieri",
+              "isLeaf": true,
+              "schedaId": 133
             }
           ]
         },
@@ -1932,6 +2165,24 @@
               "label": "Delegare l'accesso ai servizi online dell'Agenzia delle Entrate e della Risco...",
               "isLeaf": true,
               "schedaId": 483
+            },
+            {
+              "id": "scheda_234",
+              "label": "Delegare l'accesso ai servizi online di Agenzia delle Entrate-Riscossione",
+              "isLeaf": true,
+              "schedaId": 234
+            },
+            {
+              "id": "scheda_405",
+              "label": "Delegare un intermediario per la posizione debitoria in Agenzia delle Entrate-Riscossione",
+              "isLeaf": true,
+              "schedaId": 405
+            },
+            {
+              "id": "scheda_406",
+              "label": "Operare come persona di fiducia o rappresentante presso Agenzia delle Entrate-Riscossione",
+              "isLeaf": true,
+              "schedaId": 406
             }
           ]
         },
@@ -1953,7 +2204,7 @@
             },
             {
               "id": "scheda_404",
-              "label": "Notifica a mezzo PEC",
+              "label": "Ricevere le notifiche di Agenzia delle Entrate-Riscossione a mezzo PEC",
               "isLeaf": true,
               "schedaId": 404
             }
@@ -1966,9 +2217,16 @@
       "label": "Agevolazioni per persone con disabilità",
       "children": [
         {
-          "id": "ma_012_da_popolare",
-          "label": "(da popolare con schede dedicate)",
-          "children": []
+          "id": "ma_012_agevolazioni_disabilita",
+          "label": "Agevolazioni disabilità",
+          "children": [
+            {
+              "id": "scheda_25",
+              "label": "Ottenere le agevolazioni fiscali per persone con disabilità",
+              "isLeaf": true,
+              "schedaId": 25
+            }
+          ]
         }
       ]
     },
