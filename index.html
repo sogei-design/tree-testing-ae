@@ -837,6 +837,8 @@ function shuffle(arr) {
 }
 
 // ===== Resume / autosave (v1.4) =====
+// v1.6 (13/10/2026): versione albero salvata in ogni sessione per separare pre/post fix eredità (MA_007)
+var TREE_VERSION = 'v1.6-20261013';
 var RESUME_KEY = 'tree_test_resume_v1';
 var RESUME_TTL_MS = 1000 * 60 * 60 * 24 * 14;   // 14 giorni: dopo tanto scartiamo lo snapshot
 
@@ -1229,6 +1231,7 @@ function submitFinalFeedback() {
     durationMs: Date.now() - STATE.startedAt,
     userAgent: navigator.userAgent.slice(0, 200),
     screenSize: window.innerWidth + 'x' + window.innerHeight,
+    treeVersion: TREE_VERSION,
     tasks: STATE.taskResults,
     finalFeedback: {
       clarity: STATE.finalFeedback.clarity,
@@ -1277,7 +1280,8 @@ function saveInProgressToFirebase(stage) {
     tasksPartial: STATE.taskResults,
     inProgress: true,
     userAgent: navigator.userAgent.slice(0, 200),
-    screenSize: window.innerWidth + 'x' + window.innerHeight
+    screenSize: window.innerWidth + 'x' + window.innerHeight,
+    treeVersion: TREE_VERSION
   };
   try {
     db.ref('tree-testing-ae/sessions/' + STATE.campaign + '/' + STATE.sessionId).set(data).catch(function(e){});

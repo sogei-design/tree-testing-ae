@@ -1021,11 +1021,6 @@
       "label": "Controlli fiscali e contenziosi",
       "children": [
         {
-          "id": "ma_006_senza_sotto_categoria",
-          "label": "Altri contenuti",
-          "children": []
-        },
-        {
           "id": "ma_006_accertamenti_e_verifiche",
           "label": "Accertamenti e verifiche",
           "children": [
@@ -1100,7 +1095,67 @@
     {
       "id": "ma_007",
       "label": "Gestire una successione o un'eredità",
-      "children": []
+      "children": [
+        {
+          "id": "ma_007_dichiarazione_e_adempimenti",
+          "label": "Dichiarazione e adempimenti",
+          "children": [
+            {
+              "id": "scheda_174_ma007",
+              "label": "Compilare e inviare la dichiarazione di successione",
+              "isLeaf": true,
+              "schedaId": 174,
+              "aliasOf": "scheda_174"
+            }
+          ]
+        },
+        {
+          "id": "ma_007_aggiornamento_catastale",
+          "label": "Aggiornamento catastale",
+          "children": [
+            {
+              "id": "scheda_188_ma007",
+              "label": "Presentare una voltura catastale",
+              "isLeaf": true,
+              "schedaId": 188,
+              "aliasOf": "scheda_188"
+            }
+          ]
+        },
+        {
+          "id": "ma_007_imposte_e_pagamenti",
+          "label": "Imposte e pagamenti",
+          "children": [
+            {
+              "id": "scheda_296_ma007",
+              "label": "Pagare imposta su beni ereditati (imposta di successione)",
+              "isLeaf": true,
+              "schedaId": 296,
+              "aliasOf": "scheda_296"
+            },
+            {
+              "id": "scheda_301_ma007",
+              "label": "Pagare imposte sulle donazioni ricevute",
+              "isLeaf": true,
+              "schedaId": 301,
+              "aliasOf": "scheda_301"
+            }
+          ]
+        },
+        {
+          "id": "ma_007_rimborsi_e_crediti_del_defunto",
+          "label": "Rimborsi e crediti del defunto",
+          "children": [
+            {
+              "id": "scheda_317_ma007",
+              "label": "Richiedere i rimborsi intestati ad un parente deceduto",
+              "isLeaf": true,
+              "schedaId": 317,
+              "aliasOf": "scheda_317"
+            }
+          ]
+        }
+      ]
     },
     {
       "id": "ma_008",

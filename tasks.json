@@ -70,7 +70,9 @@
       ],
       "correctNodeId": "scheda_188",
       "alternateAcceptable": [
-        "scheda_174"
+        "scheda_174",
+        "scheda_188_ma007",
+        "scheda_174_ma007"
       ],
       "rationale": "Test del trade-off tra macro 'Casa e terreni' e macro 'Gestire una successione o un'eredità'. La voltura catastale è un'azione legata al cambio di intestazione (catasto), ma il contesto utente è una successione. Risultato critico: misura quanti utenti vanno per primo nella macro 'successione' (sbagliato per voltura) vs 'casa e terreni' (corretto)."
     },
@@ -98,11 +100,14 @@
       "correctPath": [
         "root",
         "ma_005",
-        "ma_005_successioni_ed_eredita_",
+        "ma_005_successioni_ed_eredita",
         "scheda_174"
       ],
       "correctNodeId": "scheda_174",
-      "rationale": "Task chiave per validare la coesistenza tra macro 'Compilare ed inviare dichiarazioni' e macro 'Gestire una successione o un'eredità'. Oggi MA_007 ha 0 schede classificate (è uno scaffold). Se la maggioranza degli utenti va su MA_007 ma non trova nulla, la struttura è da rivedere. Misura la sovrapposizione tematica tra le due macro."
+      "rationale": "Task chiave per validare la coesistenza tra macro 'Compilare ed inviare dichiarazioni' e macro 'Gestire una successione o un'eredità'. Dal 13/10/2026 MA_007 è popolata con le 5 schede in doppia collocazione (Macro #2 del master): la dichiarazione è raggiungibile da entrambi i percorsi. Prima di questa data il nodo MA_007 era una foglia vuota selezionabile.",
+      "alternateAcceptable": [
+        "scheda_174_ma007"
+      ]
     },
     {
       "id": "T06",
@@ -164,7 +169,7 @@
       "correctPath": [
         "root",
         "ma_001",
-        "ma_001_avviare_un_attivita",
+        "ma_001_avviare_un_attivit",
         "scheda_228"
       ],
       "correctNodeId": "scheda_228",
@@ -208,7 +213,7 @@
       "correctPath": [
         "root",
         "ma_009",
-        "ma_009_strumenti_e_modalita_di_pagamento",
+        "ma_009_strumenti_e_modalit_di_pagamento",
         "scheda_286"
       ],
       "correctNodeId": "scheda_286",
@@ -347,6 +352,7 @@
         "T14 path aggiornato a ma_002_biglietterie_e_misuratori"
       ]
     },
-    "v1.3 (21/05/2026): mail Federica → split sotto-cat 'Emettere fatture e corrispettivi' in 'Fatturazione elettronica' + 'Corrispettivi telematici'; 3 nuove schede (POS-RT 510, Lotteria 511, Soluzioni software 512); 3 nuovi task T16-T18; fix bug path T13/T14/T15 (ma_001/ma_002 corretti); fix bug Fiscalità Internazionale duplicato (apostrofo)."
+    "v1.3 (21/05/2026): mail Federica → split sotto-cat 'Emettere fatture e corrispettivi' in 'Fatturazione elettronica' + 'Corrispettivi telematici'; 3 nuove schede (POS-RT 510, Lotteria 511, Soluzioni software 512); 3 nuovi task T16-T18; fix bug path T13/T14/T15 (ma_001/ma_002 corretti); fix bug Fiscalità Internazionale duplicato (apostrofo).",
+    "v1.6 (13/10/2026): MA_007 'Gestire una successione o un'eredità' popolata con 5 nodi alias (174, 188, 296, 301, 317) in 4 sotto-categorie, come da Macro #2 del master: prima era una foglia vuota selezionabile. Alias accettati in T03/T05. Rimosso nodo vuoto ma_006 'Altri contenuti'. Corretti correctPath di T05/T09/T12 (id sotto-categoria non allineati, influiva solo su isDirect). Sessioni con treeVersion assente = pre-fix."
   ]
 }

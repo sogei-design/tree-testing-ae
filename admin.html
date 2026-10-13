@@ -1166,6 +1166,8 @@ function profileLabel(p) {
 
 // v1.5 (25/06/2026) — cutoff fix duplicati ADER per separare le sessioni pre/post
 var ADER_FIX_TS = Date.parse('2026-06-25T15:52:00+02:00');   // timestamp commit 0bf0be2
+// v1.6 (13/10/2026) — fix nodo eredità MA_007 (prima foglia vuota selezionabile)
+var EREDITA_FIX_TS = Date.parse('2026-10-13T15:45:00+02:00');
 
 function fixEra(s) {
   if (!s || !s.completedAt) return 'in-progress';
@@ -1214,7 +1216,11 @@ function renderMonitoring() {
     + 'sono state rimosse e le 22 Cittadini spostate nella nuova sotto-cat <em>Pagamenti e Rimborsi → Pagamenti all\'Agenzia delle Entrate-Riscossione</em>.<br>'
     + '<span class="pill warning">pre-fix: ' + preCount + ' sessioni</span> '
     + '<span class="pill success">post-fix: ' + postCount + ' sessioni</span> '
-    + '<span style="color:var(--text-secondary); margin-left:8px;">— le risposte ai task ADER nelle sessioni pre-fix vanno interpretate con cautela (struttura albero diversa).</span>';
+    + '<span style="color:var(--text-secondary); margin-left:8px;">— le risposte ai task ADER nelle sessioni pre-fix vanno interpretate con cautela (struttura albero diversa).</span>'
+    + '<br><strong>🔧 Fix nodo eredità (MA_007) applicato il ' + new Date(EREDITA_FIX_TS).toLocaleString('it-IT') + '</strong>: prima era una foglia vuota selezionabile, ora contiene 5 alias (174, 188, 296, 301, 317). '
+    + '<span class="pill warning">pre: ' + all.filter(function(s){return s.completedAt && s.completedAt < EREDITA_FIX_TS;}).length + '</span> '
+    + '<span class="pill success">post: ' + all.filter(function(s){return s.completedAt && s.completedAt >= EREDITA_FIX_TS;}).length + '</span> '
+    + '<span style="color:var(--text-secondary); margin-left:8px;">Nelle sessioni pre-fix la scelta di MA_007 in T03/T05 indica solo la porta scelta, non il percorso completo.</span>';
 
   if (all.length === 0) {
     document.getElementById('campaignKpi').innerHTML = '<div class="empty-state">Nessuna sessione</div>';
