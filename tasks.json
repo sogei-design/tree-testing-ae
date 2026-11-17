@@ -199,10 +199,14 @@
       "correctPath": [
         "root",
         "ma_006",
-        "ma_006_ricorsi_e_reclami"
+        "ma_006_accertamenti_e_verifiche",
+        "scheda_2"
       ],
-      "correctNodeId": "ma_006_ricorsi_e_reclami",
-      "rationale": "Task per la macro più voluminosa (115 schede). 'Ricorsi e reclami' è una sotto-categoria critica e specifica. Verifica se gli utenti distinguono tra controlli (ricevere) e contenziosi (impugnare). Possibile confusione con 'Richieste e comunicazioni all'Agenzia' (macro 11). Difficoltà alta perché il dominio è giuridico-tecnico."
+      "correctNodeId": "scheda_2",
+      "rationale": "Scenario: contestare un avviso di accertamento. Nell'albero manca una voce esplicita 'fare ricorso': gli utenti ripiegano su 'Cosa fare se si riceve un accertamento fiscale' (scheda_2), che e la destinazione piu pertinente. Il nodo atteso originario era una sotto-categoria non selezionabile (0% artefatto). Resta la lacuna architetturale: aggiungere la voce 'Contestare un atto / fare ricorso'.",
+      "alternateAcceptable": [
+        "scheda_3"
+      ]
     },
     {
       "id": "T12",
@@ -214,10 +218,13 @@
         "root",
         "ma_009",
         "ma_009_strumenti_e_modalit_di_pagamento",
-        "scheda_286"
+        "scheda_284"
       ],
-      "correctNodeId": "scheda_286",
-      "rationale": "Test sull'etichetta 'Strumenti e modalità di pagamento'. Verifica se questa sotto-categoria comunica chiaramente la presenza di guide pratiche su F24/F23. Possibile confusione con 'Istruzioni per il pagamento delle imposte' (sotto-categoria adiacente, simile ma più orientata al cosa-pagare che al come-pagare)."
+      "correctNodeId": "scheda_284",
+      "rationale": "Scenario: pagare con F24. La destinazione corretta e 'Pagare con F24' (scheda_284); l'id atteso originario (scheda_286) era una foglia diversa (3% artefatto). Resta la lacuna architetturale: F24 e percepito come sepolto in 'Strumenti e modalita di pagamento' e compare in piu voci duplicate.",
+      "alternateAcceptable": [
+        "scheda_286"
+      ]
     },
     {
       "id": "T13",
@@ -353,6 +360,7 @@
       ]
     },
     "v1.3 (21/05/2026): mail Federica → split sotto-cat 'Emettere fatture e corrispettivi' in 'Fatturazione elettronica' + 'Corrispettivi telematici'; 3 nuove schede (POS-RT 510, Lotteria 511, Soluzioni software 512); 3 nuovi task T16-T18; fix bug path T13/T14/T15 (ma_001/ma_002 corretti); fix bug Fiscalità Internazionale duplicato (apostrofo).",
-    "v1.6 (13/10/2026): MA_007 'Gestire una successione o un'eredità' popolata con 5 nodi alias (174, 188, 296, 301, 317) in 4 sotto-categorie, come da Macro #2 del master: prima era una foglia vuota selezionabile. Alias accettati in T03/T05. Rimosso nodo vuoto ma_006 'Altri contenuti'. Corretti correctPath di T05/T09/T12 (id sotto-categoria non allineati, influiva solo su isDirect). Sessioni con treeVersion assente = pre-fix."
+    "v1.6 (13/10/2026): MA_007 'Gestire una successione o un'eredità' popolata con 5 nodi alias (174, 188, 296, 301, 317) in 4 sotto-categorie, come da Macro #2 del master: prima era una foglia vuota selezionabile. Alias accettati in T03/T05. Rimosso nodo vuoto ma_006 'Altri contenuti'. Corretti correctPath di T05/T09/T12 (id sotto-categoria non allineati, influiva solo su isDirect). Sessioni con treeVersion assente = pre-fix.",
+    "v1.7 (17/11/2026): corretto il nodo atteso di T11 (scheda_2, 'Cosa fare se ricevi un accertamento') e T12 (scheda_284, 'Pagare con F24'); gli id attesi precedenti non erano selezionabili/corretti e davano 0-3% artefatti. Restano a roadmap le lacune: voce 'fare ricorso' e F24 in evidenza."
   ]
 }
